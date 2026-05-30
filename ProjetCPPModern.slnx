@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="ProjetCPPModern/ProjetCPPModern.vcxproj" />
+  <Project Path="ProjetCPPModern/ProjetCPPModern.vcxproj" Id="25eb7b42-1d1f-4b1e-a019-fd85f692db51" />
 </Solution>

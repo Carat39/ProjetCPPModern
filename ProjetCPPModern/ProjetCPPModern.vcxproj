@@ -139,7 +139,14 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Carte.cpp" />
+    <ClCompile Include="Paquet.cpp" />
     <ClCompile Include="ProjetCPPModern.cpp" />
+    <ClCompile Include="TUnitaire_Paquet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Carte.h" />
+    <ClInclude Include="Paquet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
