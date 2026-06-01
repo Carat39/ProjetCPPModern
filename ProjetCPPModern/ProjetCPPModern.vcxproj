@@ -139,14 +139,34 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Carte.cpp" />
+    <ClCompile Include="Dame2Pique.cpp" />
+    <ClCompile Include="Duo.cpp" />
+    <ClCompile Include="Equipe.cpp" />
+    <ClCompile Include="Humain.cpp" />
+    <ClCompile Include="IA.cpp" />
+    <ClCompile Include="IADame2Pique.cpp" />
+    <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Paquet.cpp" />
+    <ClCompile Include="Pli.cpp" />
+    <ClCompile Include="Pli_D2P.cpp" />
     <ClCompile Include="ProjetCPPModern.cpp" />
     <ClCompile Include="TUnitaire_Paquet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Affichage.h" />
     <ClInclude Include="Carte.h" />
+    <ClInclude Include="Dame2Pique.h" />
+    <ClInclude Include="Duo.h" />
+    <ClInclude Include="Equipe.h" />
+    <ClInclude Include="Humain.h" />
+    <ClInclude Include="IA.h" />
+    <ClInclude Include="IADame2Pique.h" />
+    <ClInclude Include="Joueur.h" />
     <ClInclude Include="Paquet.h" />
+    <ClInclude Include="Pli.h" />
+    <ClInclude Include="Pli_D2P.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
