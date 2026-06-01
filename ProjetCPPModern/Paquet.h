@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "Carte.h"
+#include "Joueur.h"
 using namespace std;
 
 class Paquet{
@@ -22,6 +23,10 @@ class Paquet{
 		void Ajouter_carte(string coul, int val);
 
 		void AfficherPaquet();
+
+		void Melanger();
+
+		void Distribuer(vector<Joueur> joueurs);
 
 
 };

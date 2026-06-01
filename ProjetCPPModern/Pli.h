@@ -12,10 +12,10 @@ class Pli{
 
 
 	public:
-		/*
-		int Vainqueur(int premier_j);
+		
+		virtual int Vainqueur(int premier_j) = 0;
 
-		void setCarte(int joueur, Carte carte);
-		*/
+		virtual void setCarte(int joueur, Carte carte) = 0;
+		
 };
 #endif

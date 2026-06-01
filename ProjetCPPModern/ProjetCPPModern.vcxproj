@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
-    <ClCompile Include="Carte.cpp" />
     <ClCompile Include="Dame2Pique.cpp" />
     <ClCompile Include="Duo.cpp" />
     <ClCompile Include="Equipe.cpp" />

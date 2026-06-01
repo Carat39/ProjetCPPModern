@@ -12,12 +12,18 @@ class Carte{
 
 	public:
 		//Constructeurs et Destructeurs
-		Carte();
-		Carte(string coul, int val);
-		//move constructeur
-		Carte(Carte&& autre) noexcept;
+		Carte() {
+			couleur = " ";
+			valeur = -1;
+		}
+		Carte(string coul, int val) {
+			couleur = coul;
+			valeur = val;
+		}
 
 		//Méthodes
+		void set_couleur(string coul) {couleur = coul;}
+		void set_valeur(int val) {valeur = val;}
 		string get_couleur() const { return couleur; }
 		int get_valeur() const { return valeur; }
 

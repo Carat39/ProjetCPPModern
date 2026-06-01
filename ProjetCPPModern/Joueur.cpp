@@ -1,41 +1,41 @@
 #include <iostream>
 #include <vector>
 
-#include "Joueur [abs].h"
+#include "Joueur.h"
 
 
-vector_Carte_ Joueur [abs]::getMain()
+vector<Carte> Joueur::getMain()
+{
+	return main;
+}
+
+int Joueur::getNumero()
 {
 	return 0;
 }
 
-int Joueur [abs]::getNumero()
+int Joueur::getPoints()
 {
 	return 0;
 }
 
-int Joueur [abs]::getPoints()
-{
-	return 0;
-}
-
-void Joueur [abs]::addPoints(int nbPoints)
+void Joueur::addPoints(int nbPoints)
 {
 }
 
-void Joueur [abs]::addMain(vector_Carte_ lesCartes)
+void Joueur::addMain(vector<Carte> lesCartes)
 {
 }
 
-void Joueur [abs]::supprMain(Carte laCarte)
+void Joueur::supprMain(Carte laCarte)
 {
 }
 
-void Joueur [abs]::Jouer()
+void Joueur::Jouer()
 {
 }
 
-boolean Joueur [abs]::Trouver_carte(string coul, int val)
+bool Joueur::Trouver_carte(string coul, int val)
 {
 	return 0;
 }

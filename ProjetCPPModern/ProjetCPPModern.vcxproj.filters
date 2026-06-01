@@ -18,9 +18,6 @@
     <ClCompile Include="ProjetCPPModern.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Carte.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Paquet.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>

@@ -31,3 +31,11 @@ void Paquet::AfficherPaquet() {
 		laCarte.AfficherCarte(cout);
 	}
 }
+
+void Paquet::Melanger()
+{
+}
+
+void Paquet::Distribuer(vector<Joueur> joueurs)
+{
+}
