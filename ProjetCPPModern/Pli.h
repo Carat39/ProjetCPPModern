@@ -1,5 +1,5 @@
-#ifndef PLI [ABS]_H
-#define PLI [ABS]_H
+#ifndef PLI_H
+#define PLI_H
 
 #include <iostream>
 #include <vector>
@@ -9,7 +9,6 @@
 class Pli{
 	private:
 		map<int,Carte> pli;
-
 
 	public:
 		

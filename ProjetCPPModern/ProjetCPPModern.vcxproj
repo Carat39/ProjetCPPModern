@@ -162,6 +162,7 @@
     <ClInclude Include="Humain.h" />
     <ClInclude Include="IA.h" />
     <ClInclude Include="IADame2Pique.h" />
+    <ClInclude Include="Jeu.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Paquet.h" />
     <ClInclude Include="Pli.h" />

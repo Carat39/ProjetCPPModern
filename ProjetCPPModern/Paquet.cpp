@@ -21,8 +21,7 @@ Paquet::Paquet(vector<string> couleursValides, vector<int> valeursValides) {
 
 void Paquet::Ajouter_carte(string coul, int val){
 	//Création de la carte
-	Carte laCarte = Carte(coul,val);
-	lePaquet.push_back(move(laCarte));
+	lePaquet.push_back(move(Carte(coul,val)));
 }
 
 
@@ -32,10 +31,8 @@ void Paquet::AfficherPaquet() {
 	}
 }
 
-void Paquet::Melanger()
-{
+void Paquet::Melanger(){
 }
 
-void Paquet::Distribuer(vector<Joueur> joueurs)
-{
+void Paquet::Distribuer(Joueur joueur){
 }

@@ -26,7 +26,7 @@ class Paquet{
 
 		void Melanger();
 
-		void Distribuer(vector<Joueur> joueurs);
+		void Distribuer(Joueur joueur);
 
 
 };

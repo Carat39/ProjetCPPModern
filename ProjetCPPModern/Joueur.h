@@ -1,5 +1,5 @@
-#ifndef JOUEUR [ABS]_H
-#define JOUEUR [ABS]_H
+#ifndef JOUEUR_H
+#define JOUEUR_H
 
 #include <iostream>
 #include <vector>
@@ -25,6 +25,8 @@ class Joueur{
 		int getPoints();
 
 		void addPoints(int nbPoints);
+
+		void addCarte(Carte laCarte);
 
 		void addMain(vector<Carte> lesCartes);
 

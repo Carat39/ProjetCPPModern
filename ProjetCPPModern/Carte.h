@@ -21,16 +21,31 @@ class Carte{
 			valeur = val;
 		}
 
+		Carte(Carte&& autre)noexcept {
+			couleur = autre.couleur;
+			valeur = autre.valeur;
+		}
+
+
 		//Méthodes
 		void set_couleur(string coul) {couleur = coul;}
 		void set_valeur(int val) {valeur = val;}
 		string get_couleur() const { return couleur; }
 		int get_valeur() const { return valeur; }
 
+		Carte& operator= (Carte&& autre) noexcept {
+			couleur = autre.couleur;
+			valeur = autre.valeur;
+			return *this;
+		}
+
+
 		void AfficherCarte(ostream& os) const noexcept {
 			os << get_valeur() << " " << get_couleur() << endl;
 		}
 };
+
+using laCarte = unique_ptr<Carte>;
 
 #endif
 

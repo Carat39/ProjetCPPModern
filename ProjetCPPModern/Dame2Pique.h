@@ -3,33 +3,32 @@
 
 #include <iostream>
 #include <vector>
-#include "Joueur.h"
+#include "Jeu.h"
 using namespace std;
 
-class Dame2Pique
-{
-private:
-	vector<Joueur> joueurs;
+class Dame2Pique:public Jeu{
+	private:
+		vector<Joueur> joueurs;
 
-	vector<int> points_temp;
+		vector<int> points_temp;
 
-	bool coeur_bloque;
+		bool coeur_bloque;
 
-	int nb_pli;
+		int nb_pli;
 
-	bool dongauche;
+		bool dongauche;
 
 
-public:
-	void Partie(int nb_humains, int nb_ia);
+	public:
+		void Partie(int nb_humains, int nb_ia);
 
-	int Verifier_points();
+		int Verifier_points();
 
-	int Commencer_tour();
+		int Commencer_tour();
 
-	int Grand_chelem();
+		int Grand_chelem();
 
-	void Attribuer_points();
+		void Attribuer_points();
 
 };
 #endif
