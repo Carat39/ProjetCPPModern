@@ -5,12 +5,12 @@
 #include <vector>
 #include "Joueur.h"
 
-class Equipe
-{
-private:
-	vector<Joueur> joueurs;
 
-	int points_equipe;
+class Equipe{
+	private:
+		std::vector<Joueur> joueurs;
+
+		int points_equipe;
 
 };
 #endif

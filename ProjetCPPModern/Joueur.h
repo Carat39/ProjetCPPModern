@@ -3,14 +3,14 @@
 
 #include <iostream>
 #include <vector>
-#include "Equipe.h"
 #include "Carte.h"
+class Equipe;
 
 class Joueur{
 	private:
-		vector<Carte> main;
-
 		int numero;
+
+		std::vector<Carte> mainJ;
 
 		int points;
 
@@ -18,23 +18,35 @@ class Joueur{
 
 
 	public:
-		vector<Carte> getMain();
+		Joueur(int num) {
+			numero = num;
+			points = 0;
+			equipe = nullptr;
+		}
 
-		int getNumero();
+		std::vector<Carte> getMain() const { return mainJ; };
 
-		int getPoints();
+		int getNumero() const { return numero; };
+
+		int getPoints() const { return points; };
 
 		void addPoints(int nbPoints);
 
 		void addCarte(Carte laCarte);
 
-		void addMain(vector<Carte> lesCartes);
+		void addMain(std::vector<Carte> lesCartes);
 
 		void supprMain(Carte laCarte);
 
+		bool Trouver_carte(string coul, int val);
+
 		void Jouer();
 
-		bool Trouver_carte(string coul, int val);
+		void AfficherMain(ostream& os) const noexcept; 
+
+		//Donner la carte se fera dans pli
+
+
 
 };
 #endif

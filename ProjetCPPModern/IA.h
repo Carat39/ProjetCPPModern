@@ -6,7 +6,7 @@
 
 #include "Joueur.h"
 
-template <class Jeu>
 class IA : public Joueur{
+
 };
 #endif

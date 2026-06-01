@@ -21,7 +21,12 @@ class Carte{
 			valeur = val;
 		}
 
-		Carte(Carte&& autre)noexcept {
+		Carte(Carte& autre) noexcept {
+			couleur = autre.couleur;
+			valeur = autre.valeur;
+		}
+
+		Carte(Carte&& autre) noexcept {
 			couleur = autre.couleur;
 			valeur = autre.valeur;
 		}
@@ -45,7 +50,7 @@ class Carte{
 		}
 };
 
-using laCarte = unique_ptr<Carte>;
+//using laCarte = unique_ptr<Carte>;
 
 #endif
 

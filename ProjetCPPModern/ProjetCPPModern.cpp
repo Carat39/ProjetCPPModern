@@ -5,14 +5,15 @@
 using namespace std;
 
 void testPaquet();
+void testJoueur();
 
 int main(){
     if (!SetConsoleOutputCP(CP_UTF8) || !SetConsoleCP(CP_UTF8)) {
         cout << "Impossible d'afficher du Unicode";
         return 1;
     }
-    cout << "♠♣♦♥";
-    testPaquet();
+    cout << "♠♣♦♥" << endl;
+    testJoueur();
 }
 
 

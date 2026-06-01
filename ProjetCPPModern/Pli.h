@@ -8,7 +8,7 @@
 
 class Pli{
 	private:
-		map<int,Carte> pli;
+		std::map<int,Carte> pli;
 
 	public:
 		

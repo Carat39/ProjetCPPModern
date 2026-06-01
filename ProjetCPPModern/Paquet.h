@@ -6,17 +6,16 @@
 #include <vector>
 #include "Carte.h"
 #include "Joueur.h"
-using namespace std;
 
 class Paquet{
 	private:
 		//Attributs
-		vector<Carte> lePaquet;
+		std::vector<Carte> lePaquet;
 
 	public:
 		//Constructeurs et Destructeurs
 		Paquet();
-		Paquet(vector<string> couleursValides, vector<int> valeursValides);
+		Paquet(std::vector<string> couleursValides, std::vector<int> valeursValides);
 		
 
 		//Méthodes
@@ -24,9 +23,11 @@ class Paquet{
 
 		void AfficherPaquet();
 
+		void supprCarte();
+
 		void Melanger();
 
-		void Distribuer(Joueur joueur);
+		void Distribuer(Joueur& joueur);
 
 
 };

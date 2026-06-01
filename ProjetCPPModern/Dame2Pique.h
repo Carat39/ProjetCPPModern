@@ -8,9 +8,9 @@ using namespace std;
 
 class Dame2Pique:public Jeu{
 	private:
-		vector<Joueur> joueurs;
+		std::vector<Joueur> joueurs;
 
-		vector<int> points_temp;
+		std::vector<int> points_temp;
 
 		bool coeur_bloque;
 

@@ -4,15 +4,14 @@
 #include <iostream>
 #include <vector>
 #include "Joueur.h"
-using namespace std;
 
 class Jeu{
 	private:
-		vector<Joueur> joueurs;
+		std::vector<Joueur> joueurs;
 
 		int nb_pli;
 
-		vector<int> points_temp;
+		std::vector<int> points_temp;
 
 	public:
 		virtual void Partie(int nb_humains, int nb_ia) = 0;
