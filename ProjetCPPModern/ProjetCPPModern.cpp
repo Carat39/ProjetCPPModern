@@ -6,6 +6,7 @@ using namespace std;
 
 void testPaquet();
 void testJoueur();
+void testPli();
 
 int main(){
     if (!SetConsoleOutputCP(CP_UTF8) || !SetConsoleCP(CP_UTF8)) {
@@ -13,7 +14,9 @@ int main(){
         return 1;
     }
     cout << "♠♣♦♥" << endl;
-    testJoueur();
+    //testJoueur();
+
+    testPli();
 }
 
 
