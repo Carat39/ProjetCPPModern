@@ -26,7 +26,20 @@ void Joueur::Jouer(){
 }
 
 bool Joueur::Trouver_carte(string coul, int val){
-	return 0;
+	for (Carte& laCarte : mainJ) {
+		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Carte& Joueur::Renvoyer_carte(string coul, int val) noexcept {
+	for (Carte& laCarte : mainJ) {
+		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {
+			return laCarte;
+		}
+	}
 }
 
 void Joueur::AfficherMain(ostream& os) const noexcept {
