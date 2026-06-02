@@ -8,7 +8,7 @@
 #include "Joueur.h"
 
 class Paquet{
-	private:
+	protected:
 		//Attributs
 		std::vector<Carte> lePaquet;
 
@@ -16,18 +16,24 @@ class Paquet{
 		//Constructeurs et Destructeurs
 		Paquet();
 		Paquet(std::vector<string> couleursValides, std::vector<int> valeursValides);
-		
 
 		//Méthodes
 		void Ajouter_carte(string coul, int val);
 
-		void AfficherPaquet();
+		void Ajouter_carte(Carte&& autre) noexcept {
+			lePaquet.push_back(move(autre));
+		}
 
-		void supprCarte();
+		void AfficherPaquet(ostream& os);
+
+		size_t taille() { return lePaquet.size(); }
 
 		void Melanger();
 
 		void Distribuer(Joueur& joueur);
+
+
+
 
 
 };
