@@ -1,12 +1,14 @@
+#define _HAS_STD_BYTE 0
 #include "Joueur.h"
 #include "PaquetD2P.h"
 #include <array>
 #include <iostream>
-/*#include <windows.h>
+using namespace std;
 #include <locale>
 #include <codecvt>
-#include <stdlib.h>*/
+#include <stdlib.h>
 #include "Affichage.h"
+#include <windows.h>
 
 
 void testJoueur() {
@@ -20,13 +22,13 @@ void testJoueur() {
 	MonPaquet.retirer_carte("♦", 2);
 
 
-	Joueur list_joueurs[] = {Clement,Thibault,Nino};
+	vector<Joueur> list_joueurs = {Clement,Thibault,Nino};
 	unsigned int index = 0;
 	while(index < MonPaquet.taille()) {
 		MonPaquet.Distribuer(list_joueurs[index%3]);
 		index++;
 	}
-    /*HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
+    HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
     DWORD dwMode;
     GetConsoleMode(hConsoleHandle, &dwMode);
     SetConsoleMode(hConsoleHandle, ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT);
@@ -41,31 +43,37 @@ void testJoueur() {
     SHORT posy = 0;
     WORD valkey = 0;
     //Faire un map des key
-    while (true) {
+    bool fin = true;
+    while (fin) {
         ReadConsoleInput(hConsoleHandle, &record, 1, &events);
         if (record.EventType == MOUSE_EVENT) {
             //On récupère les infos de la souris
             MOUSE_EVENT_RECORD mouse = record.Event.MouseEvent;
             if (mouse.dwEventFlags == MOUSE_MOVED) {
-                cout << "dac";
                 //Actualisation de la position de la souris
                 posx = mouse.dwMousePosition.X;
                 posy = mouse.dwMousePosition.Y;
-                if (posx < 50 && posy < 50) {
-                    cout << "ok \f\r";
-                }
             }
         }
         if (record.EventType == KEY_EVENT) {
             KEY_EVENT_RECORD key = record.Event.KeyEvent;
             if (key.bKeyDown) {
                 valkey = key.wVirtualScanCode;
-                cout << valkey;
-                Affichage::Afficher_jeu(list_joueurs);
+                cout << "valeur clavier " << valkey;
+                switch(valkey) {
+                    case 1:
+                        fin = false;
+                        break;
+                    case 16:
+                        Affichage::Afficher_jeu(list_joueurs);
+                        break;
+                    case 25:
+                        system("cls");
+                }
             }
         }
     }
     SetConsoleMode(hConsoleHandle, dwMode);
-    */
+    
 
 }
