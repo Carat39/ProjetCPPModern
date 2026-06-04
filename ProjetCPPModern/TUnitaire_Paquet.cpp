@@ -3,5 +3,9 @@
 
 void testPaquet() {
 	Paquet MonPaquet = Paquet();
-	MonPaquet.AfficherPaquet();
+	//MonPaquet.AfficherPaquet();
+	MonPaquet.Melanger();
+	//MonPaquet.AfficherPaquet();
+
+
 }
