@@ -7,14 +7,14 @@
 #include "Carte.h"
 
 class Pli{
-	private:
+	protected:
 		std::map<int,Carte> pli;
 
 	public:
-		
-		virtual int Vainqueur(int premier_j) = 0;
+		template<typename TPaquet>
+		int Vainqueur(int premier_j, TPaquet le_paquet);
 
-		virtual void setCarte(int joueur, Carte carte) = 0;
+		void setCarte(int joueur, Carte carte);
 		
 };
 #endif

@@ -154,6 +154,7 @@
     <ClCompile Include="ProjetCPPModern.cpp" />
     <ClCompile Include="TUnitaire_Joueur.cpp" />
     <ClCompile Include="TUnitaire_Paquet.cpp" />
+    <ClCompile Include="TUnitaire_Pli.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affichage.h" />

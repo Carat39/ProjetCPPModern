@@ -7,6 +7,7 @@ using namespace std;
 
 void testPaquet();
 void testJoueur();
+void testPli();
 
 int main(){
     //Mettre en UTF8 pour affichage caractère spéciale
@@ -58,6 +59,8 @@ int main(){
     */    
     cout << "♠♣♦♥" << endl;
     //testJoueur();
+
+    testPli();
 }
 
 

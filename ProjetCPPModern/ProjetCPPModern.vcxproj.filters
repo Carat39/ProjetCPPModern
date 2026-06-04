@@ -57,7 +57,7 @@
     <ClCompile Include="TUnitaire_Joueur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="PaquetD2P.cpp">
+    <ClCompile Include="TUnitaire_Pli.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,7 +8,8 @@
 
 class Pli_D2P : public Pli{
 	public:
-		int Vainqueur(int premier_j);
+		template<typename TPaquet>
+		int Vainqueur(int premier_j, TPaquet le_paquet);
 
 		int Calcul_points();
 
