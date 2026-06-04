@@ -38,6 +38,8 @@ class Joueur{
 
 		void supprMain(Carte laCarte);
 
+		bool CouleurPresente(string coul);
+
 		bool Trouver_carte(string coul, int val);
 
 		Carte& Renvoyer_carte(string coul, int val) noexcept;
