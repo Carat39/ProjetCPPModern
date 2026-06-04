@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Joueur.h"
 using namespace std;
 
 class Affichage{
@@ -11,7 +12,8 @@ class Affichage{
 
 		static string DemanderCouleurCarte();
 
-		static void Afficher_jeu();
+		static void Afficher_jeu(vector<Joueur> vectJ);
+
 };
 
 #endif
