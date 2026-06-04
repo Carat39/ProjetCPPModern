@@ -59,8 +59,7 @@ int main(){
     */    
     cout << "♠♣♦♥" << endl;
     //testJoueur();
-
-    testPli();
+    //testPli();
 }
 
 

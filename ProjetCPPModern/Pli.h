@@ -17,4 +17,8 @@ class Pli{
 		void setCarte(int joueur, Carte carte);
 		
 };
+template<typename TPaquet>
+int Pli::Vainqueur(int premier_j, TPaquet le_paquet){
+	return 0;
+}
 #endif
