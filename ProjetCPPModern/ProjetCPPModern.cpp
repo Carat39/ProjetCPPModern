@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <locale>
 #include <codecvt>
+#include <stdlib.h>
 using namespace std;
 
 void testPaquet();
@@ -14,12 +15,12 @@ int main(){
         cout << "Impossible d'afficher du Unicode";
         return 1;
     }
-    /*
+    /*Z
     //Création du Handle
     HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
     DWORD dwMode;
     GetConsoleMode(hConsoleHandle, &dwMode);
-    SetConsoleMode(hConsoleHandle, ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT);
+    SetConsoleMode(hConsoleHandle, ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT);
 
     //Le record des records
     INPUT_RECORD record;
@@ -37,11 +38,12 @@ int main(){
             //On récupère les infos de la souris
             MOUSE_EVENT_RECORD mouse = record.Event.MouseEvent;
             if (mouse.dwEventFlags == MOUSE_MOVED) {
+                cout << "dac";
                 //Actualisation de la position de la souris
                 posx = mouse.dwMousePosition.X;
                 posy = mouse.dwMousePosition.Y;
                 if (posx < 50 && posy < 50) {
-                    cout << "ok";
+                    cout << "ok \f\r";
                 }
             }
         }
@@ -54,11 +56,10 @@ int main(){
         }
     }
     SetConsoleMode(hConsoleHandle, dwMode);
-    */
+    */    
     cout << "♠♣♦♥" << endl;
     //testJoueur();
-
-    testPli();
+    //testPli();
 }
 
 

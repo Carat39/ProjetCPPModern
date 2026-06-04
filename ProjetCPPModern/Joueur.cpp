@@ -25,6 +25,15 @@ void Joueur::supprMain(Carte laCarte){
 void Joueur::Jouer(){
 }
 
+bool Joueur::CouleurPresente(string coul) {
+	for (Carte& laCarte : mainJ) {
+		if (laCarte.get_couleur() == coul) {
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Joueur::Trouver_carte(string coul, int val){
 	for (Carte& laCarte : mainJ) {
 		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {

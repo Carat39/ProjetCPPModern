@@ -24,5 +24,4 @@ string Affichage::DemanderCouleurCarte() {
 	return schoix;
 }
 
-void Affichage::Afficher_jeu() {
-}
+
