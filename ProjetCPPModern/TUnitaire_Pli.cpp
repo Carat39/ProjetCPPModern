@@ -27,4 +27,5 @@ void testPli() {
 	}
 
 	MonPli.Vainqueur<Paquet>(0, MonPaquet);
+	cout << endl << MonPli.Calcul_points();
 }
