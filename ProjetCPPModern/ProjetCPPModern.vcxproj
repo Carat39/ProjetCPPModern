@@ -148,6 +148,7 @@
     <ClCompile Include="IADame2Pique.cpp" />
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Paquet.cpp" />
+    <ClCompile Include="PaquetD2P.cpp" />
     <ClCompile Include="Pli.cpp" />
     <ClCompile Include="Pli_D2P.cpp" />
     <ClCompile Include="ProjetCPPModern.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Jeu.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Paquet.h" />
+    <ClInclude Include="PaquetD2P.h" />
     <ClInclude Include="Pli.h" />
     <ClInclude Include="Pli_D2P.h" />
   </ItemGroup>

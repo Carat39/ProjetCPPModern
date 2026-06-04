@@ -1,9 +1,9 @@
-#ifndef PAQUET2DP_H 
-#define PAQUET2DP_H 110
+#ifndef PAQUETD2P_H 
+#define PAQUETD2P_H 110
 
 #include "Paquet.h"
 
-class Paquet2DP: public Paquet{
+class PaquetD2P: public Paquet{
 	private:
 		//Attributs
 		vector<Carte> cartesEcartes;

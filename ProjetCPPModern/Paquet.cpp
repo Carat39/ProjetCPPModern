@@ -35,8 +35,7 @@ void Paquet::AfficherPaquet(ostream& os) {
 
 
 void Paquet::Melanger() {
-	srand(unsigned(time(NULL)));
-	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937()); //ou std::minstd_rand() ou std::minstd_rand0()
+	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937(time(nullptr))); //ou std::minstd_rand() ou std::minstd_rand0()
 };
 
 

@@ -44,7 +44,6 @@ class Carte{
 			return *this;
 		}
 
-
 		void AfficherCarte(ostream& os) const noexcept {
 			os << get_valeur() << " " << get_couleur() << endl;
 		}

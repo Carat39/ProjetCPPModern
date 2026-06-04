@@ -1,7 +1,7 @@
-#include "Paquet2DP.h"
+#include "PaquetD2P.h"
 
 
-void Paquet2DP::retirer_carte(string coul, int val) {
+void PaquetD2P::retirer_carte(string coul, int val) {
 	bool find = false;
 	unsigned int index = 0;
 	while (index < taille() && find == false) {
@@ -17,6 +17,6 @@ void Paquet2DP::retirer_carte(string coul, int val) {
 
 }
 
-void Paquet2DP::Invalider_carte(Carte&& autre) noexcept {
+void PaquetD2P::Invalider_carte(Carte&& autre) noexcept {
 	cartesEcartes.push_back(move(autre));
 }
