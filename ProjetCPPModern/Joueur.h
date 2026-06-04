@@ -40,6 +40,8 @@ class Joueur{
 
 		bool Trouver_carte(string coul, int val);
 
+		Carte& Renvoyer_carte(string coul, int val) noexcept;
+
 		void Jouer();
 
 		void AfficherMain(ostream& os) const noexcept; 

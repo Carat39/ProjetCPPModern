@@ -2,10 +2,6 @@
 #include <algorithm>
 #include <random>
 
-int myrandom(int i) {
-	return std::rand() % i;
-}
-
 Paquet::Paquet() {
 	std::vector<string> couleursValides = {"♠","♦","♥","♣"};
 	std::vector<int> valeursValides = { 1,2,3,4,5,6,7,8,9,10,11,12,13 };
@@ -31,25 +27,21 @@ void Paquet::Ajouter_carte(string coul, int val){
 }
 
 
-void Paquet::AfficherPaquet() {
+void Paquet::AfficherPaquet(ostream& os) {
 	for (Carte& laCarte : lePaquet) {
-		laCarte.AfficherCarte(cout);
+		laCarte.AfficherCarte(os);
 	}
-}
-
-void Paquet::supprCarte() {
-	lePaquet.erase(lePaquet.begin());
 }
 
 
 void Paquet::Melanger() {
-	srand(unsigned(time(NULL)));
-	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937()); //ou std::minstd_rand() ou std::minstd_rand0()
+	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937(time(nullptr))); //ou std::minstd_rand() ou std::minstd_rand0()
 };
 
 
 void Paquet::Distribuer(Joueur& joueur) {
 	Carte carte = std::move(lePaquet[0]);
 	joueur.addCarte(std::move(carte));
-	supprCarte();
+	//On enlève la carte du paquet
+	lePaquet.erase(lePaquet.begin());
 }
