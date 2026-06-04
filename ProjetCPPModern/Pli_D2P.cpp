@@ -8,6 +8,7 @@ using namespace std;
 
 int Pli_D2P::Calcul_points()
 {
+	
 	return 0;
 }
 
