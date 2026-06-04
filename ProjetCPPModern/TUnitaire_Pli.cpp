@@ -1,16 +1,16 @@
 #include "Carte.h"
+#include "Paquet.h"
+#include "Joueur.h"
 #include "Pli_D2P.h"
 
 void testPli() {
-	Carte carte0= Carte("♥", 4);
-	Carte carte1= Carte("♥", 10);
-	Carte carte2 = Carte("♠", 12);
-	Carte carte3 = Carte("♣", 13);
+	Paquet MonPaquet = Paquet();
 	Pli_D2P MonPli;
-	MonPli.setCarte(0,carte0);
+	/*Joueur MonJoueur(0);
+	MonPli.setCarte(0,MonPaquet.Distribuer(MonJoueur));
 	MonPli.setCarte(1,carte1);
 	MonPli.setCarte(2,carte2);
-	MonPli.setCarte(3,carte3);
+	MonPli.setCarte(3,carte3);*/
 
-	MonPli.Vainqueur(0);
+	MonPli.Vainqueur<Paquet>(0, MonPaquet);
 }

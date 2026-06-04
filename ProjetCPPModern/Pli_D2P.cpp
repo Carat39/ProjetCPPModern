@@ -5,7 +5,8 @@
 
 using namespace std;
 
-int Pli_D2P::Vainqueur(int premier_j)
+template<typename TPaquet>
+int Pli_D2P::Vainqueur(int premier_j, TPaquet le_paquet)
 {
 	int le_gagnant=premier_j;
 	string couleur_atout= (pli.find(premier_j))->second.get_couleur();
@@ -19,6 +20,12 @@ int Pli_D2P::Vainqueur(int premier_j)
 		}
 	}
 	cout << le_gagnant;
+
+	for (const auto& pair : pli) {
+		le_paquet.Ajouter_carte(pair.second);
+		pair.second= NULL;
+	}
+
 	return le_gagnant;
 }
 

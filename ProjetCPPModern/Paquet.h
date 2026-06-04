@@ -21,6 +21,10 @@ class Paquet{
 		//Méthodes
 		void Ajouter_carte(string coul, int val);
 
+		void Ajouter_carte(Carte&& autre) noexcept {
+			lePaquet.push_back(move(autre));
+		}
+
 		void AfficherPaquet();
 
 		void supprCarte();

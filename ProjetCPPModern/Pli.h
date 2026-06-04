@@ -11,8 +11,8 @@ class Pli{
 		std::map<int,Carte> pli;
 
 	public:
-		
-		virtual int Vainqueur(int premier_j) = 0;
+		template<typename TPaquet>
+		int Vainqueur(int premier_j, TPaquet le_paquet);
 
 		void setCarte(int joueur, Carte carte);
 		
