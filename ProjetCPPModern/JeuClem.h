@@ -33,6 +33,8 @@ class JeuClem{
 
         virtual void Commencer() = 0;
 
+        virtual void CarteJouable() = 0;
+
         virtual void JouerCarte(Joueur* joueur,string couleur, int valeur) = 0;
 
         virtual void ConfirmerJoueurSuivant() = 0;
