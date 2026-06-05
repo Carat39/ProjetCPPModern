@@ -24,8 +24,8 @@ int main(){
     //testJoueur();
     //testPli();
     //testWizard();
-    Dame2Pique jeu;
-    jeu.Partie(4, 0);
+    //Dame2Pique jeu;
+    //jeu.Partie(4, 0);
 }
 
 /*
