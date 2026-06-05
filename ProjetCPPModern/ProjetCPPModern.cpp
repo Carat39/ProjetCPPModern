@@ -5,10 +5,12 @@
 #include <codecvt>
 #include <stdlib.h>
 using namespace std;
+#include "Dame2Pique.h"
 
 void testPaquet();
 void testJoueur();
 void testPli();
+void testWizard();
 
 int main(){
     //Mettre en UTF8 pour affichage caractère spéciale
@@ -21,6 +23,9 @@ int main(){
     cout << "♠♣♦♥" << endl;
     //testJoueur();
     //testPli();
+    //testWizard();
+    Dame2Pique jeu;
+    jeu.Partie(4, 0);
 }
 
 /*

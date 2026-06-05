@@ -16,6 +16,7 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 {
 
 	lePaquet = PaquetD2P();
+	int compteur;
 
 	size_t carte_a_retirer = lePaquet.taille() % joueurs.size();
 	if (carte_a_retirer > 0) {
@@ -74,10 +75,10 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 				Carte Cajouer = move(joueurs[i].Renvoyer_carte(coul, val));
 				lePli.setCarte(j % 4, Cajouer);
 
-}
+			}
 
-			commence = lePli.Vainqueur(commence,lePaquet);
-			points_temp[commence]+= lePli.Calcul_points();
+			commence = lePli.Vainqueur(commence, lePaquet);
+			points_temp[commence] += lePli.Calcul_points();
 
 		}
 		Attribuer_points();
@@ -116,10 +117,10 @@ int Dame2Pique::Commencer_tour()
 	int i;
 	int j;
 
-	
+
 	lePaquet.Melanger();
-	for ( i = 0; i < lePaquet.taille()/ joueurs.size(); i++) {
-		for ( j = 0; j < joueurs.size(); j++) {
+	for (i = 0; i < lePaquet.taille() / joueurs.size(); i++) {
+		for (j = 0; j < joueurs.size(); j++) {
 			lePaquet.Distribuer(joueurs[j]);
 		}
 	}
