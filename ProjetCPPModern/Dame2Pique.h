@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include "Jeu.h"
+#include "PaquetD2P.h"
+#include "Pli_D2P.h"
 using namespace std;
 
 class Dame2Pique:public Jeu{
@@ -11,6 +13,10 @@ class Dame2Pique:public Jeu{
 		std::vector<Joueur> joueurs;
 
 		std::vector<int> points_temp;
+
+		Pli_D2P lePli;
+
+		PaquetD2P lePaquet;
 
 		bool coeur_bloque;
 

@@ -24,6 +24,24 @@ string Affichage::DemanderCouleurCarte() {
 	return schoix;
 }
 
+int Affichage::DemanderNbJoueurs(string Precision) {
+	int valeur = -1;
+	cout << "Combient y'a t-il d" << Precision << ": ";
+	cin >> valeur;
+	cin.ignore();
+	if (cin.fail()) {
+		cout << "\nArgument invalide !\n" << endl;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		valeur = -1;
+	}
+	if (valeur < 0 || valeur > 13) {
+		valeur = -1;
+	}
+	return valeur; 
+}
+
+
 void Affichage::Afficher_jeu(vector<Joueur> vectJ) {
 	for (Joueur& joueur : vectJ) {
 		joueur.AfficherMain(cout);

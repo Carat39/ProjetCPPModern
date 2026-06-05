@@ -1,0 +1,35 @@
+NbCartes=32
+Cartes=[
+Couleur=♠, Valeur=6
+Couleur=♠, Valeur=7
+Couleur=♠, Valeur=8
+Couleur=♠, Valeur=9
+Couleur=♠, Valeur=10
+Couleur=♠, Valeur=11
+Couleur=♠, Valeur=12
+Couleur=♠, Valeur=13
+Couleur=♦, Valeur=6
+Couleur=♦, Valeur=7
+Couleur=♦, Valeur=8
+Couleur=♦, Valeur=9
+Couleur=♦, Valeur=10
+Couleur=♦, Valeur=11
+Couleur=♦, Valeur=12
+Couleur=♦, Valeur=13
+Couleur=♥, Valeur=6
+Couleur=♥, Valeur=7
+Couleur=♥, Valeur=8
+Couleur=♥, Valeur=9
+Couleur=♥, Valeur=10
+Couleur=♥, Valeur=11
+Couleur=♥, Valeur=12
+Couleur=♥, Valeur=13
+Couleur=♣, Valeur=6
+Couleur=♣, Valeur=7
+Couleur=♣, Valeur=8
+Couleur=♣, Valeur=9
+Couleur=♣, Valeur=10
+Couleur=♣, Valeur=11
+Couleur=♣, Valeur=12
+Couleur=♣, Valeur=13
+]

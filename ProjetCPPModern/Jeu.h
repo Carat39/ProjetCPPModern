@@ -1,5 +1,5 @@
 #ifndef JEU_H
-#define JEU_H
+#define JEU_H 15
 
 #include <iostream>
 #include <vector>
