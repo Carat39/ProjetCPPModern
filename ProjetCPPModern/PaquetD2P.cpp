@@ -1,4 +1,7 @@
 #include "PaquetD2P.h"
+#include <string>
+#include <utility>
+#include "Carte.h"
 
 
 void PaquetD2P::retirer_carte(string coul, int val) {

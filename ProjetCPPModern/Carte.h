@@ -2,6 +2,7 @@
 #define CARTE_H 50
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Carte {

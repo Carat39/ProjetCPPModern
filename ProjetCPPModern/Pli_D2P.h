@@ -38,11 +38,5 @@ int Pli_D2P::Vainqueur(int premier_j, TPaquet le_paquet)
 	}
 
 	return le_gagnant;
-}
-
-	int Calcul_points();
-
-	bool Coeur_existe();
-
 };
 #endif

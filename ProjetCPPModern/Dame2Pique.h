@@ -24,9 +24,9 @@ class Dame2Pique
 
 		bool dongauche;
 
-	PaquetD2P lePaquet;
+		PaquetD2P lePaquet;
 
-	Pli_D2P lePli;
+		Pli_D2P lePli;
 
 	public:
 		void Partie(int nb_humains, int nb_ia);
