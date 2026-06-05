@@ -4,7 +4,7 @@
 #include "Joueur.h"
 
 
-void Joueur::addPoints(int nbPoints) {
+void Joueur::addPoints(int nbPoints){
 	points += nbPoints;
 }
 
@@ -12,17 +12,17 @@ void Joueur::addCarte(Carte laCarte) {
 	mainJ.push_back(move(laCarte));
 }
 
-void Joueur::addMain(std::vector<Carte> lesCartes) {
+void Joueur::addMain(std::vector<Carte> lesCartes){
 	for (Carte& laCarte : lesCartes) {
 		addCarte(move(laCarte));
 	}
 }
 
-void Joueur::supprMain(Carte laCarte) {
+void Joueur::supprMain(Carte laCarte){
 	laCarte.~Carte();
 }
 
-void Joueur::Jouer() {
+void Joueur::Jouer(){
 }
 
 bool Joueur::CouleurPresente(string coul) {
@@ -34,7 +34,7 @@ bool Joueur::CouleurPresente(string coul) {
 	return false;
 }
 
-bool Joueur::Trouver_carte(string coul, int val) {
+bool Joueur::Trouver_carte(string coul, int val){
 	for (Carte& laCarte : mainJ) {
 		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {
 			return true;

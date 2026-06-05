@@ -73,7 +73,7 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 				Carte Cajouer = move(joueurs[i].Renvoyer_carte(coul, val));
 				lePli.setCarte(j % 4, Cajouer);
 
-			}
+}
 
 			commence = lePli.Vainqueur(commence,lePaquet);
 			points_temp[commence]+= lePli.Calcul_points();
@@ -111,7 +111,7 @@ int Dame2Pique::Verifier_points()
 }
 
 int Dame2Pique::Commencer_tour()
-{	
+{
 	int i;
 	int j;
 

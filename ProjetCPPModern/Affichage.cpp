@@ -24,5 +24,8 @@ string Affichage::DemanderCouleurCarte() {
 	return schoix;
 }
 
-void Affichage::Afficher_jeu() {
+void Affichage::Afficher_jeu(vector<Joueur> vectJ) {
+	for (Joueur& joueur : vectJ) {
+		joueur.AfficherMain(cout);
+	}
 }

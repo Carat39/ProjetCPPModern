@@ -13,31 +13,31 @@
 
 class Dame2Pique
 {
-private:
-	std::vector<Joueur> joueurs;
+	private:
+		std::vector<Joueur> joueurs;
 
-	std::vector<int> points_temp;
+		std::vector<int> points_temp;
 
-	bool coeur_bloque;
+		bool coeur_bloque;
 
-	int nb_pli;
+		int nb_pli;
 
-	bool dongauche;
+		bool dongauche;
 
 	PaquetD2P lePaquet;
 
 	Pli_D2P lePli;
 
-public:
-	void Partie(int nb_humains, int nb_ia);
+	public:
+		void Partie(int nb_humains, int nb_ia);
 
-	int Verifier_points();
+		int Verifier_points();
 
-	int Commencer_tour();
+		int Commencer_tour();
 
-	int Grand_chelem();
+		int Grand_chelem();
 
-	void Attribuer_points();
+		void Attribuer_points();
 
 };
 #endif

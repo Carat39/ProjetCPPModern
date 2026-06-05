@@ -9,7 +9,6 @@
 
 #include "Joueur.h"
 
-class Humain : public Joueur
-{
+class Humain : public Joueur{
 };
 #endif

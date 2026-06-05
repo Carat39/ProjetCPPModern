@@ -6,49 +6,49 @@
 #include "Carte.h"
 class Equipe;
 
-class Joueur {
-private:
-	int numero;
+class Joueur{
+	private:
+		int numero;
 
-	std::vector<Carte> mainJ;
+		std::vector<Carte> mainJ;
 
-	int points;
+		int points;
 
-	Equipe* equipe;
+		Equipe* equipe;
 
 
-public:
-	Joueur(int num) {
-		numero = num;
-		points = 0;
-		equipe = nullptr;
-	}
+	public:
+		Joueur(int num) {
+			numero = num;
+			points = 0;
+			equipe = nullptr;
+		}
 
-	std::vector<Carte> getMain() const { return mainJ; };
+		std::vector<Carte> getMain() const { return mainJ; };
 
-	int getNumero() const { return numero; };
+		int getNumero() const { return numero; };
 
-	int getPoints() const { return points; };
+		int getPoints() const { return points; };
 
-	void addPoints(int nbPoints);
+		void addPoints(int nbPoints);
 
-	void addCarte(Carte laCarte);
+		void addCarte(Carte laCarte);
 
-	void addMain(std::vector<Carte> lesCartes);
+		void addMain(std::vector<Carte> lesCartes);
 
-	void supprMain(Carte laCarte);
+		void supprMain(Carte laCarte);
 
-	bool CouleurPresente(string coul);
+		bool CouleurPresente(string coul);
 
-	bool Trouver_carte(string coul, int val);
+		bool Trouver_carte(string coul, int val);
 
-	Carte& Renvoyer_carte(string coul, int val) noexcept;
+		Carte& Renvoyer_carte(string coul, int val) noexcept;
 
-	void Jouer();
+		void Jouer();
 
-	void AfficherMain(ostream& os) const noexcept;
+		void AfficherMain(ostream& os) const noexcept; 
 
-	//Donner la carte se fera dans pli
+		//Donner la carte se fera dans pli
 
 
 

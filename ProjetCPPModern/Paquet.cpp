@@ -3,7 +3,7 @@
 #include <random>
 
 Paquet::Paquet() {
-	std::vector<string> couleursValides = { "♠","♦","♥","♣" };
+	std::vector<string> couleursValides = {"♠","♦","♥","♣"};
 	std::vector<int> valeursValides = { 1,2,3,4,5,6,7,8,9,10,11,12,13 };
 	for (string& coul : couleursValides) {
 		for (int& val : valeursValides) {
@@ -23,7 +23,7 @@ Paquet::Paquet(std::vector<string> couleursValides, std::vector<int> valeursVali
 
 void Paquet::Ajouter_carte(string coul, int val) {
 	//Création de la carte
-	lePaquet.push_back(move(Carte(coul, val)));
+	lePaquet.push_back(move(Carte(coul,val)));
 }
 
 
@@ -35,8 +35,7 @@ void Paquet::AfficherPaquet(ostream& os) {
 
 
 void Paquet::Melanger() {
-	srand(unsigned(time(NULL)));
-	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937(time(nullptr))); 
+	std::shuffle(lePaquet.begin(), lePaquet.end(), std::mt19937(time(nullptr))); //ou std::minstd_rand() ou std::minstd_rand0()
 };
 
 

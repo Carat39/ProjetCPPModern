@@ -9,13 +9,11 @@
 
 #include "IA.h"
 
-template <class Jeu>
-class IADame2Pique : public IA<Jeu>
-{
-private:
-	int nb_coeur;
+class IADame2Pique : public IA{
+	private:
+		int nb_coeur;
 
-	bool d2p;
+		bool d2p;
 
 };
 #endif

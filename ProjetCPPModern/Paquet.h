@@ -7,30 +7,30 @@
 #include "Carte.h"
 #include "Joueur.h"
 
-class Paquet {
-protected:
-	//Attributs
-	std::vector<Carte> lePaquet;
+class Paquet{
+	protected:
+		//Attributs
+		std::vector<Carte> lePaquet;
 
-public:
-	//Constructeurs et Destructeurs
-	Paquet();
-	Paquet(std::vector<string> couleursValides, std::vector<int> valeursValides);
+	public:
+		//Constructeurs et Destructeurs
+		Paquet();
+		Paquet(std::vector<string> couleursValides, std::vector<int> valeursValides);
 
 	//Méthodes
 	void Ajouter_carte(string coul, int val);
 
-	void Move_carte(Carte&& autre) noexcept {
-		lePaquet.push_back(move(autre));
-	}
+		void Move_carte(Carte&& autre) noexcept {
+			lePaquet.push_back(move(autre));
+		}
 
-	void AfficherPaquet(ostream& os);
+		void AfficherPaquet(ostream& os);
 
-	size_t taille() { return lePaquet.size(); }
+		size_t taille() { return lePaquet.size(); }
 
-	void Melanger();
+		void Melanger();
 
-	void Distribuer(Joueur& joueur);
+		void Distribuer(Joueur& joueur);
 
 
 

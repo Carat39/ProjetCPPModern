@@ -3,15 +3,17 @@
 
 #include <iostream>
 #include <string>
+#include "Joueur.h"
 using namespace std;
 
-class Affichage {
-public:
-	static int DemanderValeurCarte();
+	public:
+		static int DemanderValeurCarte();
 
-	static string DemanderCouleurCarte();
+		static string DemanderCouleurCarte();
 
-	static void Afficher_jeu();
+		static void Afficher_jeu(vector<Joueur> vectJ);
+
 };
+
 
 #endif
