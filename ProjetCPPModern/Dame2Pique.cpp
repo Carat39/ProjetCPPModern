@@ -16,7 +16,11 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 {
 
 	lePaquet = PaquetD2P();
-	int compteur;
+
+	for (int i = 0; i < nb_humains + nb_ia; i++) {
+		Joueur joueur = Joueur(i);
+		joueurs.push_back(joueur);
+	}
 
 	size_t carte_a_retirer = lePaquet.taille() % joueurs.size();
 	if (carte_a_retirer > 0) {
@@ -25,10 +29,7 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 	if (carte_a_retirer > 1) {
 		lePaquet.retirer_carte("♣", 2);
 	}
-	for (int i = 0; i < nb_humains + nb_ia; i++) {
-		Joueur joueur = Joueur(i);
-		joueurs.push_back(joueur);
-	}
+	
 
 	int commence = Commencer_tour();
 	int val;

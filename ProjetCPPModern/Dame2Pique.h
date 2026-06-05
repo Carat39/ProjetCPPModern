@@ -11,8 +11,7 @@ using namespace std;
 #include <iostream>
 #include <assert.h>
 #include "Joueur.h"
-#include "PaquetD2P.h"
-#include "Pli_D2P.h"
+
 
 
 class Dame2Pique
@@ -32,9 +31,6 @@ class Dame2Pique
 
 		bool dongauche;
 
-		PaquetD2P lePaquet;
-
-		Pli_D2P lePli;
 
 	public:
 		void Partie(int nb_humains, int nb_ia);
