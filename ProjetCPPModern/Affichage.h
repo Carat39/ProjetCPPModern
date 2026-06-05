@@ -5,7 +5,7 @@
 #include <string>
 #include "Joueur.h"
 using namespace std;
-
+class Affichage{
 	public:
 		static int DemanderValeurCarte();
 
