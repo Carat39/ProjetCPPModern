@@ -13,9 +13,11 @@
 
 void Dame2Pique::Partie(int nb_humains, int nb_ia)
 {
-
 	lePaquet = PaquetD2P();
-	int compteur;
+	for (int i = 0; i < nb_humains + nb_ia; i++) {
+		Joueur joueur = Joueur(i);
+		joueurs.push_back(joueur);
+	}
 
 	size_t carte_a_retirer = lePaquet.taille() % joueurs.size();
 	if (carte_a_retirer > 0) {
@@ -24,32 +26,33 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 	if (carte_a_retirer > 1) {
 		lePaquet.retirer_carte("♣", 2);
 	}
-	for (int i = 0; i < nb_humains + nb_ia; i++) {
-		Joueur joueur = Joueur(i);
-		joueurs.push_back(joueur);
-	}
-
+	int taille = lePaquet.taille() / joueurs.size();
 	int commence = Commencer_tour();
 	int val;
+	coeur_bloque = true;
 	bool carte_ok = true;
 	std::string coul;
 	std::string couleur_pli;
+	for (int a = 0; a < 4; a++) {
+		points_temp.push_back(0);
+	}
 
 	while (Verifier_points() == -1) {
 
-		for (int i = 0; i < lePaquet.taille() / joueurs.size(); i++) {
+		for (int i = 0; i < taille; i++) {
 			for (int j = commence; j < commence + joueurs.size(); j++) {
 				carte_ok = false;
 
 				while (carte_ok == false) {
+					joueurs[j%joueurs.size()].AfficherMain(cout);
 					if (j == commence) {
 						val = Affichage::DemanderValeurCarte();
 						coul = Affichage::DemanderCouleurCarte();
-						if (joueurs[i].Trouver_carte(coul, val)) {
+						if (joueurs[j % joueurs.size()].Trouver_carte(coul, val)) {
 							carte_ok = true;
 						}
 						if (coul == "♥" && coeur_bloque) {
-							if (!joueurs[i].CouleurPresente("♣") && !joueurs[i].CouleurPresente("♦") && !joueurs[i].CouleurPresente("♠")) {
+							if (!joueurs[j % joueurs.size()].CouleurPresente("♣") && !joueurs[j % joueurs.size()].CouleurPresente("♦") && !joueurs[j % joueurs.size()].CouleurPresente("♠")) {
 								carte_ok = true;
 							}
 							else {
@@ -61,18 +64,18 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 					if (j != commence) {
 						val = Affichage::DemanderValeurCarte();
 						coul = Affichage::DemanderCouleurCarte();
-						if (joueurs[i].Trouver_carte(coul, val)) {
+						if (joueurs[j % joueurs.size()].Trouver_carte(coul, val)) {
 							carte_ok = true;
 						}
-						if (joueurs[i].CouleurPresente(couleur_pli) && coul != couleur_pli) {
+						if (joueurs[j % joueurs.size()].CouleurPresente(couleur_pli) && coul != couleur_pli) {
 							carte_ok = false;
 						}
 					}
 				}
 
 
-				Carte Cajouer = move(joueurs[i].Renvoyer_carte(coul, val));
-				lePli.setCarte(j % 4, Cajouer);
+				Carte Cajouer = move(joueurs[j % joueurs.size()].Renvoyer_carte(coul, val));
+				lePli.setCarte(j % joueurs.size(), Cajouer);
 
 			}
 
@@ -115,10 +118,11 @@ int Dame2Pique::Commencer_tour()
 {
 	int i;
 	int j;
+	int taille = lePaquet.taille() / joueurs.size();
 
 
 	lePaquet.Melanger();
-	for (i = 0; i < lePaquet.taille() / joueurs.size(); i++) {
+	for (i = 0; i < taille; i++) {
 		for (j = 0; j < joueurs.size(); j++) {
 			lePaquet.Distribuer(joueurs[j]);
 		}

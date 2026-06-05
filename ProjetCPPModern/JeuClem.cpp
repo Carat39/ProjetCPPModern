@@ -25,16 +25,17 @@ void JeuClem::Partie() {
     while(!condPartie) {
         Distribution(); // Distribuer carte
         Commencer(); // attribution joueur qui commence peut y avoir une annonce ici comme pour le tarot
-        for (indexJ = 0; indexJ < nbJoueurs + nbIa; indexJ++) {
+        for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
+            lesJoueurs[indexJ % (nbJoueurs + nbIa)]->AfficherMain(cout);
             couleur = "-1";
-            while (lesJoueurs[indexJ]->Trouver_carte(couleur, valeur) == false) {
+            while (lesJoueurs[indexJ]->Trouver_carte(couleur, valeur) == false && CarteJouable()) {
                 couleur = Affichage::DemanderCouleurCarte();
                 valeur = Affichage::DemanderValeurCarte();
             }
-            JouerCarte(lesJoueurs[indexJ],couleur, valeur); //Peut potentiellement y avoir des annonces
+            JouerCarte(lesJoueurs[indexJ % (nbJoueurs + nbIa)],couleur, valeur); //Peut potentiellement y avoir des annonces
             ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                                       //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
-            }
+        }
         VerifierPli(); //Met a jour le vainqueur et les points temporaire
         AttribuerPoints(); //Attribut les points
         VerifierCondPartie(); //Change ou non condPartie

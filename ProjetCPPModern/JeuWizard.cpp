@@ -82,6 +82,10 @@ void JeuWizard::Commencer(){
 	commencer = lesJoueurs[manche]->getNumero();
 }
 
+void JeuWizard::CarteJouable() {
+
+}
+
 void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
 	Carte& laCarte = joueur->Renvoyer_carte(couleur, valeur);
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));

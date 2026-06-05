@@ -21,6 +21,8 @@ class JeuWizard:public JeuClem{
 
         virtual void Commencer();
 
+        virtual void CarteJouable();
+
         virtual void JouerCarte(Joueur* joueur,string couleur, int valeur);
 
         virtual void ConfirmerJoueurSuivant();
