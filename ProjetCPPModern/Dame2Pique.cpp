@@ -6,17 +6,16 @@
 
 #include "Dame2Pique.h"
 #include "Affichage.h"
-#include "Pli_D2P.h"
+#include "PliD2P.h"
 #include "PaquetD2P.h"
 #include "Carte.h"
 
 
-void Dame2Pique::Partie(int nb_humains, int nb_ia)
-{
+void Dame2Pique::Partie(int nb_humains, int nb_ia){
 	lePaquet = PaquetD2P();
 	for (int i = 0; i < nb_humains + nb_ia; i++) {
 		Joueur joueur = Joueur(i);
-		joueurs.push_back(joueur);
+		joueurs.push_back(move(joueur));
 	}
 
 	size_t carte_a_retirer = lePaquet.taille() % joueurs.size();
@@ -26,7 +25,8 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 	if (carte_a_retirer > 1) {
 		lePaquet.retirer_carte("♣", 2);
 	}
-	int taille = lePaquet.taille() / joueurs.size();
+	//ok
+	size_t taille = lePaquet.taille() / joueurs.size();
 	int commence = Commencer_tour();
 	int val;
 	coeur_bloque = true;
@@ -38,7 +38,7 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 	}
 
 	while (Verifier_points() == -1) {
-
+		commence = Commencer_tour();
 		for (int i = 0; i < taille; i++) {
 			for (int j = commence; j < commence + joueurs.size(); j++) {
 				carte_ok = false;
@@ -73,14 +73,17 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia)
 					}
 				}
 
-
-				Carte Cajouer = move(joueurs[j % joueurs.size()].Renvoyer_carte(coul, val));
-				lePli.setCarte(j % joueurs.size(), Cajouer);
+				//Ici je me suis arreté
+				unique_ptr<Carte> Cajouer = move(joueurs[j % joueurs.size()].Renvoyer_carte(coul, val));
+				joueurs[j % joueurs.size()].EliminerCarte();
+				lePli.setCarte(j % joueurs.size(), move(Cajouer));
 
 			}
-
-			commence = lePli.Vainqueur(commence, lePaquet);
 			points_temp[commence] += lePli.Calcul_points();
+			commence = lePli.Vainqueur(commence, lePaquet);
+			/*
+			Regarder dans eliminer carte ou je ne sais ou
+			*/
 
 		}
 		Attribuer_points();
@@ -118,7 +121,7 @@ int Dame2Pique::Commencer_tour()
 {
 	int i;
 	int j;
-	int taille = lePaquet.taille() / joueurs.size();
+	size_t taille = lePaquet.taille() / joueurs.size();
 
 
 	lePaquet.Melanger();
@@ -126,6 +129,9 @@ int Dame2Pique::Commencer_tour()
 		for (j = 0; j < joueurs.size(); j++) {
 			lePaquet.Distribuer(joueurs[j]);
 		}
+	}
+	for (j = 0; j < joueurs.size(); j++) {
+		joueurs[j].Trier();
 	}
 	for (i = 0; i < joueurs.size(); i++) {
 		if (joueurs[i].Trouver_carte("♥", 12)) {

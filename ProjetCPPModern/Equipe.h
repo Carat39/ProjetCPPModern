@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
+
 #include "Joueur.h"
 
 
 class Equipe{
-	private:
+	/*private:
 		std::vector<Joueur> joueurs;
 
 		int points_equipe;
@@ -18,6 +20,6 @@ class Equipe{
 		void set_points(int nv_points) { points_equipe = nv_points; }
 
 		Joueur* Trouver_Joueur(int numJ);
-
+		*/
 };
 #endif

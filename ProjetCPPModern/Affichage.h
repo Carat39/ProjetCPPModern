@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
+
 #include "Joueur.h"
 using namespace std;
 
@@ -14,7 +16,7 @@ class Affichage{
 
 		static int DemanderNbJoueurs(string Precision);
 
-		static void Afficher_jeu(vector<Joueur> vectJ);
+		static void Afficher_jeu(vector<Joueur>& vectJ);
 
 };
 

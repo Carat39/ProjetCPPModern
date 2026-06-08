@@ -9,20 +9,24 @@ using namespace std;
 #include <stdlib.h>
 #include "Affichage.h"
 #include <windows.h>
+#include <memory>
 
 
 void testJoueur() {
-	Joueur Clement = Joueur(1);
-	Joueur Thibault = Joueur(2);
-	Joueur Nino = Joueur(3);
-	PaquetD2P MonPaquet = PaquetD2P();
-	cout << "Mélange" << endl;
-	MonPaquet.Melanger();
-	MonPaquet.AfficherPaquet(cout);
-	MonPaquet.retirer_carte("♦", 2);
+    Joueur Clement = Joueur(1);
+    Joueur Thibault = Joueur(2);
+    Joueur Nino = Joueur(3);
+    PaquetD2P MonPaquet = PaquetD2P();
+    cout << "Mélange" << endl;
+    MonPaquet.Melanger();
+    MonPaquet.AfficherPaquet(cout);
+    MonPaquet.retirer_carte("♦", 2);
 
-
-	vector<Joueur> list_joueurs = {Clement,Thibault,Nino};
+    
+    vector<Joueur> list_joueurs;
+    list_joueurs.push_back(move(Clement));
+    list_joueurs.push_back(move(Thibault));
+    list_joueurs.push_back(move(Nino));
 	unsigned int index = 0;
 	while(index < MonPaquet.taille()) {
 		MonPaquet.Distribuer(list_joueurs[index%3]);
@@ -75,5 +79,5 @@ void testJoueur() {
     }
     SetConsoleMode(hConsoleHandle, dwMode);
     
-
+    
 }

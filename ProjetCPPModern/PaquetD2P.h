@@ -9,9 +9,7 @@ class PaquetD2P: public Paquet{
 		vector<Carte> cartesEcartes;
 
 	public:
-		//Constructeurs et Destructeurs
-		PaquetD2P(): Paquet({ "♠","♦","♥","♣" }, { 2,3,4,5,6,7,8,9,10,11,12,13,14 }){};
-		
+		//Constructeurs et Destructeurs		
 		//Méthodes
 		void retirer_carte(string coul, int val);
 

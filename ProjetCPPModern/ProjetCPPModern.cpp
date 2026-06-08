@@ -23,7 +23,7 @@ int main(){
     cout << "♠♣♦♥" << endl;
     //testJoueur();
     //testPli();
-    //testWizard();
+    testWizard();
     //Dame2Pique jeu;
     //jeu.Partie(4, 0);
 }

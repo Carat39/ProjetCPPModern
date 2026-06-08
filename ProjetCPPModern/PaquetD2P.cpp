@@ -5,8 +5,8 @@ void PaquetD2P::retirer_carte(string coul, int val) {
 	bool find = false;
 	unsigned int index = 0;
 	while (index < taille() && find == false) {
-		if (lePaquet[index].get_couleur() == coul && lePaquet[index].get_valeur() == val) {
-			Invalider_carte(move(lePaquet[index]));
+		if (lePaquet[index]->get_couleur() == coul && lePaquet[index]->get_valeur() == val) {
+			Invalider_carte(move(*lePaquet[index]));
 			lePaquet.erase(lePaquet.begin()+index);
 			find = true;
 		}

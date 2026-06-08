@@ -147,14 +147,14 @@
     <ClCompile Include="IA.cpp" />
     <ClCompile Include="IADame2Pique.cpp" />
     <ClCompile Include="JeuClem.cpp" />
+    <ClCompile Include="JeuD2P.cpp" />
     <ClCompile Include="JeuWizard.cpp" />
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Paquet.cpp" />
     <ClCompile Include="PaquetD2P.cpp" />
-    <ClCompile Include="PaquetWizard.cpp" />
     <ClCompile Include="Pli.cpp" />
     <ClCompile Include="PliWizard.cpp" />
-    <ClCompile Include="Pli_D2P.cpp" />
+    <ClCompile Include="PliD2P.cpp" />
     <ClCompile Include="ProjetCPPModern.cpp" />
     <ClCompile Include="TestUnitaireWizard.cpp" />
     <ClCompile Include="TUnitaire_Joueur.cpp" />
@@ -172,14 +172,14 @@
     <ClInclude Include="IADame2Pique.h" />
     <ClInclude Include="Jeu.h" />
     <ClInclude Include="JeuClem.h" />
+    <ClInclude Include="JeuD2P.h" />
     <ClInclude Include="JeuWizard.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Paquet.h" />
     <ClInclude Include="PaquetD2P.h" />
-    <ClInclude Include="PaquetWizard.h" />
     <ClInclude Include="Pli.h" />
     <ClInclude Include="PliWizard.h" />
-    <ClInclude Include="Pli_D2P.h" />
+    <ClInclude Include="PliD2P.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
