@@ -14,11 +14,11 @@ void JeuWizard::DefinirNbJoueurMinMax() {
 void JeuWizard::PreparationJoueur(int nbJoueur, int nbIa) {
 	int compteur;
 	for (compteur = 0; compteur < nbJoueur; compteur++) {
-		Joueur leJoueur = Joueur(compteur);
+		Humain leJoueur = Humain(compteur);
 		lesJoueurs.push_back(move(&leJoueur));
 	}
 	for (compteur = 0; compteur < nbIa; compteur++) {
-		Joueur leJoueur = Joueur(compteur); //Faudra Changer pour JoueurHumain et JoueurIA
+		Humain leJoueur = Humain(compteur); //Faudra Changer pour JoueurHumain et JoueurIA
 		lesJoueurs.push_back(move(&leJoueur));
 	}
 }
@@ -50,7 +50,7 @@ bool JeuWizard::CarteJouable(string laCouleur, int laValeur) {
 	return 0;
 }
 
-void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
+void JeuWizard::JouerCarte(Humain* joueur, string couleur, int valeur){
 	unique_ptr< Carte>& laCarte = joueur->Renvoyer_carte(couleur, valeur);
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));
 }

@@ -7,6 +7,7 @@
 #include "PaquetD2P.h"
 #include "PliD2P.h"
 #include "JeuClem.h"
+#include "Humain.h"
 
 using namespace std;
 

@@ -22,8 +22,6 @@ void Joueur::supprMain(unique_ptr<Carte> laCarte){
 	laCarte.~unique_ptr<Carte>();
 }
 
-void Joueur::Jouer(){
-}
 
 bool Joueur::CouleurPresente(string coul) {
 	for (unique_ptr<Carte>& laCarte : mainJ) {

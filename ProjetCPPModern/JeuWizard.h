@@ -1,6 +1,7 @@
 #ifndef JEUWIZARD_H
 #define JEUWIZARD_H 300
 #include "JeuClem.h"
+#include "Humain.h"
 using namespace std;
 
 class JeuWizard:public JeuClem{
@@ -26,7 +27,7 @@ class JeuWizard:public JeuClem{
 
         virtual bool CarteJouable(string laCouleur, int laValeur);
 
-        virtual void JouerCarte(Joueur* joueur,string couleur, int valeur);
+        virtual void JouerCarte(Humain* joueur,string couleur, int valeur);
 
         virtual void ConfirmerJoueurSuivant();
 

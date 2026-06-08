@@ -4,3 +4,7 @@
 #include "Humain.h"
 
 
+
+void Humain::Jouer() {
+	return;
+}

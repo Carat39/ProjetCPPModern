@@ -6,6 +6,9 @@
 #include <memory>
 
 #include "Joueur.h"
+#include "IA.h"
+#include "Humain.h"
+#include <vector>
 using namespace std;
 
 class Affichage{
@@ -16,7 +19,9 @@ class Affichage{
 
 		static int DemanderNbJoueurs(string Precision);
 
-		static void Afficher_jeu(vector<Joueur>& vectJ);
+		static void Afficher_jeu_Humain(vector<Humain*>& vectJ);
+
+		static void Afficher_jeu_IA(vector<IA*>& vectJ);
 
 };
 

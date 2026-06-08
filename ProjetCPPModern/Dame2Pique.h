@@ -6,12 +6,13 @@
 #include "Jeu.h"
 #include "PaquetD2P.h"
 #include "PliD2P.h"
+#include "Humain.h"
 
 using namespace std;
 
 class Dame2Pique:public Jeu{
 	private:
-		std::vector<Joueur> joueurs;
+		std::vector<Humain> joueurs;
 
 		std::vector<int> points_temp;
 

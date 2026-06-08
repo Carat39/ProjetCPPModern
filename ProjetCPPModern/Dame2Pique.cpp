@@ -14,7 +14,7 @@
 void Dame2Pique::Partie(int nb_humains, int nb_ia){
 	lePaquet = PaquetD2P();
 	for (int i = 0; i < nb_humains + nb_ia; i++) {
-		Joueur joueur = Joueur(i);
+		Humain joueur = Humain(i);
 		joueurs.push_back(move(joueur));
 	}
 

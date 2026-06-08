@@ -1,4 +1,5 @@
 #include "JeuD2P.h"
+#include <utility>
 
 
 JeuD2P::JeuD2P() :JeuClem() {
@@ -17,7 +18,7 @@ void JeuD2P::DefinirNbJoueurMinMax() {
 
 void JeuD2P::PreparationJoueur(int nbJoueur, int nbIa) {
 	for (int i = 0; i < nbJoueur + nbIa; i++) {
-		Joueur joueur = Joueur(i);
+		Humain joueur = Humain(i);
 		lesJoueurs.push_back(move(&joueur));
 	}
 }
