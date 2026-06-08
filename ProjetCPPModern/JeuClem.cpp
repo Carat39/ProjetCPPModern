@@ -28,10 +28,10 @@ void JeuClem::Partie() {
         for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
             lesJoueurs[indexJ % (nbJoueurs + nbIa)]->AfficherMain(cout);
             couleur = "-1";
-            while (lesJoueurs[indexJ]->Trouver_carte(couleur, valeur) == false && CarteJouable()) {
+            /*while (lesJoueurs[indexJ]->Trouver_carte(couleur, valeur) == false && CarteJouable()) {
                 couleur = Affichage::DemanderCouleurCarte();
                 valeur = Affichage::DemanderValeurCarte();
-            }
+            }*/
             JouerCarte(lesJoueurs[indexJ % (nbJoueurs + nbIa)],couleur, valeur); //Peut potentiellement y avoir des annonces
             ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                                       //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
