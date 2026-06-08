@@ -41,7 +41,8 @@ public:
 
 	~Humain() = default;
 
-	void Jouer();
+	template <typename PJeu>
+	unique_ptr<Carte> Jouer(PJeu& jeu);
 
 	//Donner la carte se fera dans pli
 

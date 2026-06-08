@@ -43,7 +43,8 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
-		virtual void Jouer()=0;
+		template <typename PJeu>
+		unique_ptr<Carte> Jouer(PJeu& jeu)=0;
 
 		void AfficherMain(ostream& os) const noexcept; 
 
