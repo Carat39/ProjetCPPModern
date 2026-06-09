@@ -7,20 +7,10 @@
 #include <algorithm>
 #include <memory>
 #include "Joueur.h"
+#include "Equipe.h"
 
-class Equipe;
-class Joueur;
 
 class Humain : public Joueur {
-private:
-	int numero;
-
-	std::vector<unique_ptr<Carte>> mainJ;
-
-	int points;
-
-	Equipe* equipe;
-
 
 public:
 	Humain(int num) {
@@ -41,8 +31,8 @@ public:
 
 	~Humain() = default;
 
-	template <typename PJeu>
-	unique_ptr<Carte> Jouer(PJeu& jeu);
+	
+	unique_ptr<Carte>& Jouer() override;
 
 	//Donner la carte se fera dans pli
 

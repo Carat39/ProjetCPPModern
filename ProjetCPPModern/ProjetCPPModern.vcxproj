@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Affichage.cpp" />
-    <ClCompile Include="Dame2Pique.cpp" />
     <ClCompile Include="Duo.cpp" />
     <ClCompile Include="Equipe.cpp" />
     <ClCompile Include="Humain.cpp" />
@@ -164,13 +163,11 @@
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Carte.h" />
-    <ClInclude Include="Dame2Pique.h" />
     <ClInclude Include="Duo.h" />
     <ClInclude Include="Equipe.h" />
     <ClInclude Include="Humain.h" />
     <ClInclude Include="IA.h" />
     <ClInclude Include="IADame2Pique.h" />
-    <ClInclude Include="Jeu.h" />
     <ClInclude Include="JeuClem.h" />
     <ClInclude Include="JeuD2P.h" />
     <ClInclude Include="JeuWizard.h" />
