@@ -19,10 +19,10 @@ void JeuD2P::DefinirNbJoueurMinMax() {
 void JeuD2P::PreparationJoueur(int nbJoueur, int nbIa) {
 	int indexJ, indexIA = 0;
 	for (indexJ = 0; indexJ < nbJoueur; indexJ++) {
-		lesJoueurs.push_back(move(new Joueur(indexJ)));
+		lesJoueurs.push_back(move(new Humain(indexJ)));
 	}
 	for (indexIA = indexJ; indexIA < nbJoueur + nbIa; indexIA++) {
-		lesJoueurs.push_back(move(new Joueur(indexIA)));
+		lesJoueurs.push_back(move(new IADame2Pique(indexIA)));
 	}
 }
 

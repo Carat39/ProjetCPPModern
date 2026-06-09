@@ -4,7 +4,7 @@
 #include "Pli.h"
 #include "Affichage.h"
 #include <memory>
-
+#include "Joueur.h"
 
 class JeuClem{
 	protected:

@@ -6,6 +6,7 @@
 
 #include "IA.h"
 
+
 class IADame2Pique : public IA{
 	protected:
 		int nb_coeur;

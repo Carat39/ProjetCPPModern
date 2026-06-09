@@ -4,11 +4,12 @@
 #include <iostream>
 #include <vector>
 #include "Carte.h"
-#include <algorithm>
 #include <memory>
-#include "JeuClem.h"
+#include <utility>
+#include <algorithm>
 
 class Equipe;
+class JeuClem;
 
 class Joueur{
 	protected:

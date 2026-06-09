@@ -1,13 +1,9 @@
 #ifndef JOUEUR_Humain_H
 #define JOUEUR_Humain_H
 
-#include <iostream>
-#include <vector>
 #include "Carte.h"
-#include <algorithm>
 #include <memory>
 #include "Joueur.h"
-#include "Equipe.h"
 
 
 class Humain : public Joueur {

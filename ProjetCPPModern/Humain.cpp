@@ -6,6 +6,7 @@
 #include <memory>
 #include <string>
 #include "Carte.h"
+#include "JeuClem.h"
 
 
 unique_ptr<Carte>& Humain::Jouer() {

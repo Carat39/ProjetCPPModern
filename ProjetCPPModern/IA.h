@@ -10,8 +10,6 @@
 #include <exception>
 #include <stdexcept>
 
-class Equipe;
-class Joueur;
 
 class IA : public Joueur {
 

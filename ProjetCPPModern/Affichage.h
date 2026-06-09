@@ -4,11 +4,12 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
-#include "Joueur.h"
-#include "IA.h"
-#include "Humain.h"
 #include <vector>
+
+
+class Humain;   
+class IA;
+
 using namespace std;
 
 class Affichage{

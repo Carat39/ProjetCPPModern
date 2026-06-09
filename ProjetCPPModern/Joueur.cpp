@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "Joueur.h"
-
+using namespace std;
 
 void Joueur::addPoints(int nbPoints){
 	points += nbPoints;
