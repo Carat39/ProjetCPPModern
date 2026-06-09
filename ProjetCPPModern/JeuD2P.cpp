@@ -16,9 +16,12 @@ void JeuD2P::DefinirNbJoueurMinMax() {
 }
 
 void JeuD2P::PreparationJoueur(int nbJoueur, int nbIa) {
-	for (int i = 0; i < nbJoueur + nbIa; i++) {
-		Joueur joueur = Joueur(i);
-		lesJoueurs.push_back(move(&joueur));
+	int indexJ, indexIA = 0;
+	for (indexJ = 0; indexJ < nbJoueur; indexJ++) {
+		lesJoueurs.push_back(move(new Joueur(indexJ)));
+	}
+	for (indexIA = indexJ; indexIA < nbJoueur + nbIa; indexIA++) {
+		lesJoueurs.push_back(move(new Joueur(indexIA)));
 	}
 }
 
@@ -31,6 +34,7 @@ void JeuD2P::PreparationPaquet() {
 	if (carte_a_retirer > 1) {
 		((PaquetD2P*)lePaquet)->retirer_carte("♣", 2);
 	}
+	lePaquet->Melanger();
 }
 
 void JeuD2P::PreparationPli() {
@@ -44,7 +48,7 @@ void JeuD2P::PreparationPli() {
 void JeuD2P::Distribution() {
 	int index1,index2 = 0;
 	//On distribue toutes les cartes
-	for (index1 = 0; index1 < 52; index1++) {
+	for (index1 = 0; index1 < 52/lesJoueurs.size(); index1++) {
 		for (index2 = 0; index2 < lesJoueurs.size(); index2++) {
 			lePaquet->Distribuer(*lesJoueurs[index2]);
 		}
@@ -70,32 +74,55 @@ void JeuD2P::Commencer() {
 	}
 }
 
-bool JeuD2P::CarteJouable(string laCouleur, int laValeur) {
-	/*if (laCouleur == "♥" && coeur_bloque) {
-		if (!lesJoueurs[j % lesJoueurs.size()].CouleurPresente("♣") 
-			&& !lesJoueurs[j % lesJoueurs.size()].CouleurPresente("♦") 
-			&& !lesJoueurs[j % lesJoueurs.size()].CouleurPresente("♠")) {
+bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
+	bool cartejouable = true;
+	if (!joueur->Trouver_carte(laCouleur, laValeur)) {
+		//Il n'a pas cette carte
+		cartejouable = false;
+	}
+	else{
+		//si c'est le premier joueur qui est en train de jouer
+		if (joueur->getNumero() == commencer) {
 			//On définit la couleur du pli
-				couleurPli = laCouleur;
-				return true;
+			couleurPli = laCouleur;
+			//Joue t-il du coeur en premier?
+			if (laCouleur == "♥" && coeur_bloque) {
+				//Il possede encore du coeur
+				if (joueur->CouleurPresente("♣")
+					|| joueur->CouleurPresente("♦")
+					|| joueur->CouleurPresente("♠")) {
+					cartejouable = false;
+				}
+				else {
+					cartejouable = false;
+				}
+			}
 		}
 		else {
-			return false;
+			if (laCouleur != couleurPli && joueur->CouleurPresente(couleurPli)) {
+				cartejouable = false;
+			}
 		}
-	}*/
-	return false;
+	}
+	if (cartejouable && laCouleur == "♥") {
+		coeur_bloque = false;
+	}
+	return cartejouable;
 }
 
-void JeuD2P::JouerCarte(Joueur* joueur, string couleur, int valeur) {
-
+void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
+	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
+	joueur->EliminerCarte();
+	lePli->setCarte(joueur->getNumero(), move(Cajouer));
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
-
+	system("cls");
 }
 
 void JeuD2P::VerifierPli() {
-
+	points_temp[commencer] += ((PliD2P*)lePli)->Calcul_points();
+	commencer = ((PliD2P*)lePli)->Vainqueur(commencer, lePaquet);
 }
 
 void JeuD2P::VerifierCondManche() {
@@ -119,8 +146,19 @@ void JeuD2P::VerifierCondPartie() {
 	/*if (lePaquet->taille() == 50 || lePaquet->taille() == 51 || lePaquet->taille() == 52) {
 		condPartie = false;
 	}*/
+	int indexJ = 0;
+	for (indexJ = 0; indexJ < lesJoueurs.size();indexJ++) {
+		if (lesJoueurs[indexJ]->getPoints() >= 50) {
+			condPartie = false;
+		}
+	}
 }
 
 void JeuD2P::FinDePartie() {
-
+	//Trier à l'avenir comme dans le TP avec les tasks
+	int indexJ = 0;
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		cout << "Pts Finaux Joueur n°" << lesJoueurs[indexJ]->getNumero() 
+			<< " = " << lesJoueurs[indexJ]->getPoints() << endl;
+	}
 }

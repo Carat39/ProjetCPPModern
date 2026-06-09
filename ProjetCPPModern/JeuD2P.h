@@ -38,9 +38,9 @@ class JeuD2P :public JeuClem {
 
         virtual void VerifierCondManche();
 
-        virtual bool CarteJouable(string laCouleur, int laValeur);
+        virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur);
 
-        virtual void JouerCarte(Joueur* joueur, string couleur, int valeur);
+        virtual void JouerCarte(Joueur* joueur, string laCouleur, int laValeur);
 
         virtual void ConfirmerJoueurSuivant();
 

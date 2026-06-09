@@ -34,7 +34,7 @@ int PliD2P::Vainqueur(int premier_j, TPaquet& le_paquet)
 	cout << le_gagnant;
 
 	for (auto& pair : pli) {
-		le_paquet.Move_carte(move(pair.second));
+		//le_paquet.Move_carte(move(pair.second));
 	}
 	pli.clear();
 

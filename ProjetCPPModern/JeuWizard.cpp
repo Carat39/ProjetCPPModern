@@ -46,12 +46,12 @@ void JeuWizard::VerifierCondManche() {
 
 }
 
-bool JeuWizard::CarteJouable(string laCouleur, int laValeur) {
+bool JeuWizard::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	return 0;
 }
 
-void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
-	unique_ptr< Carte>& laCarte = joueur->Renvoyer_carte(couleur, valeur);
+void JeuWizard::JouerCarte(Joueur* joueur, string laCouleur, int laValeur){
+	unique_ptr< Carte>& laCarte = joueur->Renvoyer_carte(laCouleur, laValeur);
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));
 }
 

@@ -16,7 +16,7 @@ class PaquetD2P: public Paquet{
 		//Déplace dans cartesEcartes
 		void Invalider_carte(Carte&& autre) noexcept;
 
-
+		size_t tailleautre() const { return cartesEcartes.size(); }
 
 
 };
