@@ -39,9 +39,9 @@ class JeuClem{
 
         virtual void VerifierCondManche() = 0;
 
-        virtual bool CarteJouable(Joueur* joueur, string laCouleur, int laValeur) = 0;
+        virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur) = 0;
 
-        virtual void JouerCarte(Joueur* joueur,string couleur, int valeur) = 0;
+        virtual void JouerCarte(Joueur* joueur,string laCouleur, int laValeur) = 0;
 
         virtual void ConfirmerJoueurSuivant() = 0;
 

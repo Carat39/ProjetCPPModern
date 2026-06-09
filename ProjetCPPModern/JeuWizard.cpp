@@ -1,5 +1,6 @@
 #include "JeuWizard.h"
 #include <iostream>
+#include <fstream>
 
 JeuWizard::JeuWizard() {
 	condPartie = false;
@@ -24,8 +25,47 @@ void JeuWizard::PreparationJoueur(int nbJoueur, int nbIa) {
 }
 
 void JeuWizard::PreparationPaquet() {
-	Paquet* monPaquet = new Paquet("Paquets/PaquetWizard.txt");
-	lePaquet = move(monPaquet);
+	ifstream fichier("Paquets/PaquetWizard.txt", ios::in);
+	if (!fichier) {
+		cout << "Erreur" << endl;
+	}
+	else {
+		Paquet monPaquet;
+		string nbCartes;
+		fichier.ignore(11, '=');
+		getline(fichier, nbCartes);
+
+		cout << "NBCartes : " << nbCartes << endl;
+
+		string couleur, valeur, lettre="";
+
+		fichier.ignore(10, '[');
+		for (unsigned int index = 0; index < (unsigned int)stoi(nbCartes) + 1; index++) {
+			couleur = "";
+			valeur = "";
+			fichier.ignore(10, '=');
+			lettre = fichier.get();
+			while (lettre != ",") {
+				couleur += lettre;
+				lettre = fichier.get();
+			}
+			fichier.ignore(10, '=');
+			lettre = fichier.get();
+			while (lettre != "\n") {
+				valeur += lettre;
+				lettre = fichier.get();
+			}
+			//cout << couleur << " " << valeur << endl;
+			try {
+				monPaquet.Ajouter_carte(couleur, stoi(valeur));
+			}
+			catch (...) {
+				cout << "Carte deja existante" << endl;
+			}
+		}
+		//lePaquet = move(monPaquet);
+		fichier.close();
+	}
 }
 
 void JeuWizard::PreparationPli() {
@@ -34,7 +74,7 @@ void JeuWizard::PreparationPli() {
 
 void JeuWizard::Distribution() {
 	for (int indice = 0; indice < manche; indice++) {
-		lePaquet->Distribuer(*lesJoueurs[indice]);
+		//lePaquet.Distribuer(*lesJoueurs[indice]);
 	}
 }
 
@@ -46,17 +86,17 @@ void JeuWizard::VerifierCondManche() {
 
 }
 
-bool JeuWizard::CarteJouable(string laCouleur, int laValeur) {
-	return 0;
+bool JeuWizard::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
+	return true;
 }
 
-void JeuWizard::JouerCarte(Humain* joueur, string couleur, int valeur){
-	unique_ptr< Carte>& laCarte = joueur->Renvoyer_carte(couleur, valeur);
+void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
+	//Carte& laCarte = joueur->Renvoyer_carte(couleur, valeur);
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));
 }
 
 void JeuWizard::ConfirmerJoueurSuivant(){
-	lePaquet->AfficherPaquet(cout);
+	//lePaquet.AfficherPaquet(cout);
 }
 
 void JeuWizard::VerifierPli(){
@@ -68,7 +108,7 @@ void JeuWizard::AttribuerPoints(){
 }
 
 void JeuWizard::VerifierCondPartie(){
-	lePaquet->AfficherPaquet(cout);
+	//lePaquet.AfficherPaquet(cout);
 	manche++;
 	if (manche == 60/lesJoueurs.size()+1) {
 		condPartie = true;

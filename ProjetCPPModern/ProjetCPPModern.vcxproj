@@ -156,6 +156,7 @@
     <ClCompile Include="PliD2P.cpp" />
     <ClCompile Include="ProjetCPPModern.cpp" />
     <ClCompile Include="TestUnitaireWizard.cpp" />
+    <ClCompile Include="TestUnitaire_D2P.cpp" />
     <ClCompile Include="TUnitaire_Joueur.cpp" />
     <ClCompile Include="TUnitaire_Paquet.cpp" />
     <ClCompile Include="TUnitaire_Pli.cpp" />

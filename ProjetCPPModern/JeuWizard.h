@@ -24,10 +24,9 @@ class JeuWizard:public JeuClem{
 
         virtual void VerifierCondManche();
 
+        virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur);
 
-        virtual bool CarteJouable(string laCouleur, int laValeur);
-
-        virtual void JouerCarte(Humain* joueur,string couleur, int valeur);
+        virtual void JouerCarte(Joueur* joueur,string laCouleur, int laValeur);
 
         virtual void ConfirmerJoueurSuivant();
 

@@ -13,16 +13,16 @@ void JeuClem::Partie() {
     int laValeur = 0;
     int indexJ;
 
-    PreparationPaquet(); //Créer Paquet
     DefinirNbJoueurMinMax(); //Attributs minjoueurs et maxjoueurs
-    while(nbJoueurs + nbIa < nbJoueursMinMax[0] || nbJoueursMinMax[1] < nbJoueurs + nbIa) {
+    while (nbJoueurs + nbIa < nbJoueursMinMax[0] || nbJoueursMinMax[1] < nbJoueurs + nbIa) {
         cout << "Nombres Joueurs Min: " << nbJoueursMinMax[0] << " Nombres Joueurs Max: " << nbJoueursMinMax[1] << endl;
         nbJoueurs = Affichage::DemanderNbJoueurs("e Joueurs");
         nbIa = Affichage::DemanderNbJoueurs("'IA");
     }
-    PreparationJoueur(nbJoueurs,nbIa); //Créer Joueurs et IA
+    PreparationJoueur(nbJoueurs, nbIa); //Créer Joueurs et IA
+    PreparationPaquet(); //Créer Paquet
     PreparationPli(); //Créer Pli
-    while(condPartie) {
+    while (condPartie) {
         condManche = true;
         Distribution(); // Distribuer carte
         Commencer(); // attribution joueur qui commence peut y avoir une annonce ici comme pour le tarot
@@ -30,19 +30,21 @@ void JeuClem::Partie() {
             for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
                 lesJoueurs[indexJ % (nbJoueurs + nbIa)]->AfficherMain(cout);
                 laCouleur = "-1";
-                while (lesJoueurs[indexJ]->Trouver_carte(laCouleur, laValeur) == false && CarteJouable(laCouleur, laValeur)) {
-                    laCouleur = Affichage::DemanderCouleurCarte();
+                ///Ok par thibault en théorie
+                while (!CarteJouable(lesJoueurs[indexJ % lesJoueurs.size()], laCouleur, laValeur)) {
                     laValeur = Affichage::DemanderValeurCarte();
+                    laCouleur = Affichage::DemanderCouleurCarte();
+
                 }
                 JouerCarte(lesJoueurs[indexJ % (nbJoueurs + nbIa)], laCouleur, laValeur); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                 //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
+                }
+                VerifierPli(); //Met a jour le vainqueur et les points temporaire
+                VerifierCondManche();
             }
-            VerifierPli(); //Met a jour le vainqueur et les points temporaire
-            VerifierCondManche();
+            AttribuerPoints(); //Attribuer les points
+            VerifierCondPartie(); //Change ou non condPartie
         }
-        AttribuerPoints(); //Attribuer les points
-        VerifierCondPartie(); //Change ou non condPartie
+        FinDePartie(); //Lance la fin de la partie
     }
-    FinDePartie(); //Lance la fin de la partie
-}

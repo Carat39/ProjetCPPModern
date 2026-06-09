@@ -11,6 +11,7 @@ void testPaquet();
 void testJoueur();
 void testPli();
 void testWizard();
+void testD2P();
 
 int main(){
     //Mettre en UTF8 pour affichage caractère spéciale
@@ -23,9 +24,8 @@ int main(){
     cout << "♠♣♦♥" << endl;
     //testJoueur();
     //testPli();
-    testWizard();
-    //Dame2Pique jeu;
-    //jeu.Partie(4, 0);
+    //testWizard();
+    testD2P();
 }
 
 /*
