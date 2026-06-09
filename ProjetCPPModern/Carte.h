@@ -2,6 +2,7 @@
 #define CARTE_H 50
 
 #include <iostream>
+#include <memory>
 using namespace std;
 
 class Carte{
@@ -21,7 +22,7 @@ class Carte{
 			valeur = val;
 		}
 
-		Carte(Carte& autre) noexcept {
+		Carte(Carte& autre)  {
 			couleur = autre.couleur;
 			valeur = autre.valeur;
 		}
@@ -44,8 +45,15 @@ class Carte{
 			return *this;
 		}
 
-		void AfficherCarte(ostream& os) const noexcept {
+		void AfficherCarte(ostream& os) const  {
 			os << get_valeur() << " " << get_couleur() << endl;
+		}
+
+		bool operator<(Carte& other) {
+			if (this->get_couleur() == other.get_couleur()) {
+				return this->get_valeur() > other.get_valeur();
+			}
+			return this->get_couleur() < other.get_couleur();
 		}
 };
 

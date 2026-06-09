@@ -6,7 +6,6 @@
 
 #include "Equipe.h"
 
-class Duo : public Equipe
-{
+class Duo : public Equipe{
 };
 #endif

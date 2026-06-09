@@ -10,17 +10,18 @@
 class Paquet{
 	protected:
 		//Attributs
-		std::vector<Carte> lePaquet;
+		std::vector<std::unique_ptr<Carte>> lePaquet;
 
 	public:
 		//Constructeurs et Destructeurs
 		Paquet();
-		Paquet(std::vector<string> couleursValides, std::vector<int> valeursValides);
+		Paquet(string nomfichier);
+
 
 		//Méthodes
 		void Ajouter_carte(string coul, int val);
 
-		void Move_carte(Carte&& autre) noexcept {
+		void Move_carte(std::unique_ptr<Carte>&& autre) noexcept {
 			lePaquet.push_back(move(autre));
 		}
 
@@ -31,6 +32,7 @@ class Paquet{
 		void Melanger();
 
 		void Distribuer(Joueur& joueur);
+
 
 
 

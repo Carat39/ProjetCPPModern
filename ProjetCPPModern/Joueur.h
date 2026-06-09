@@ -4,13 +4,16 @@
 #include <iostream>
 #include <vector>
 #include "Carte.h"
+#include <algorithm>
+#include <memory>
+
 class Equipe;
 
 class Joueur{
 	private:
 		int numero;
 
-		std::vector<Carte> mainJ;
+		std::vector<unique_ptr<Carte>> mainJ;
 
 		int points;
 
@@ -24,7 +27,19 @@ class Joueur{
 			equipe = nullptr;
 		}
 
-		std::vector<Carte> getMain() const { return mainJ; };
+		//On peut pas copier un joueur
+		Joueur(const Joueur& autre ) = delete;
+		//On peut le déplacer
+		Joueur(Joueur&& autre ) noexcept = default;
+
+		//On peut pas copier un joueur
+		Joueur& operator=(const Joueur& autre) = delete;
+		//On peut le déplacer
+		Joueur& operator=(Joueur&& autre) noexcept = default;
+
+		~Joueur() = default;
+
+		std::vector<unique_ptr<Carte>> getMain()  { return move(mainJ); };
 
 		int getNumero() const { return numero; };
 
@@ -32,21 +47,25 @@ class Joueur{
 
 		void addPoints(int nbPoints);
 
-		void addCarte(Carte laCarte);
+		void addCarte(unique_ptr<Carte> laCarte);
 
-		void addMain(std::vector<Carte> lesCartes);
+		void addMain(std::vector<unique_ptr<Carte>> lesCartes);
 
-		void supprMain(Carte laCarte);
+		void supprMain(unique_ptr<Carte> laCarte);
 
 		bool CouleurPresente(string coul);
 
 		bool Trouver_carte(string coul, int val);
 
-		Carte& Renvoyer_carte(string coul, int val) noexcept;
+		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
 		void Jouer();
 
 		void AfficherMain(ostream& os) const noexcept; 
+
+		void EliminerCarte();
+
+		void Trier();
 
 		//Donner la carte se fera dans pli
 

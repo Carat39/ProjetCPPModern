@@ -4,6 +4,6 @@
 #include "Pli.h"
 
 
-void Pli::setCarte(int joueur, Carte carte){
-	pli.insert(std::pair<int, Carte>(joueur, carte));
+void Pli::setCarte(int joueur, std::unique_ptr<Carte> carte){
+	pli.insert(std::make_pair(joueur, std::move(carte)));
 }

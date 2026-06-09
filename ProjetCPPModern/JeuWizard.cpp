@@ -63,7 +63,7 @@ void JeuWizard::PreparationPaquet() {
 				cout << "Carte deja existante" << endl;
 			}
 		}
-		lePaquet = move(monPaquet);
+		//lePaquet = move(monPaquet);
 		fichier.close();
 	}
 }
@@ -74,7 +74,7 @@ void JeuWizard::PreparationPli() {
 
 void JeuWizard::Distribution() {
 	for (int indice = 0; indice < manche; indice++) {
-		lePaquet.Distribuer(*lesJoueurs[indice]);
+		//lePaquet.Distribuer(*lesJoueurs[indice]);
 	}
 }
 
@@ -82,17 +82,21 @@ void JeuWizard::Commencer(){
 	commencer = lesJoueurs[manche]->getNumero();
 }
 
-void JeuWizard::CarteJouable() {
+void JeuWizard::VerifierCondManche() {
 
 }
 
+bool JeuWizard::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
+	return true;
+}
+
 void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
-	Carte& laCarte = joueur->Renvoyer_carte(couleur, valeur);
+	//Carte& laCarte = joueur->Renvoyer_carte(couleur, valeur);
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));
 }
 
 void JeuWizard::ConfirmerJoueurSuivant(){
-	lePaquet.AfficherPaquet(cout);
+	//lePaquet.AfficherPaquet(cout);
 }
 
 void JeuWizard::VerifierPli(){
@@ -104,7 +108,7 @@ void JeuWizard::AttribuerPoints(){
 }
 
 void JeuWizard::VerifierCondPartie(){
-	lePaquet.AfficherPaquet(cout);
+	//lePaquet.AfficherPaquet(cout);
 	manche++;
 	if (manche == 60/lesJoueurs.size()+1) {
 		condPartie = true;

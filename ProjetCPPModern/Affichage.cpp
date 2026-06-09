@@ -42,7 +42,7 @@ int Affichage::DemanderNbJoueurs(string Precision) {
 }
 
 
-void Affichage::Afficher_jeu(vector<Joueur> vectJ) {
+void Affichage::Afficher_jeu(vector<Joueur>& vectJ) {
 	for (Joueur& joueur : vectJ) {
 		joueur.AfficherMain(cout);
 	}

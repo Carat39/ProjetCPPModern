@@ -5,7 +5,7 @@
 #include <vector>
 #include "Jeu.h"
 #include "PaquetD2P.h"
-#include "Pli_D2P.h"
+#include "PliD2P.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ class Dame2Pique:public Jeu{
 
 		std::vector<int> points_temp;
 
-		Pli_D2P lePli;
+		PliD2P lePli;
 
 		PaquetD2P lePaquet;
 
