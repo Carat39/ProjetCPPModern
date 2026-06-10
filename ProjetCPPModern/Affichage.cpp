@@ -1,4 +1,6 @@
 #include "Affichage.h"
+#include "Humain.h"
+#include "IA.h"
 
 int Affichage::DemanderValeurCarte() {
 	int valeur = -1;
@@ -42,8 +44,15 @@ int Affichage::DemanderNbJoueurs(string Precision) {
 }
 
 
-void Affichage::Afficher_jeu(vector<Joueur>& vectJ) {
-	for (Joueur& joueur : vectJ) {
-		joueur.AfficherMain(cout);
+void Affichage::Afficher_jeu_Humain(vector<Humain*>& vectJ) {
+	for (Humain* joueur : vectJ) {
+		joueur->AfficherMain(cout);
 	}
 }
+
+void Affichage::Afficher_jeu_IA(vector<IA*>& vectJ) {
+	for (IA* joueur : vectJ) {
+		joueur->AfficherMain(cout);
+	}
+}
+

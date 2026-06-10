@@ -21,23 +21,7 @@ class Joueur{
 
 
 	public:
-		Joueur(int num) {
-			numero = num;
-			points = 0;
-			equipe = nullptr;
-		}
 
-		//On peut pas copier un joueur
-		Joueur(const Joueur& autre ) = delete;
-		//On peut le déplacer
-		Joueur(Joueur&& autre ) noexcept = default;
-
-		//On peut pas copier un joueur
-		Joueur& operator=(const Joueur& autre) = delete;
-		//On peut le déplacer
-		Joueur& operator=(Joueur&& autre) noexcept = default;
-
-		~Joueur() = default;
 
 		std::vector<unique_ptr<Carte>> getMain()  { return move(mainJ); };
 
@@ -59,7 +43,8 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
-		void Jouer();
+		template <typename PJeu>
+		unique_ptr<Carte> Jouer(PJeu& jeu)=0;
 
 		void AfficherMain(ostream& os) const noexcept; 
 

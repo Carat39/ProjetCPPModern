@@ -1,4 +1,5 @@
 #include "JeuD2P.h"
+#include <utility>
 
 
 JeuD2P::JeuD2P() :JeuClem() {

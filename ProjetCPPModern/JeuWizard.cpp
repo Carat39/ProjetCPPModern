@@ -15,11 +15,11 @@ void JeuWizard::DefinirNbJoueurMinMax() {
 void JeuWizard::PreparationJoueur(int nbJoueur, int nbIa) {
 	int compteur;
 	for (compteur = 0; compteur < nbJoueur; compteur++) {
-		Joueur leJoueur = Joueur(compteur);
+		Humain leJoueur = Humain(compteur);
 		lesJoueurs.push_back(move(&leJoueur));
 	}
 	for (compteur = 0; compteur < nbIa; compteur++) {
-		Joueur leJoueur = Joueur(compteur); //Faudra Changer pour JoueurHumain et JoueurIA
+		Humain leJoueur = Humain(compteur); //Faudra Changer pour JoueurHumain et JoueurIA
 		lesJoueurs.push_back(move(&leJoueur));
 	}
 }
