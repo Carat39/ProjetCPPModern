@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include "Carte.h"
+#include "Paquet.h"
 #include <memory>
 #include "Paquet.h"
 
