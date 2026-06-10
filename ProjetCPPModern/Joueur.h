@@ -4,13 +4,15 @@
 #include <iostream>
 #include <vector>
 #include "Carte.h"
-#include <algorithm>
 #include <memory>
+#include <utility>
+#include <algorithm>
 
 class Equipe;
+class JeuClem;
 
 class Joueur{
-	private:
+	protected:
 		int numero;
 
 		std::vector<unique_ptr<Carte>> mainJ;
@@ -19,6 +21,7 @@ class Joueur{
 
 		Equipe* equipe;
 
+		JeuClem* jeu;
 
 	public:
 
@@ -43,8 +46,7 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
-		template <typename PJeu>
-		unique_ptr<Carte> Jouer(PJeu& jeu) = 0;
+		virtual unique_ptr<Carte>& Jouer()=0;
 
 		void AfficherMain(ostream& os) const noexcept; 
 

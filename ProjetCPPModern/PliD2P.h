@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Pli.h"
+#include "Paquet.h"
 
 class PliD2P : public Pli{
 	public:

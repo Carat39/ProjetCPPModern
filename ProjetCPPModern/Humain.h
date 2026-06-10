@@ -1,26 +1,12 @@
 #ifndef JOUEUR_Humain_H
 #define JOUEUR_Humain_H
 
-#include <iostream>
-#include <vector>
 #include "Carte.h"
-#include <algorithm>
 #include <memory>
 #include "Joueur.h"
 
-class Equipe;
-class Joueur;
 
 class Humain : public Joueur {
-private:
-	int numero;
-
-	std::vector<unique_ptr<Carte>> mainJ;
-
-	int points;
-
-	Equipe* equipe;
-
 
 public:
 	Humain(int num) {
@@ -41,8 +27,8 @@ public:
 
 	~Humain() = default;
 
-	template <typename PJeu>
-	unique_ptr<Carte> Jouer(PJeu& jeu);
+	
+	unique_ptr<Carte>& Jouer() override;
 
 	//Donner la carte se fera dans pli
 

@@ -5,7 +5,7 @@
 #include <codecvt>
 #include <stdlib.h>
 using namespace std;
-#include "Dame2Pique.h"
+#include "JeuD2P.h"
 
 void testPaquet();
 void testJoueur();

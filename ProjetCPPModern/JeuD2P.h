@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include <vector>
-#include "Jeu.h"
+#include "JeuClem.h"
 #include "PaquetD2P.h"
 #include "PliD2P.h"
-#include "JeuClem.h"
 #include "Humain.h"
+#include "IADame2Pique.h"
 
 using namespace std;
 

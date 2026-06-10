@@ -3,17 +3,19 @@
 
 #include "Humain.h"
 #include "Affichage.h"
+#include <memory>
+#include <string>
+#include "Carte.h"
+#include "JeuClem.h"
 
 
-template <typename PJeu>
-unique_ptr<Carte> Humain::Jouer(PJeu& jeu) {
+unique_ptr<Carte>& Humain::Jouer() {
 	string laCouleur = Affichage::DemanderCouleurCarte();
 	int laValeur = Affichage::DemanderValeurCarte();
 
-	while (!jeu.CarteJouable(this, laCouleur, laValeur)) {
+	while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
 		laCouleur = Affichage::DemanderCouleurCarte();
 		laValeur = Affichage::DemanderValeurCarte();
 	}
 	return Renvoyer_carte(laCouleur, laValeur);
-
 }
