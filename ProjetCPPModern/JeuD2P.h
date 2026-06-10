@@ -52,5 +52,7 @@ class JeuD2P :public JeuClem {
 
         virtual void FinDePartie();
 
+        int GrandChelem();
+
 };
 #endif

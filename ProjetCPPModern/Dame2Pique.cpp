@@ -80,10 +80,7 @@ void Dame2Pique::Partie(int nb_humains, int nb_ia){
 
 			}
 			points_temp[commence] += lePli.Calcul_points();
-			commence = lePli.Vainqueur(commence, lePaquet);
-			/*
-			Regarder dans eliminer carte ou je ne sais ou
-			*/
+			commence = lePli.Vainqueur(commence);
 
 		}
 		Attribuer_points();

@@ -38,7 +38,7 @@ void JeuD2P::PreparationPaquet() {
 }
 
 void JeuD2P::PreparationPli() {
-	lePli = new PliD2P();
+	lePli = new PliD2P(lePaquet);
 	//On met les points tmp à 0
 	for (int a = 0; a < lesJoueurs.size(); a++) {
 		points_temp.push_back(0);
@@ -47,6 +47,7 @@ void JeuD2P::PreparationPli() {
 
 void JeuD2P::Distribution() {
 	int index1,index2 = 0;
+	lePaquet->Melanger();
 	//On distribue toutes les cartes
 	for (index1 = 0; index1 < 52/lesJoueurs.size(); index1++) {
 		for (index2 = 0; index2 < lesJoueurs.size(); index2++) {
@@ -122,30 +123,33 @@ void JeuD2P::ConfirmerJoueurSuivant() {
 
 void JeuD2P::VerifierPli() {
 	points_temp[commencer] += ((PliD2P*)lePli)->Calcul_points();
-	commencer = ((PliD2P*)lePli)->Vainqueur(commencer, lePaquet);
+	commencer = ((PliD2P*)lePli)->Vainqueur(commencer);
 }
 
 void JeuD2P::VerifierCondManche() {
-	int total = 0;
-	for (int pts : points_temp) {
-		total += pts;
-	}
-	if (total == 26) {
+	if (lePaquet->taille() == 50 || lePaquet->taille() == 51 || lePaquet->taille() == 52) {
 		condManche = false;
 	}
 }
 
 void JeuD2P::AttribuerPoints() {
 	int index = 0;
-	for (index = 0; index < lesJoueurs.size(); index++) {
-		lesJoueurs[index]->addPoints(points_temp[index]);
+	int grandChelem = GrandChelem();
+	if (grandChelem < lesJoueurs.size()+1) {
+		for (index = 0; index < lesJoueurs.size(); index++) {
+			if (index != grandChelem) {
+				lesJoueurs[index]->addPoints(26);
+			}
+		}
+	}
+	else {
+		for (index = 0; index < lesJoueurs.size(); index++) {
+			lesJoueurs[index]->addPoints(points_temp[index]);
+		}
 	}
 }
 
 void JeuD2P::VerifierCondPartie() {
-	/*if (lePaquet->taille() == 50 || lePaquet->taille() == 51 || lePaquet->taille() == 52) {
-		condPartie = false;
-	}*/
 	int indexJ = 0;
 	for (indexJ = 0; indexJ < lesJoueurs.size();indexJ++) {
 		if (lesJoueurs[indexJ]->getPoints() >= 50) {
@@ -155,10 +159,20 @@ void JeuD2P::VerifierCondPartie() {
 }
 
 void JeuD2P::FinDePartie() {
-	//Trier à l'avenir comme dans le TP avec les tasks
 	int indexJ = 0;
 	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
 		cout << "Pts Finaux Joueur n°" << lesJoueurs[indexJ]->getNumero() 
 			<< " = " << lesJoueurs[indexJ]->getPoints() << endl;
 	}
+}
+
+int JeuD2P::GrandChelem() {
+	int indexpts = 0;
+	for (indexpts = 0; indexpts < points_temp.size(); indexpts++) {
+		if (points_temp[indexpts] == 26) {
+			//Quelqu'un a fait le grand Chelem
+			return indexpts;
+		}
+	}
+	return indexpts;
 }

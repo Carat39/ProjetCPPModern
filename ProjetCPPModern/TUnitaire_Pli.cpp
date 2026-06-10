@@ -5,7 +5,7 @@
 
 void testPli() {
 	Paquet MonPaquet = Paquet("Paquets/Paquet52Cartes.txt");
-	PliD2P MonPli;
+	PliD2P MonPli(&MonPaquet);
 	Joueur Marandin = Joueur(0);
 	Joueur Clement = Joueur(1);
 	Joueur Thibault = Joueur(2);
@@ -31,5 +31,5 @@ void testPli() {
 		joueur.addMain(move(laMano));
 	}
 	cout  << MonPli.Calcul_points() <<endl ;
-	MonPli.Vainqueur<Paquet>(0, MonPaquet);
+	MonPli.Vainqueur(0);
 }

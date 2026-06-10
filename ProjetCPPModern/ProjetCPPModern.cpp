@@ -26,6 +26,7 @@ int main(){
     //testPli();
     //testWizard();
     testD2P();
+    return 0;
 }
 
 /*
