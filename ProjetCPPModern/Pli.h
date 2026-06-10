@@ -6,21 +6,19 @@
 #include <map>
 #include "Carte.h"
 #include <memory>
+#include "Paquet.h"
 
 
 class Pli{
 	protected:
 		std::map<int,std::unique_ptr<Carte>> pli;
+		Paquet* lePaquet;
 
 	public:
-		template<typename TPaquet>
-		int Vainqueur(int premier_j, TPaquet& le_paquet);
+		virtual int Vainqueur(int premier_j)=0;
 
 		void setCarte(int joueur, std::unique_ptr<Carte> carte);
 		
 };
-template<typename TPaquet>
-int Pli::Vainqueur(int premier_j, TPaquet& le_paquet){
-	return 0;
-}
+
 #endif

@@ -123,7 +123,7 @@ void JeuD2P::ConfirmerJoueurSuivant() {
 
 void JeuD2P::VerifierPli() {
 	points_temp[commencer] += ((PliD2P*)lePli)->Calcul_points();
-	commencer = ((PliD2P*)lePli)->Vainqueur(commencer, lePaquet);
+	commencer = ((PliD2P*)lePli)->Vainqueur(commencer);
 }
 
 void JeuD2P::VerifierCondManche() {

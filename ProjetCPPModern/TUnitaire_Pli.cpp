@@ -31,5 +31,5 @@ void testPli() {
 		joueur.addMain(move(laMano));
 	}
 	cout  << MonPli.Calcul_points() <<endl ;
-	MonPli.Vainqueur<Paquet>(0, MonPaquet);
+	MonPli.Vainqueur(0);
 }
