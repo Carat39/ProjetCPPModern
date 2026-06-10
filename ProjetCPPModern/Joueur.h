@@ -44,7 +44,7 @@ class Joueur{
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
 		template <typename PJeu>
-		unique_ptr<Carte> Jouer(PJeu& jeu)=0;
+		unique_ptr<Carte> Jouer(PJeu& jeu) = 0;
 
 		void AfficherMain(ostream& os) const noexcept; 
 
