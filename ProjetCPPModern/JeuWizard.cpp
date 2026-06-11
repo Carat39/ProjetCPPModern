@@ -95,6 +95,10 @@ void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
 	//lePli.setCarte(joueur->getNumero(), move(laCarte));
 }
 
+void JeuWizard::JouerCarte(Humain* joueur, string couleur, int valeur) {
+
+}
+
 void JeuWizard::ConfirmerJoueurSuivant(){
 	//lePaquet.AfficherPaquet(cout);
 }
