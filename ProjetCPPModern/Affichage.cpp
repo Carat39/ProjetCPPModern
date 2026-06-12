@@ -26,9 +26,9 @@ string Affichage::DemanderCouleurCarte() {
 	return schoix;
 }
 
-int Affichage::DemanderNbJoueurs(string Precision) {
+int Affichage::Demander(string Precision) {
 	int valeur = -1;
-	cout << "Combient y'a t-il d" << Precision << ": ";
+	cout << Precision;
 	cin >> valeur;
 	cin.ignore();
 	if (cin.fail()) {

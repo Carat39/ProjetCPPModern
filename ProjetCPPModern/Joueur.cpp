@@ -13,14 +13,10 @@ void Joueur::addCarte(unique_ptr<Carte> laCarte) {
 }
 
 void Joueur::addMain(std::map<int, unique_ptr<Carte>> lesCartes) {
-	/*for (unique_ptr<Carte>& laCarte : lesCartes) {
-		addCarte(move(laCarte));
-	}*/
 	for (int index = 0; index < lesCartes.size(); index++) {
 		addCarte(move(lesCartes[index]));
 	}
 }
-// Une map de MAP
 
 void Joueur::supprMain(unique_ptr<Carte> laCarte) {
 	laCarte.~unique_ptr<Carte>();
@@ -72,6 +68,20 @@ void Joueur::EliminerCarte() {
 	}*/
 }
 
+string Joueur::getCouleur(unsigned int indexCarte) {
+	if (mainJ[indexCarte]) {
+		return mainJ[indexCarte]->get_couleur();
+	}
+	return " ";
+}
+
+int Joueur::getValeur(unsigned int indexCarte) {
+	if (mainJ[indexCarte]){
+		return mainJ[indexCarte]->get_valeur();
+	}
+	return -1;
+}
+
 
 void Joueur::AfficherMain(ostream& os) noexcept {
 	os << "Joueur " << getNumero() << ":" << endl;
@@ -81,9 +91,6 @@ void Joueur::AfficherMain(ostream& os) noexcept {
 }
 
 void Joueur::Trier() {
-	/*for (indexCarte = 0; indexCarte < size; indexCarte++) {
-		vectorATrier.push_back(move(mainJ[indexCarte]));
-	}*/
 	int indexCarte = 0;
 	size_t size = mainJ.size();
 	vector<unique_ptr<Carte>> vectorATrier;
@@ -97,5 +104,4 @@ void Joueur::Trier() {
 	for (indexCarte = 0; indexCarte < size; indexCarte++) {
 		addCarte(move(vectorATrier[indexCarte]));
 	}
-	cout << "ok";
 }

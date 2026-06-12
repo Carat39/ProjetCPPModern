@@ -18,7 +18,7 @@ class Affichage{
 
 		static string DemanderCouleurCarte();
 
-		static int DemanderNbJoueurs(string Precision);
+		static int Demander(string Precision);
 
 		static void Afficher_jeu_Humain(vector<Humain*>& vectJ);
 

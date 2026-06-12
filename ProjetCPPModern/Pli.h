@@ -7,7 +7,6 @@
 #include "Carte.h"
 #include "Paquet.h"
 #include <memory>
-#include "Paquet.h"
 
 
 class Pli{
@@ -16,7 +15,7 @@ class Pli{
 		Paquet* lePaquet;
 
 	public:
-		virtual int Vainqueur(int premier_j) = 0;
+		virtual int Vainqueur(int premier_j, string couleurAtout) = 0;
 
 		void setCarte(int joueur, std::unique_ptr<Carte> carte);
 		

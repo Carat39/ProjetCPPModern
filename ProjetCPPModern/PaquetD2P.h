@@ -18,7 +18,7 @@ class PaquetD2P: public Paquet{
 
 		size_t tailleautre() const { return cartesEcartes.size(); }
 
-
+		//Dégager????
 };
 
 

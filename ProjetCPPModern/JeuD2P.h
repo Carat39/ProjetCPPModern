@@ -2,6 +2,7 @@
 #define JEUD2P_H 1050
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include "JeuClem.h"
 #include "PaquetD2P.h"
@@ -36,6 +37,10 @@ class JeuD2P :public JeuClem {
         virtual void Distribution();
 
         virtual void Commencer();
+
+        virtual void ReglesSupplementaires();
+
+        virtual void AfficherInformations(ostream& os);
 
         virtual void VerifierCondManche();
 

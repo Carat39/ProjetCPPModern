@@ -17,7 +17,7 @@ int PliD2P::Calcul_points()
 			pts_pli++;
 		}
 		else if ((pair.second)->get_couleur() == "♠" && (pair.second)->get_valeur() == 12) {
-			pts_pli += 100;
+			pts_pli += 13;
 		}
 	}
 	return pts_pli;
@@ -35,19 +35,19 @@ bool PliD2P::Coeur_existe()
 	return trouve;
 }
 
-int PliD2P::Vainqueur(int premier_j) {
+int PliD2P::Vainqueur(int premier_j, string couleurAtout) {
 	int le_gagnant = premier_j;
-	string couleur_atout = (pli.find(premier_j))->second->get_couleur();
+	string couleur_pli = (pli.find(premier_j))->second->get_couleur();
 	int meilleur_carte = (pli.find(premier_j))->second->get_valeur();
 	for (const auto& pair : pli)
 	{
-		if ((pair.second)->get_couleur() == couleur_atout && (pair.second)->get_valeur() > meilleur_carte)
+		if ((pair.second)->get_couleur() == couleur_pli && (pair.second)->get_valeur() > meilleur_carte)
 		{
 			le_gagnant = pair.first;
 			meilleur_carte = (pair.second)->get_valeur();
 		}
 	}
-	cout << le_gagnant;
+	cout << le_gagnant << endl;
 
 	for (auto& pair : pli) {
 		lePaquet->Move_carte(move(pair.second));

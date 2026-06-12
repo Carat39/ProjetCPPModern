@@ -74,7 +74,17 @@ void JeuD2P::Commencer() {
 			index3++;
 		}
 	}
+	couleurPli = " ";
 }
+
+void JeuD2P::ReglesSupplementaires() {
+	//Donnez des cartes
+}
+
+void JeuD2P::AfficherInformations(ostream& os) {
+	cout << "Couleur Pli " << couleurPli << endl;
+}
+
 
 bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	bool cartejouable = true;
@@ -119,7 +129,10 @@ void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
+	string attente = "";
 	system("cls");
+	cout << "Appuyer sur une touche pour passer au joueur suivant";
+	getline(cin,attente);
 }
 
 void JeuD2P::VerifierPli() {
@@ -141,11 +154,15 @@ void JeuD2P::AttribuerPoints() {
 			if (index != grandChelem) {
 				lesJoueurs[index]->addPoints(26);
 			}
+			//On réinitialise les points temps
+			points_temp[index] = 0;
 		}
 	}
 	else {
 		for (index = 0; index < lesJoueurs.size(); index++) {
 			lesJoueurs[index]->addPoints(points_temp[index]);
+			//On réinitialise les points temps
+			points_temp[index] = 0;
 		}
 	}
 }

@@ -47,6 +47,12 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
+		string getCouleur(unsigned int indexCarte);
+
+		int getValeur(unsigned int indexCarte);
+
+		size_t get_taille() const { return mainJ.size(); }
+
 		virtual unique_ptr<Carte>& Jouer()=0;
 
 		void AfficherMain(ostream& os) noexcept; 

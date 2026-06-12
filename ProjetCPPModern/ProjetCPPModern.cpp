@@ -24,8 +24,8 @@ int main(){
     cout << "♠♣♦♥" << endl;
     //testJoueur();
     //testPli();
-    //testWizard();
-    testD2P();
+    testWizard();
+    //testD2P();
     return 0;
 }
 
