@@ -78,7 +78,33 @@ void JeuD2P::Commencer() {
 }
 
 void JeuD2P::ReglesSupplementaires() {
+	unique_ptr<Carte> laCarte = nullptr;
+	vector<unique_ptr<Carte>> vectorCarte;
 	//Donnez des cartes
+	int indexJ, carteDemande, repetition = 0;
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		for (repetition = 0; repetition < 3; repetition++) {
+			//Si humain demander Carte qu'il veut donner
+			if (typeid(*lesJoueurs[indexJ]) == typeid(Humain)) {
+				carteDemande = -1;
+				while (lesJoueurs[indexJ]->getValeur(carteDemande) == -1) { // A revoir car chelou
+					lesJoueurs[indexJ]->AfficherMain(cout);
+					carteDemande = Affichage::Demander("Index carte à donner: ");
+				}
+				vectorCarte.push_back(move(lesJoueurs[indexJ]->Renvoyer_carte(lesJoueurs[indexJ]->getCouleur(carteDemande), lesJoueurs[indexJ]->getValeur(carteDemande))));
+			}
+			else {
+				//Push la premiere carte...
+				vectorCarte.push_back(move(lesJoueurs[indexJ]->Renvoyer_carte(lesJoueurs[indexJ]->getCouleur(indexJ), lesJoueurs[indexJ]->getValeur(indexJ))));
+			}
+		}
+	}
+	//Distribution des cartes
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		for (repetition = 0; repetition < 3; repetition++) {
+			lesJoueurs[indexJ]->addCarte(move(vectorCarte[3*indexJ + repetition]));
+		}
+	}
 }
 
 void JeuD2P::AfficherInformations(ostream& os) {

@@ -58,7 +58,9 @@ class JeuD2P :public JeuClem {
 
         virtual void FinDePartie();
 
+        //Nouvelles méthodes
         int GrandChelem();
+
 
 };
 #endif

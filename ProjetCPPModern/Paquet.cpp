@@ -117,11 +117,21 @@ unique_ptr<Carte>& Paquet::RecupererCarte() noexcept {
 	return *(lePaquet.begin());
 }
 
+unique_ptr<Carte>& Paquet::RecupererCarteDefausse() noexcept {
+	return *(laDefausse.begin());
+}
 
 void Paquet::DefausserCarte(unique_ptr<Carte>&& carte) noexcept{
 	laDefausse.push_back(move(carte));
 }
 
+void Paquet::DetruireCartePaquet(int index) {
+	lePaquet.erase(lePaquet.begin() + index);
+}
+
+void Paquet::DetruireCarteDefausse(int index) {
+	laDefausse.erase(laDefausse.begin() + index);
+}
 
 void Paquet::DetruireCarte(string coul, int val) noexcept{
 	bool find = false;

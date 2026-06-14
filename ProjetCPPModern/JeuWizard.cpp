@@ -53,12 +53,17 @@ void JeuWizard::Distribution() {
 	for (index2 = 0; index2 < lesJoueurs.size(); index2++) {
 		lesJoueurs[index2]->Trier();
 	}
+	couleurAtout = " ";
+	couleurPli = " ";
 }
 
+
+/*
+BUG à régler
+*/
 void JeuWizard::Commencer() {
 	//Changement de joueur qui commence à chaque manche
 	commencer = lesJoueurs[manche % lesJoueurs.size()]->getNumero();
-	couleurPli = " ";
 }
 
 void JeuWizard::ReglesSupplementaires() {
@@ -66,31 +71,35 @@ void JeuWizard::ReglesSupplementaires() {
 	unique_ptr<Carte> laCarte = move(lePaquet->RecupererCarte());
 	couleurAtout = laCarte->get_couleur();
 	lePaquet->DefausserCarte(move(laCarte));
+	lePaquet->DetruireCartePaquet(0);
 
 	//Demander prediction
 	int indexJ, pliDemande, totalNbPliReel = 0;
-	int totalNbPlitheor = -1;
-	for (indexJ = 1; indexJ <= lesJoueurs.size(); indexJ ++) {
+	int totalNbPlitheor = 0;
+	int newindexJ = 0;
+	for (indexJ = manche; indexJ < manche + lesJoueurs.size(); indexJ ++) {
 		//Si humain demander Carte
-		if (typeid(*lesJoueurs[indexJ]) == typeid(Humain)) {
+		newindexJ = indexJ % lesJoueurs.size();
+		if (typeid(*lesJoueurs[newindexJ]) == typeid(Humain)) {
 			pliDemande = -1;
 			while (0 > pliDemande || pliDemande > manche) {
 				cout << "NbPli actuellement " << totalNbPliReel << endl;
 				AfficherInformations(cout);
-				lesJoueurs[indexJ]->AfficherMain(cout);
+				lesJoueurs[newindexJ]->AfficherMain(cout);
 				pliDemande = Affichage::Demander("Combien de pli penses tu faire: ");
 				totalNbPlitheor += pliDemande;
-				if (totalNbPliReel + totalNbPlitheor == manche && indexJ == lesJoueurs.size() -1) {
+				if (totalNbPlitheor == manche && newindexJ == manche%lesJoueurs.size() -1) {
 					cout << "Impossible d'avoir autant de pli que de carte" << endl;
-					totalNbPlitheor = totalNbPliReel - totalNbPlitheor;
+					totalNbPlitheor = totalNbPliReel;
 					pliDemande = -1;
 				}
 			}
 			totalNbPliReel += pliDemande;
-			predictions[indexJ] = pliDemande;
+			totalNbPlitheor = totalNbPliReel;
+			predictions[newindexJ] = pliDemande;
 		}
 		else {
-			predictions[indexJ] = (int)lesJoueurs.size()/4;//Fonction de l'IA
+			predictions[newindexJ] = (int)lesJoueurs.size()/4;//Fonction de l'IA
 		}
 	}
 }
@@ -149,16 +158,21 @@ void JeuWizard::ConfirmerJoueurSuivant(){
 }
 
 void JeuWizard::VerifierPli(){
-	commencer = ((PliWizard*)lePli)->Vainqueur(commencer,couleurPli);
+	commencer = ((PliWizard*)lePli)->Vainqueur(commencer,couleurAtout);
 	nbPli[commencer]++;
 }
 
 void JeuWizard::VerifierCondManche() {
-	if (lePaquet->taille() == 60) {
+	if (lePaquet->taille() == 59) {
 		condManche = false;
 		//On augmente la manche
 		manche++;
+		//On remets les cartes dans le paquets
+		unique_ptr<Carte> CarteDefausse = move(lePaquet->RecupererCarteDefausse());
+		lePaquet->Move_carte(move(CarteDefausse));
+		lePaquet->DetruireCarteDefausse(0);
 	}
+	couleurPli = " ";
 }
 
 void JeuWizard::AttribuerPoints(){
@@ -182,7 +196,6 @@ void JeuWizard::AttribuerPoints(){
 }
 
 void JeuWizard::VerifierCondPartie(){
-	manche++;
 	if (manche == 60/lesJoueurs.size()+1) {
 		condPartie = true;
 	}

@@ -38,8 +38,14 @@ class Paquet{
 		//Récupère la première carte du paquet
 		unique_ptr<Carte>& RecupererCarte() noexcept;
 
+		unique_ptr<Carte>& RecupererCarteDefausse() noexcept;
+
 		//Déplace dans laDefausse
 		void DefausserCarte(unique_ptr<Carte>&& carte) noexcept;
+
+		void DetruireCartePaquet(int index);
+
+		void DetruireCarteDefausse(int index);
 
 		void DetruireCarte(string coul, int val) noexcept;
 

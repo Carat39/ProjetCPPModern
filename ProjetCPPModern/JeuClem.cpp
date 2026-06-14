@@ -25,8 +25,8 @@ void JeuClem::Partie() {
     while (condPartie) {
         condManche = true;
         Distribution(); // Distribuer carte
-        Commencer(); // attribution joueur qui commence peut y avoir
         ReglesSupplementaires();
+        Commencer(); // attribution joueur qui commence peut y avoir
         while (condManche) {
             int indexcarte = -1;
             int newIndexJ = -1;

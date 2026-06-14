@@ -25,8 +25,10 @@ void Joueur::supprMain(unique_ptr<Carte> laCarte) {
 
 bool Joueur::CouleurPresente(string coul) {
 	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
-		if ((*it).second->get_couleur() == coul){
-			return true;
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul) {
+				return true;
+			}
 		}
 	}
 	return false;
@@ -34,8 +36,10 @@ bool Joueur::CouleurPresente(string coul) {
 
 bool Joueur::Trouver_carte(string coul, int val){
 	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
-		if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
-			return true;
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
+				return true;
+			}
 		}
 	}
 	return false;
@@ -43,8 +47,10 @@ bool Joueur::Trouver_carte(string coul, int val){
 
 unique_ptr<Carte>& Joueur::Renvoyer_carte(string coul, int val) noexcept {
 	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
-		if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
-			return (*it).second;
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
+				return (*it).second;
+			}
 		}
 	}
 	return (mainJ.begin())->second;
@@ -60,12 +66,6 @@ void Joueur::EliminerCarte() {
 			it++; 
 		}
 	}
-	/*int index = 0;
-	for (index = 0; index < mainJ.size(); index++) {
-		if (!mainJ[index]) {
-			mainJ.erase(index);
-		}
-	}*/
 }
 
 string Joueur::getCouleur(unsigned int indexCarte) {
@@ -86,7 +86,10 @@ int Joueur::getValeur(unsigned int indexCarte) {
 void Joueur::AfficherMain(ostream& os) noexcept {
 	os << "Joueur " << getNumero() << ":" << endl;
 	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
-		((*it).second)->AfficherCarte(os);
+		if ((*it).second) {
+			os << "index: " << (*it).first << " Carte: ";
+			((*it).second)->AfficherCarte(os);
+		}
 	}
 }
 
