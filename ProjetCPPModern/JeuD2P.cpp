@@ -96,7 +96,7 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 					cartejouable = false;
 				}
 				else {
-					cartejouable = false;
+					cartejouable = true;
 				}
 			}
 		}
@@ -114,6 +114,8 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 
 void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
 	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
+	cout << Cajouer->get_valeur();
+	cout << Cajouer->get_couleur();
 	joueur->EliminerCarte();
 	lePli->setCarte(joueur->getNumero(), move(Cajouer));
 }

@@ -5,7 +5,7 @@
 #include "Humain.h"
 void testPli() {
 	Paquet MonPaquet = Paquet("Paquets/Paquet52Cartes.txt");
-	PliD2P MonPli;
+	PliD2P MonPli(&MonPaquet);
 	Humain Marandin = Humain(0);
 	Humain Clement = Humain(1);
 	Humain Thibault = Humain(2);

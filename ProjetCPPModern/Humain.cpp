@@ -7,6 +7,7 @@
 #include <string>
 #include "Carte.h"
 #include "JeuClem.h"
+#include <cstdio>
 
 
 unique_ptr<Carte>& Humain::Jouer() {
@@ -14,6 +15,8 @@ unique_ptr<Carte>& Humain::Jouer() {
 	int laValeur = Affichage::DemanderValeurCarte();
 
 	while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
+		printf("Carte fausse");
+		AfficherMain(cout);
 		laCouleur = Affichage::DemanderCouleurCarte();
 		laValeur = Affichage::DemanderValeurCarte();
 	}
