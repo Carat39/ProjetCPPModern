@@ -9,7 +9,17 @@ void Joueur::addPoints(int nbPoints) {
 }
 
 void Joueur::addCarte(unique_ptr<Carte> laCarte) {
-	mainJ.emplace((int) mainJ.size(), move(laCarte));
+	bool place = false;
+	unsigned int index = 0;
+	while (index <= mainJ.size() && !place) {
+		if (!mainJ[index]) {
+			mainJ[index] = move(laCarte);
+			place = true;
+		}
+		else {
+			index++;
+		}
+	}
 }
 
 void Joueur::addMain(std::map<int, unique_ptr<Carte>> lesCartes) {

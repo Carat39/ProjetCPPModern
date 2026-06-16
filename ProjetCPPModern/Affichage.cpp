@@ -37,9 +37,6 @@ int Affichage::Demander(string Precision) {
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		valeur = -1;
 	}
-	if (valeur < 0 || valeur > 13) {
-		valeur = -1;
-	}
 	return valeur; 
 }
 
