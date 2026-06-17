@@ -3,7 +3,8 @@
 #include <fstream>
 
 JeuWizard::JeuWizard() {
-	condPartie = false;
+	condManche = true;
+	condPartie = true;
 	manche = 1;
 }
 
@@ -13,108 +14,197 @@ void JeuWizard::DefinirNbJoueurMinMax() {
 }
 
 void JeuWizard::PreparationJoueur(int nbJoueur, int nbIa) {
-	int compteur;
-	for (compteur = 0; compteur < nbJoueur; compteur++) {
-		Joueur leJoueur = Joueur(compteur);
-		lesJoueurs.push_back(move(&leJoueur));
+	int indexJ, indexIA = 0;
+	for (indexJ = 0; indexJ < nbJoueur; indexJ++) {
+		lesJoueurs.push_back(move(new Humain(indexJ)));
 	}
-	for (compteur = 0; compteur < nbIa; compteur++) {
-		Joueur leJoueur = Joueur(compteur); //Faudra Changer pour JoueurHumain et JoueurIA
-		lesJoueurs.push_back(move(&leJoueur));
+	for (indexIA = indexJ; indexIA < nbJoueur + nbIa; indexIA++) {
+		lesJoueurs.push_back(move(new Humain(indexIA)));
 	}
 }
 
 void JeuWizard::PreparationPaquet() {
-	ifstream fichier("Paquets/PaquetWizard.txt", ios::in);
-	if (!fichier) {
-		cout << "Erreur" << endl;
-	}
-	else {
-		Paquet monPaquet;
-		string nbCartes;
-		fichier.ignore(11, '=');
-		getline(fichier, nbCartes);
-
-		cout << "NBCartes : " << nbCartes << endl;
-
-		string couleur, valeur, lettre="";
-
-		fichier.ignore(10, '[');
-		for (unsigned int index = 0; index < (unsigned int)stoi(nbCartes) + 1; index++) {
-			couleur = "";
-			valeur = "";
-			fichier.ignore(10, '=');
-			lettre = fichier.get();
-			while (lettre != ",") {
-				couleur += lettre;
-				lettre = fichier.get();
-			}
-			fichier.ignore(10, '=');
-			lettre = fichier.get();
-			while (lettre != "\n") {
-				valeur += lettre;
-				lettre = fichier.get();
-			}
-			//cout << couleur << " " << valeur << endl;
-			try {
-				monPaquet.Ajouter_carte(couleur, stoi(valeur));
-			}
-			catch (...) {
-				cout << "Carte deja existante" << endl;
-			}
-		}
-		//lePaquet = move(monPaquet);
-		fichier.close();
-	}
+	lePaquet = new Paquet("Paquets/PaquetWizard.txt");
+	lePaquet->Melanger();
 }
 
 void JeuWizard::PreparationPli() {
-
-}
-
-void JeuWizard::Distribution() {
-	for (int indice = 0; indice < manche; indice++) {
-		//lePaquet.Distribuer(*lesJoueurs[indice]);
+	lePli = new PliWizard(lePaquet);
+	//On met le nb de Pli par Joueur à 0
+	for (int a = 0; a < lesJoueurs.size(); a++) {
+		nbPli.push_back(0);
+	}
+	//On met les prédictions par Joueur à 0
+	for (int a = 0; a < lesJoueurs.size(); a++) {
+		predictions.push_back(0);
 	}
 }
 
-void JeuWizard::Commencer(){
-	commencer = lesJoueurs[manche]->getNumero();
+void JeuWizard::Distribution() {
+	int index1, index2 = 0;
+	lePaquet->Melanger();
+	//On distribue toutes les cartes
+	for (index1 = 0; index1 < manche; index1++) {
+		for (index2 = 0; index2 < lesJoueurs.size(); index2++) {
+			lePaquet->Distribuer(*lesJoueurs[index2]);
+		}
+	}
+	//On trie le jeu des joueurs
+	for (index2 = 0; index2 < lesJoueurs.size(); index2++) {
+		lesJoueurs[index2]->Trier();
+	}
+	couleurAtout = " ";
+	couleurPli = " ";
 }
 
-void JeuWizard::VerifierCondManche() {
+
+/*
+BUG à régler
+*/
+void JeuWizard::Commencer() {
+	//Changement de joueur qui commence à chaque manche
+	commencer = lesJoueurs[manche % lesJoueurs.size()]->getNumero();
+}
+
+void JeuWizard::ReglesSupplementaires() {
+	//Definition de l'atout
+	unique_ptr<Carte> laCarte = move(lePaquet->RecupererCarte());
+	couleurAtout = laCarte->get_couleur();
+	lePaquet->DefausserCarte(move(laCarte));
+	lePaquet->DetruireCartePaquet(0);
+
+	//Demander prediction
+	int indexJ, pliDemande, totalNbPliReel = 0;
+	int totalNbPlitheor = 0;
+	int newindexJ = 0;
+	for (indexJ = manche; indexJ < manche + lesJoueurs.size(); indexJ ++) {
+		//Si humain demander Carte
+		newindexJ = indexJ % lesJoueurs.size();
+		if (typeid(*lesJoueurs[newindexJ]) == typeid(Humain)) {
+			pliDemande = -1;
+			while (0 > pliDemande || pliDemande > manche) {
+				cout << "NbPli actuellement " << totalNbPliReel << endl;
+				AfficherInformations(cout);
+				lesJoueurs[newindexJ]->AfficherMain(cout);
+				pliDemande = Affichage::Demander("Combien de pli penses tu faire: ");
+				totalNbPlitheor += pliDemande;
+				if (totalNbPlitheor == manche && newindexJ == manche%lesJoueurs.size() -1) {
+					cout << "Impossible d'avoir autant de pli que de carte" << endl;
+					totalNbPlitheor = totalNbPliReel;
+					pliDemande = -1;
+				}
+			}
+			totalNbPliReel += pliDemande;
+			totalNbPlitheor = totalNbPliReel;
+			predictions[newindexJ] = pliDemande;
+		}
+		else {
+			predictions[newindexJ] = (int)lesJoueurs.size()/4;//Fonction de l'IA
+		}
+	}
+}
+
+void JeuWizard::AfficherInformations(ostream& os){
+	system("cls");
+	cout << "Manche n°" << manche << endl;
+	if (couleurPli != "FOU" && couleurPli != " ") {
+		os  << "Couleur Pli " << couleurPli << endl;
+
+	}
+	os << "Couleur Atout " << couleurAtout << endl;
 
 }
 
 bool JeuWizard::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
-	return true;
+	bool carteJouable = true;
+	if (laCouleur == " ") {
+		carteJouable = false;
+	}
+	else {
+		if (joueur->getNumero() == commencer) {
+			//On définit la couleur du pli
+			couleurPli = laCouleur;
+		}
+		else {
+			if (couleurPli == "FOU") {
+				//On définit la nouvelle couleur du pli
+				couleurPli = laCouleur;
+			}
+			else if (couleurPli != "WIZARD") {
+				//Si la couleur n'est ni un fou/Wizard et que le joueur ne possède pas la couleur c'est correct
+				if (laCouleur != couleurPli && joueur->CouleurPresente(couleurPli)
+					&& laCouleur != "FOU"
+					&& laCouleur != "WIZARD") {
+					carteJouable = false;
+				}
+			}
+		}
+	}
+	return carteJouable;
 }
 
-void JeuWizard::JouerCarte(Joueur* joueur, string couleur, int valeur){
-	//Carte& laCarte = joueur->Renvoyer_carte(couleur, valeur);
-	//lePli.setCarte(joueur->getNumero(), move(laCarte));
+void JeuWizard::JouerCarte(Joueur* joueur, string laCouleur, int laValeur){
+	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
+	joueur->EliminerCarte();
+	lePli->setCarte(joueur->getNumero(), move(Cajouer));
 }
+
 
 void JeuWizard::ConfirmerJoueurSuivant(){
-	//lePaquet.AfficherPaquet(cout);
+	string attente = "";
+	system("cls");
+	cout << "Appuyer sur une touche pour passer au joueur suivant";
+	getline(cin, attente);
 }
 
 void JeuWizard::VerifierPli(){
+	commencer = ((PliWizard*)lePli)->Vainqueur(commencer,couleurAtout);
+	nbPli[commencer]++;
+}
 
+void JeuWizard::VerifierCondManche() {
+	if (lePaquet->taille() == 59) {
+		condManche = false;
+		//On augmente la manche
+		manche++;
+		//On remets les cartes dans le paquets
+		unique_ptr<Carte> CarteDefausse = move(lePaquet->RecupererCarteDefausse());
+		lePaquet->Move_carte(move(CarteDefausse));
+		lePaquet->DetruireCarteDefausse(0);
+	}
+	couleurPli = " ";
 }
 
 void JeuWizard::AttribuerPoints(){
-
+	int index = 0;
+	for (index = 0; index < lesJoueurs.size(); index++) {
+		if (nbPli[index] == predictions[index]) {
+			//gagne 20 + 10 par pli
+			lesJoueurs[index]->addPoints(20 + 10* predictions[index]);
+		}
+		else {
+			lesJoueurs[index]->addPoints(-10 * abs(predictions[index] - nbPli[index]));
+		}
+		//règles supplémentaire
+		if (lesJoueurs[index]->getPoints() == -100) {
+			//Passe à 100
+			lesJoueurs[index]->addPoints(200);
+		}
+		//On réinitialise les nbPlis
+		nbPli[index] = 0;
+	}
 }
 
 void JeuWizard::VerifierCondPartie(){
-	//lePaquet.AfficherPaquet(cout);
-	manche++;
 	if (manche == 60/lesJoueurs.size()+1) {
 		condPartie = true;
 	}
 }
 
 void JeuWizard::FinDePartie(){
-
+	int indexJ = 0;
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		cout << "Pts Finaux Joueur n°" << lesJoueurs[indexJ]->getNumero()
+			<< " = " << lesJoueurs[indexJ]->getPoints() << endl;
+	}
 }

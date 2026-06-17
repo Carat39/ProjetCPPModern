@@ -4,8 +4,12 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <vector>
 
-#include "Joueur.h"
+
+class Humain;   
+class IA;
+
 using namespace std;
 
 //Définitions des code ANSI pour l'affichage en couleur :
@@ -64,9 +68,11 @@ class Affichage{
 
 		static string DemanderCouleurCarte();
 
-		static int DemanderNbJoueurs(string Precision);
+		static int Demander(string Precision);
 
-		static void Afficher_jeu(vector<Joueur>& vectJ);
+		static void Afficher_jeu_Humain(vector<Humain*>& vectJ);
+
+		static void Afficher_jeu_IA(vector<IA*>& vectJ);
 
 };
 

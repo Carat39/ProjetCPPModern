@@ -4,7 +4,7 @@
 #include "Pli.h"
 #include "Affichage.h"
 #include <memory>
-
+#include "Joueur.h"
 
 class JeuClem{
 	protected:
@@ -36,6 +36,10 @@ class JeuClem{
         virtual void Distribution() = 0;
 
         virtual void Commencer() = 0;
+
+        virtual void ReglesSupplementaires() = 0;
+
+        virtual void AfficherInformations(ostream& os) = 0;
 
         virtual void VerifierCondManche() = 0;
 

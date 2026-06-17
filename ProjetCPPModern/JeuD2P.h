@@ -2,11 +2,13 @@
 #define JEUD2P_H 1050
 
 #include <iostream>
+#include <string>
 #include <vector>
-#include "Jeu.h"
+#include "JeuClem.h"
 #include "PaquetD2P.h"
 #include "PliD2P.h"
-#include "JeuClem.h"
+#include "Humain.h"
+#include "IADame2Pique.h"
 
 using namespace std;
 
@@ -36,6 +38,10 @@ class JeuD2P :public JeuClem {
 
         virtual void Commencer();
 
+        virtual void ReglesSupplementaires();
+
+        virtual void AfficherInformations(ostream& os);
+
         virtual void VerifierCondManche();
 
         virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur);
@@ -51,6 +57,10 @@ class JeuD2P :public JeuClem {
         virtual void VerifierCondPartie();
 
         virtual void FinDePartie();
+
+        //Nouvelles méthodes
+        int GrandChelem();
+
 
 };
 #endif

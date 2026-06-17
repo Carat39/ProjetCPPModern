@@ -5,7 +5,7 @@
 #include <codecvt>
 #include <stdlib.h>
 using namespace std;
-#include "Dame2Pique.h"
+#include "JeuD2P.h"
 
 void testPaquet();
 void testJoueur();
@@ -29,8 +29,8 @@ int main(){
     cout << "\033[35;1;5mMagenta clignotant\033[0m" << endl;*/
     //testPli();
     //testWizard();
-    testJoueur();
-    //testD2P();
+    testD2P();
+    return 0;
 }
 
 /*

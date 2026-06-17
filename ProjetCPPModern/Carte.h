@@ -42,7 +42,7 @@ class Carte{
 		//Méthodes
 		void set_couleur(string coul) {couleur = coul;}
 		void set_valeur(int val) {valeur = val;}
-		string get_couleur() const { return couleur; }
+		string get_couleur() const{ return couleur; }
 		int get_valeur() const { return valeur; }
 
 		Carte& operator= (Carte&& autre) noexcept {

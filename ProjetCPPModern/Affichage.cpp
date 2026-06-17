@@ -1,4 +1,6 @@
 #include "Affichage.h"
+#include "Humain.h"
+#include "IA.h"
 
 int Affichage::DemanderValeurCarte() {
 	int valeur = -1;
@@ -24,9 +26,9 @@ string Affichage::DemanderCouleurCarte() {
 	return schoix;
 }
 
-int Affichage::DemanderNbJoueurs(string Precision) {
+int Affichage::Demander(string Precision) {
 	int valeur = -1;
-	cout << "Combient y'a t-il d" << Precision << ": ";
+	cout << Precision;
 	cin >> valeur;
 	cin.ignore();
 	if (cin.fail()) {
@@ -35,15 +37,19 @@ int Affichage::DemanderNbJoueurs(string Precision) {
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		valeur = -1;
 	}
-	if (valeur < 0 || valeur > 13) {
-		valeur = -1;
-	}
 	return valeur; 
 }
 
 
-void Affichage::Afficher_jeu(vector<Joueur>& vectJ) {
-	for (Joueur& joueur : vectJ) {
-		joueur.AfficherMain(cout);
+void Affichage::Afficher_jeu_Humain(vector<Humain*>& vectJ) {
+	for (Humain* joueur : vectJ) {
+		joueur->AfficherMain(cout);
 	}
 }
+
+void Affichage::Afficher_jeu_IA(vector<IA*>& vectJ) {
+	for (IA* joueur : vectJ) {
+		joueur->AfficherMain(cout);
+	}
+}
+

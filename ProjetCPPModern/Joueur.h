@@ -3,43 +3,31 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include "Carte.h"
-#include <algorithm>
 #include <memory>
+#include <utility>
+#include <algorithm>
 
 class Equipe;
+class JeuClem;
 
 class Joueur{
-	private:
+	protected:
 		int numero;
 
-		std::vector<unique_ptr<Carte>> mainJ;
+		std::map<int,unique_ptr<Carte>> mainJ;
 
 		int points;
 
 		Equipe* equipe;
 
+		JeuClem* jeu;
 
 	public:
-		Joueur(int num) {
-			numero = num;
-			points = 0;
-			equipe = nullptr;
-		}
 
-		//On peut pas copier un joueur
-		Joueur(const Joueur& autre ) = delete;
-		//On peut le déplacer
-		Joueur(Joueur&& autre ) noexcept = default;
 
-		//On peut pas copier un joueur
-		Joueur& operator=(const Joueur& autre) = delete;
-		//On peut le déplacer
-		Joueur& operator=(Joueur&& autre) noexcept = default;
-
-		~Joueur() = default;
-
-		std::vector<unique_ptr<Carte>> getMain()  { return move(mainJ); };
+		std::map<int,unique_ptr<Carte>> getMain()  { return move(mainJ); };
 
 		int getNumero() const { return numero; };
 
@@ -49,7 +37,7 @@ class Joueur{
 
 		void addCarte(unique_ptr<Carte> laCarte);
 
-		void addMain(std::vector<unique_ptr<Carte>> lesCartes);
+		void addMain(std::map<int,unique_ptr<Carte>> lesCartes);
 
 		void supprMain(unique_ptr<Carte> laCarte);
 
@@ -59,9 +47,15 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
-		void Jouer();
+		string getCouleur(unsigned int indexCarte);
 
-		void AfficherMain(ostream& os) const noexcept; 
+		int getValeur(unsigned int indexCarte);
+
+		size_t get_taille() const { return mainJ.size(); }
+
+		virtual unique_ptr<Carte>& Jouer()=0;
+
+		void AfficherMain(ostream& os) noexcept; 
 
 		void EliminerCarte();
 
