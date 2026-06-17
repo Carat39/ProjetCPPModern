@@ -157,12 +157,26 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	return cartejouable;
 }
 
-void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
-	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
-	cout << Cajouer->get_valeur();
-	cout << Cajouer->get_couleur();
-	joueur->EliminerCarte();
-	lePli->setCarte(joueur->getNumero(), move(Cajouer));
+void JeuD2P::JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) {
+	if (!laCarte) return;
+
+	// Affichage de la carte jouée
+	cout << "Joueur " << joueur->getNumero() << " joue : "
+		<< laCarte->get_valeur() << laCarte->get_couleur() << endl;
+
+	// S'il s'agit de la première carte du pli, elle définit la couleur demandée
+	if (couleurPli == "") {
+		couleurPli = laCarte->get_couleur();
+	}
+
+	// Gestion du blocage des cœurs
+	if (laCarte->get_couleur() == "♥") {
+		coeur_bloque = false;
+	}
+
+	// On déplace DIRECTEMENT la carte dans le pli
+	// Le pli prend la possession du unique_ptr
+	lePli->setCarte(joueur->getNumero(), std::move(laCarte));
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
@@ -170,6 +184,8 @@ void JeuD2P::ConfirmerJoueurSuivant() {
 	system("cls");
 	cout << "Appuyer sur une touche pour passer au joueur suivant";
 	getline(cin,attente);
+	lePli->Afficher_Pli(commencer);
+
 }
 
 void JeuD2P::VerifierPli() {

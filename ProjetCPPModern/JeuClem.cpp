@@ -35,11 +35,12 @@ void JeuClem::Partie() {
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
                 joueurActuel->AfficherMain(cout);
 
-                unique_ptr<Carte>& carteChoisie = joueurActuel->Jouer();
-                laCouleur = carteChoisie->get_couleur();
-                laValeur = carteChoisie->get_valeur();
+                // 1. Le joueur choisit et extrait sa carte de sa main
+                unique_ptr<Carte> carteChoisie = joueurActuel->Jouer();
 
-                JouerCarte(joueurActuel, laCouleur, laValeur); //Peut potentiellement y avoir des annonces
+                // 2. On transmet directement cette carte récupérée à la méthode JouerCarte
+                JouerCarte(joueurActuel, std::move(carteChoisie));
+                ConfirmerJoueurSuivant(); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                 //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
             }

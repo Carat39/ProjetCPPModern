@@ -15,12 +15,8 @@
 
 
 class IA : public Joueur {
-
 public:
-
-	virtual unique_ptr<Carte>& Jouer()=0;
-
-
+	virtual std::unique_ptr<Carte> Jouer() = 0;
 };
 
 #endif

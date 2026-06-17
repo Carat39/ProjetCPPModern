@@ -30,8 +30,7 @@ public:
 	~Humain() = default;
 
 	
-	unique_ptr<Carte>& Jouer() override;
-
+	unique_ptr<Carte> Jouer() override;
 	//Donner la carte se fera dans pli
 
 

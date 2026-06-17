@@ -36,6 +36,6 @@ class IADame2Pique : public IA{
 
 		~IADame2Pique() = default;
 
-		unique_ptr<Carte>& Jouer() override;
+		unique_ptr<Carte> Jouer() override;
 };
 #endif
