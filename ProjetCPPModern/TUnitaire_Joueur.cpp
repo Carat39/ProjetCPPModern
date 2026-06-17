@@ -8,7 +8,6 @@ using namespace std;
 #include <codecvt>
 #include <stdlib.h>
 #include "Affichage.h"
-#include <windows.h>
 #include <memory>
 #include "Humain.h"
 #include <utility>
@@ -24,17 +23,17 @@ void testJoueur() {
     MonPaquet.AfficherPaquet(cout);
     MonPaquet.retirer_carte("♦", 2);
 
-    
+
     vector<Humain*> list_joueurs;
     list_joueurs.push_back(move(&Clement));
     list_joueurs.push_back(move(&Thibault));
     list_joueurs.push_back(move(&Nino));
-	unsigned int index = 0;
-	while(index < MonPaquet.taille()) {
-		MonPaquet.Distribuer(*list_joueurs[index%3]);
-		index++;
-	}
-    HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
+    unsigned int index = 0;
+    while (index < MonPaquet.taille()) {
+        MonPaquet.Distribuer(*list_joueurs[index % 3]);
+        index++;
+    }
+    /*HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
     DWORD dwMode;
     GetConsoleMode(hConsoleHandle, &dwMode);
     SetConsoleMode(hConsoleHandle, ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT);
@@ -66,23 +65,20 @@ void testJoueur() {
             if (key.bKeyDown) {
                 valkey = key.wVirtualScanCode;
                 cout << "valeur clavier " << valkey;
-                switch(valkey) {
-                    case 1:
-                        fin = false;
-                        break;
-                    case 16:
-                        Affichage::Afficher_jeu_Humain(list_joueurs);
-                        break;
-                    case 24:
-                        list_joueurs[1].AfficherMain(cout);
-                        break;
-                    case 25:
-                        system("cls");
+                switch (valkey) {
+                case 1:
+                    fin = false;
+                    break;
+                case 16:
+                    Affichage::Afficher_jeu_Humain(list_joueurs);
+                    break;
+                case 25:
+                    system("cls");
                 }
             }
         }
     }
     SetConsoleMode(hConsoleHandle, dwMode);
-    
-    
+    */
+
 }

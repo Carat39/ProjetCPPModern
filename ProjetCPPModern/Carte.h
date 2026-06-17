@@ -3,13 +3,8 @@
 
 #include <iostream>
 #include <memory>
+#include "Affichage.h"
 using namespace std;
-
-static string CSI();
-static string PIQUE();
-static string TREFLE();
-static string CARREAU();
-static string COEUR();
 
 class Carte{
 	private:
@@ -55,21 +50,26 @@ class Carte{
 			if (get_couleur() == "♠")
 			{
 				os << PIQUE();
+				//cout << "1" <<endl;
 			}
 			else if (get_couleur() == "♣")
 			{
 				os << TREFLE();
+				//cout << "2" << endl;
 			}
 			else if (get_couleur() == "♦")
 			{
 				os << CARREAU();
+				//cout << "3" << endl;
 			}
 			else if (get_couleur() == "♥")
 			{
 				os << COEUR();
+				//cout << "4" << endl;
 			}
 
-			os << " |" << get_valeur() << get_couleur() << "| " << endl;
+			os << " |" << get_valeur() << get_couleur() << "| " <<endl;
+			os << END_CSI();
 		}
 
 		bool operator<(Carte& other) {

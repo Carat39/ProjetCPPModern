@@ -33,16 +33,34 @@ void JeuClem::Partie() {
             for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
                 newIndexJ = indexJ % lesJoueurs.size();
                 indexcarte = -1;
-                AfficherInformations(cout);
-                lesJoueurs[newIndexJ]->AfficherMain(cout);
-                indexcarte = Affichage::Demander("Index de la carte dans la main: ");
-                laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
-                laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
-                ///Ok par thibault en théorie
-                while (!CarteJouable(lesJoueurs[newIndexJ], laCouleur, laValeur)) {
-                    indexcarte = Affichage::Demander("Index de la carte dans la main: ");
+                if (typeid(*lesJoueurs[newIndexJ]) == typeid(Humain)) {
+                    AfficherInformations(cout);
+                    lesJoueurs[newIndexJ]->AfficherMain(cout);
+                    indexcarte = Affichage::DemanderIndex();
                     laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
                     laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
+                    while (laCouleur == " " && indexcarte != 25) {
+                        laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
+                        laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
+                        indexcarte++;
+                    }
+                    ///Ok par thibault en théorie
+                    while (!CarteJouable(lesJoueurs[newIndexJ], laCouleur, laValeur)) {
+                        indexcarte = Affichage::DemanderIndex();
+                        laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
+                        laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
+                        while (laCouleur == " " && indexcarte != 25) {
+                            laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
+                            laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
+                            indexcarte++;
+                        }
+                    }
+                }
+                else {
+                    //Fonction Thibault...
+                    //Truc arbitraire en attendant :
+                    laValeur = lesJoueurs[newIndexJ]->getValeur(0);
+                    laCouleur = lesJoueurs[newIndexJ]->getCouleur(0);
                 }
                 JouerCarte(lesJoueurs[newIndexJ], laCouleur, laValeur); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt

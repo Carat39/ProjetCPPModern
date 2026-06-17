@@ -5,6 +5,7 @@
 #include "Affichage.h"
 #include <memory>
 #include "Joueur.h"
+#include "Humain.h"
 
 class JeuClem{
 	protected:
