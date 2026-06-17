@@ -19,10 +19,14 @@ int main(){
         cout << "Impossible d'afficher du Unicode";
         return 1;
     }
-   
+
+
+
     
     cout << "♠♣♦♥" << endl;
-    //testJoueur();
+    /*cout << "\033[31;4mRouge souligné\033[0m" << endl;
+    cout << "\033[31;42mRouge + fond vert\033[0m" << endl;
+    cout << "\033[35;1;5mMagenta clignotant\033[0m" << endl;*/
     //testPli();
     //testWizard();
     testD2P();

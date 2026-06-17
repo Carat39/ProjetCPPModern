@@ -33,6 +33,8 @@ void JeuClem::Partie() {
             int indexcarte = -1;
             int newIndexJ = -1;
             for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
+                newIndexJ = indexJ % lesJoueurs.size();
+                
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
                 joueurActuel->AfficherMain(cout);
 
