@@ -36,7 +36,7 @@ void JeuClem::Partie() {
                 joueurActuel->AfficherMain(cout);
 
                 // 1. Le joueur choisit et extrait sa carte de sa main
-                unique_ptr<Carte> carteChoisie = joueurActuel->Jouer();
+                unique_ptr<Carte> carteChoisie = move(joueurActuel->Jouer());
 
                 // 2. On transmet directement cette carte récupérée à la méthode JouerCarte
                 JouerCarte(joueurActuel, std::move(carteChoisie));

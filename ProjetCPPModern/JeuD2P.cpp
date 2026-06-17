@@ -160,23 +160,15 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 void JeuD2P::JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) {
 	if (!laCarte) return;
 
-	// Affichage de la carte jouée
 	cout << "Joueur " << joueur->getNumero() << " joue : "
 		<< laCarte->get_valeur() << laCarte->get_couleur() << endl;
 
-	// S'il s'agit de la première carte du pli, elle définit la couleur demandée
 	if (couleurPli == "") {
 		couleurPli = laCarte->get_couleur();
 	}
 
-	// Gestion du blocage des cœurs
-	if (laCarte->get_couleur() == "♥") {
-		coeur_bloque = false;
-	}
-
-	// On déplace DIRECTEMENT la carte dans le pli
-	// Le pli prend la possession du unique_ptr
 	lePli->setCarte(joueur->getNumero(), std::move(laCarte));
+	joueur->EliminerCarte();
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
