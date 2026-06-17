@@ -26,6 +26,7 @@ void JeuClem::Partie() {
     while (condPartie) {
         condManche = true;
         Distribution(); // Distribuer carte
+        ReglesSupplementaires();
         Commencer(); // attribution joueur qui commence peut y avoir une annonce ici comme pour le tarot
 
         while (condManche) {
@@ -40,7 +41,6 @@ void JeuClem::Partie() {
 
                 // 2. On transmet directement cette carte récupérée à la méthode JouerCarte
                 JouerCarte(joueurActuel, std::move(carteChoisie));
-                ConfirmerJoueurSuivant(); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                 //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
             }
