@@ -1,6 +1,9 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
 
+#include <string>
+#include <vector>
+#include <list>
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -13,6 +16,7 @@ class Equipe{
 		std::vector<Joueur> joueurs;
 
 		int points_equipe;
+
 	public:
 
 		std::vector<Joueur> get_joueurs() { return joueurs; }

@@ -26,7 +26,7 @@ void testPli() {
 		MonPaquet.Distribuer(list_joueurs[index % 4]);
 		index++;
 	}
-	vector<unique_ptr<Carte>> laMano;
+	map<int,unique_ptr<Carte>> laMano;
 	for (Humain& joueur : list_joueurs) {
 		laMano = joueur.getMain();
 		MonPli.setCarte(joueur.getNumero(), move(laMano[0]));

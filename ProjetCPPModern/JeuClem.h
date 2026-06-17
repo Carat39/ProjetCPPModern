@@ -37,6 +37,10 @@ class JeuClem{
 
         virtual void Commencer() = 0;
 
+        virtual void ReglesSupplementaires() = 0;
+
+        virtual void AfficherInformations(ostream& os) = 0;
+
         virtual void VerifierCondManche() = 0;
 
         virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur) = 0;

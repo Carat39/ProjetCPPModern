@@ -74,7 +74,52 @@ void JeuD2P::Commencer() {
 			index3++;
 		}
 	}
+	couleurPli = " ";
 }
+
+void JeuD2P::ReglesSupplementaires() {
+	srand((int)time(NULL)); // Pour aléatoire
+	unique_ptr<Carte> laCarte = nullptr;
+	vector<unique_ptr<Carte>> vectorCarte;
+	//Donnez des cartes
+	int indexJ, carteDemande, repetition = 0;
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		for (repetition = 0; repetition < 3; repetition++) {
+			system("cls");
+			//Si humain demander Carte qu'il veut donner
+			carteDemande = -1;
+			while (lesJoueurs[indexJ]->getValeur(carteDemande) == -1) {
+				if (typeid(*lesJoueurs[indexJ]) == typeid(Humain)) {
+					lesJoueurs[indexJ]->AfficherMain(cout);
+					carteDemande = Affichage::Demander("Index carte à donner: ");
+				}
+				else {
+					//Push une carte au pif carte...
+					carteDemande = rand() % (int)(lesJoueurs[indexJ]->get_taille());
+				}
+			}
+			vectorCarte.push_back(move(lesJoueurs[indexJ]->Renvoyer_carte(lesJoueurs[indexJ]->getCouleur(carteDemande), lesJoueurs[indexJ]->getValeur(carteDemande))));
+			lesJoueurs[indexJ]->EliminerCarte();
+		}
+	}
+	//Redistribution des cartes
+	for (indexJ = 0; indexJ < lesJoueurs.size(); indexJ++) {
+		for (repetition = 0; repetition < 3; repetition++) {
+			if (dongauche) {
+				lesJoueurs[(indexJ+1)% lesJoueurs.size()]->addCarte(move(vectorCarte[(3 * indexJ + repetition)]));
+			}
+			else {
+				lesJoueurs[(indexJ + 1) % lesJoueurs.size()]->addCarte(move(vectorCarte[vectorCarte.size() - (3 * indexJ + repetition + 1)]));
+			}
+		}
+		lesJoueurs[(indexJ+1)% lesJoueurs.size()]->Trier();
+	}
+}
+
+void JeuD2P::AfficherInformations(ostream& os) {
+	cout << "Couleur Pli " << couleurPli << endl;
+}
+
 
 bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	bool cartejouable = true;
@@ -121,7 +166,10 @@ void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
+	string attente = "";
 	system("cls");
+	cout << "Appuyer sur une touche pour passer au joueur suivant";
+	getline(cin,attente);
 }
 
 void JeuD2P::VerifierPli() {
@@ -132,22 +180,27 @@ void JeuD2P::VerifierPli() {
 void JeuD2P::VerifierCondManche() {
 	if (lePaquet->taille() == 50 || lePaquet->taille() == 51 || lePaquet->taille() == 52) {
 		condManche = false;
+		dongauche = !dongauche;
 	}
 }
 
 void JeuD2P::AttribuerPoints() {
 	int index = 0;
 	int grandChelem = GrandChelem();
-	if (grandChelem < lesJoueurs.size()+1) {
+	if (grandChelem < lesJoueurs.size()) {
 		for (index = 0; index < lesJoueurs.size(); index++) {
 			if (index != grandChelem) {
 				lesJoueurs[index]->addPoints(26);
 			}
+			//On réinitialise les points temps
+			points_temp[index] = 0;
 		}
 	}
 	else {
 		for (index = 0; index < lesJoueurs.size(); index++) {
 			lesJoueurs[index]->addPoints(points_temp[index]);
+			//On réinitialise les points temps
+			points_temp[index] = 0;
 		}
 	}
 }

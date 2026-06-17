@@ -12,14 +12,16 @@ class Paquet{
 		//Attributs
 		std::vector<std::unique_ptr<Carte>> lePaquet;
 
+		std::vector<std::unique_ptr<Carte>> laDefausse;
+
 	public:
 		//Constructeurs et Destructeurs
 		Paquet();
 		Paquet(string nomfichier);
+		~Paquet();
 
-
-		//Méthodes
-		void Ajouter_carte(string coul, int val);
+	//Méthodes
+	void Ajouter_carte(string coul, int val);
 
 		void Move_carte(std::unique_ptr<Carte>&& autre) noexcept {
 			lePaquet.push_back(move(autre));
@@ -32,6 +34,22 @@ class Paquet{
 		void Melanger();
 
 		void Distribuer(Joueur& joueur);
+
+		//Récupère la première carte du paquet
+		unique_ptr<Carte>& RecupererCarte() noexcept;
+
+		unique_ptr<Carte>& RecupererCarteDefausse() noexcept;
+
+		//Déplace dans laDefausse
+		void DefausserCarte(unique_ptr<Carte>&& carte) noexcept;
+
+		void DetruireCartePaquet(int index);
+
+		void DetruireCarteDefausse(int index);
+
+		void DetruireCarte(string coul, int val) noexcept;
+
+		size_t tailleDefausse() const { return laDefausse.size(); }
 
 
 

@@ -2,11 +2,19 @@
 #define JEUWIZARD_H 300
 #include "JeuClem.h"
 #include "Humain.h"
+#include "PliWizard.h"
 using namespace std;
 
 class JeuWizard:public JeuClem{
     private:
         int manche;
+
+        string couleurAtout;
+
+        vector<int> predictions;
+
+        vector<int> nbPli;
+
 	public:
         JeuWizard();
 
@@ -19,6 +27,10 @@ class JeuWizard:public JeuClem{
         virtual void PreparationPli();
 
         virtual void Distribution();
+
+        virtual void ReglesSupplementaires();
+
+        virtual void AfficherInformations(ostream& os);
 
         virtual void Commencer();
 

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include "Carte.h"
 #include <memory>
 #include <utility>
@@ -15,7 +16,7 @@ class Joueur{
 	protected:
 		int numero;
 
-		std::vector<unique_ptr<Carte>> mainJ;
+		std::map<int,unique_ptr<Carte>> mainJ;
 
 		int points;
 
@@ -26,7 +27,7 @@ class Joueur{
 	public:
 
 
-		std::vector<unique_ptr<Carte>> getMain()  { return move(mainJ); };
+		std::map<int,unique_ptr<Carte>> getMain()  { return move(mainJ); };
 
 		int getNumero() const { return numero; };
 
@@ -36,7 +37,7 @@ class Joueur{
 
 		void addCarte(unique_ptr<Carte> laCarte);
 
-		void addMain(std::vector<unique_ptr<Carte>> lesCartes);
+		void addMain(std::map<int,unique_ptr<Carte>> lesCartes);
 
 		void supprMain(unique_ptr<Carte> laCarte);
 
@@ -46,9 +47,15 @@ class Joueur{
 
 		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
 
+		string getCouleur(unsigned int indexCarte);
+
+		int getValeur(unsigned int indexCarte);
+
+		size_t get_taille() const { return mainJ.size(); }
+
 		virtual unique_ptr<Carte>& Jouer()=0;
 
-		void AfficherMain(ostream& os) const noexcept; 
+		void AfficherMain(ostream& os) noexcept; 
 
 		void EliminerCarte();
 

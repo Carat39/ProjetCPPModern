@@ -1,6 +1,9 @@
 #ifndef JOUEUR_IA_H
 #define JOUEUR_IA_H
 
+#include <string>
+#include <vector>
+#include <list>
 #include <iostream>
 #include <vector>
 #include "Carte.h"

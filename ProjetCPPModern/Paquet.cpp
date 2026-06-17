@@ -54,8 +54,6 @@ Paquet::Paquet(string nomfichier = "Paquets/Paquet52Cartes.txt") {
 		fichier.ignore(10, '=');
 		getline(fichier, nbCartes);
 
-		cout << "NBCartes : " << nbCartes << endl;
-
 		string couleur, valeur, lettre = "";
 
 		fichier.ignore(10, '[');
@@ -86,8 +84,11 @@ Paquet::Paquet(string nomfichier = "Paquets/Paquet52Cartes.txt") {
 	}
 }
 
+Paquet::~Paquet() {
+	//Détruire toute les cartes
+}
 
-void Paquet::Ajouter_carte(string coul, int val){
+void Paquet::Ajouter_carte(string coul, int val) {
 	//Création de la carte
 	lePaquet.push_back(move(make_unique<Carte>(coul, val)));
 	
@@ -111,4 +112,37 @@ void Paquet::Distribuer(Joueur& joueur) {
 	joueur.addCarte(std::move(carte));
 	//On enlève la carte du paquet
 	lePaquet.erase(lePaquet.begin());
+}
+unique_ptr<Carte>& Paquet::RecupererCarte() noexcept {
+	return *(lePaquet.begin());
+}
+
+unique_ptr<Carte>& Paquet::RecupererCarteDefausse() noexcept {
+	return *(laDefausse.begin());
+}
+
+void Paquet::DefausserCarte(unique_ptr<Carte>&& carte) noexcept{
+	laDefausse.push_back(move(carte));
+}
+
+void Paquet::DetruireCartePaquet(int index) {
+	lePaquet.erase(lePaquet.begin() + index);
+}
+
+void Paquet::DetruireCarteDefausse(int index) {
+	laDefausse.erase(laDefausse.begin() + index);
+}
+
+void Paquet::DetruireCarte(string coul, int val) noexcept{
+	bool find = false;
+	unsigned int index = 0;
+	while (index < taille() && find == false) {
+		if (lePaquet[index]->get_couleur() == coul && lePaquet[index]->get_valeur() == val) {
+			lePaquet.erase(lePaquet.begin() + index); // voir pour appel destructeur particulier de la carte
+			find = true;
+		}
+		else {
+			index++;
+		}
+	}
 }

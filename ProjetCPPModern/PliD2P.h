@@ -10,7 +10,7 @@ class PliD2P : public Pli{
 	public:
 		PliD2P(Paquet* paquet);
 
-		virtual int Vainqueur(int premier_j);
+		virtual int Vainqueur(int premier_j, string couleurAtout = "");
 
 		int Calcul_points();
 

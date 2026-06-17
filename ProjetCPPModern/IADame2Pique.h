@@ -1,8 +1,11 @@
 #ifndef I_A_DAME2_PIQUE_H
 #define I_A_DAME2_PIQUE_H
 
-#include <iostream>
+#include <string>
 #include <vector>
+#include <list>
+#include <iostream>
+#include <assert.h>
 
 #include "IA.h"
 
