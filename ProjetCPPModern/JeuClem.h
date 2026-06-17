@@ -57,6 +57,8 @@ class JeuClem{
         virtual void VerifierCondPartie() = 0;
 
         virtual void FinDePartie() = 0;
+
+        string GetCouleurPli(){ return couleurPli; };
 };
 
 #endif

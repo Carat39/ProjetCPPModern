@@ -7,18 +7,19 @@
 unique_ptr<Carte> Humain::Jouer() {
     int indexcarte = 0;
     jeu->AfficherInformations(cout);
-    AfficherMain(cout);
-    indexcarte = Affichage::DemanderIndex();
+    AfficherMain(cout, indexcarte);
+    indexcarte = Affichage::DemanderIndex(this, jeu->GetCouleurPli());
     int laValeur = getValeur(indexcarte);
     string laCouleur = getCouleur(indexcarte);
     while (laCouleur == " " && indexcarte != 25) {
+        AfficherMain(cout, indexcarte);
         laValeur = getValeur(indexcarte);
         laCouleur = getCouleur(indexcarte);
         indexcarte++;
     }
     ///Ok par thibault en théorie
     while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
-        indexcarte = Affichage::DemanderIndex();
+        indexcarte = Affichage::DemanderIndex(this, jeu->GetCouleurPli());
         laValeur = getValeur(indexcarte);
         laCouleur = getCouleur(indexcarte);
         while (laCouleur == " " && indexcarte != 25) {

@@ -97,13 +97,29 @@ int Joueur::getValeur(unsigned int indexCarte) {
 	return -1;
 }
 
-
 void Joueur::AfficherMain(ostream& os) noexcept {
 	os << "Joueur " << getNumero() << ":" << endl;
 	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
 		if ((*it).second) {
 			os << "index: " << (*it).first << " Carte: ";
 			((*it).second)->AfficherCarte(os);
+		}
+	}
+}
+
+void Joueur::AfficherMain(ostream& os, int indexSelectionne) noexcept {
+	os << "Joueur " << getNumero() << ":" << endl;
+	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
+		if ((*it).second) {
+			if ((*it).first == indexSelectionne)
+			{
+				os << CSI() << CLIGNOTE() << M();
+			}
+
+			os << "index: " << (*it).first << " Carte: ";
+			((*it).second)->AfficherCarte(os);
+
+			os << END_CSI();
 		}
 	}
 }

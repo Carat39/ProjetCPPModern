@@ -55,7 +55,9 @@ class Joueur{
 
 		virtual std::unique_ptr<Carte> Jouer()=0;
 
-		void AfficherMain(ostream& os) noexcept; 
+		void AfficherMain(ostream& os) noexcept;
+
+		void AfficherMain(ostream& os, int indexSelectionne) noexcept; 
 
 		void EliminerCarte();
 

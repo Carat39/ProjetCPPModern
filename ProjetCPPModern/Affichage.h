@@ -42,11 +42,15 @@ static constexpr string MAGENTA() {
 static constexpr string LIGHT() {
 	return ";1";
 }
+//ne peut pas clignoter for some reason...
 static constexpr string DARK() {
 	return ";2";
-} //ne peut pas clignoter for some reason...
+}
 static constexpr string CLIGNOTE() {
 	return ";5";
+}
+static constexpr string M() {
+	return "m";
 }
 
 static string M() {
@@ -56,16 +60,16 @@ static string M() {
 
 //Définitions de template de couleurs pour l'affichage d'une carte :
 static string COEUR() {
-	return CSI() + FG() + RED() + 'm';
+	return CSI() + FG() + RED();
 }
 static string CARREAU() {
-	return CSI() + FG() + BLUE() + 'm';
+	return CSI() + FG() + BLUE();
 }
 static string PIQUE() {
-	return CSI() + FG() + MAGENTA() + 'm';
+	return CSI() + FG() + MAGENTA();
 }
 static string TREFLE() {
-	return CSI() + FG() + GREEN() + 'm';
+	return CSI() + FG() + GREEN();
 }
 
 class Affichage{
@@ -76,7 +80,7 @@ class Affichage{
 
 		static int Demander(string Precision);
 
-		static int DemanderIndex();
+		static int DemanderIndex(Humain* leJoueur, string couleurPli);
 
 		static void Afficher_jeu_Humain(vector<Humain*>& vectJ);
 
