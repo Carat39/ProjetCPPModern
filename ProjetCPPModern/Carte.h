@@ -5,6 +5,12 @@
 #include <memory>
 using namespace std;
 
+static string CSI();
+static string PIQUE();
+static string TREFLE();
+static string CARREAU();
+static string COEUR();
+
 class Carte{
 	private:
 		//Attributs
@@ -46,7 +52,24 @@ class Carte{
 		}
 
 		void AfficherCarte(ostream& os) const  {
-			os << get_valeur() << " " << get_couleur() << endl;
+			if (get_couleur() == "♠")
+			{
+				os << PIQUE();
+			}
+			else if (get_couleur() == "♣")
+			{
+				os << TREFLE();
+			}
+			else if (get_couleur() == "♦")
+			{
+				os << CARREAU();
+			}
+			else if (get_couleur() == "♥")
+			{
+				os << COEUR();
+			}
+
+			os << " |" << get_valeur() << get_couleur() << "| " << endl;
 		}
 
 		bool operator<(Carte& other) {

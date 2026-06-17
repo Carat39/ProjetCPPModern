@@ -9,7 +9,7 @@
 using namespace std;
 
 //Définitions des code ANSI pour l'affichage en couleur :
-static constexpr string CSI(){
+static string CSI(){
 	return "\033[";
 }
 static const string END_CSI() {
@@ -45,16 +45,16 @@ static constexpr string CLIGNOTE() {
 
 
 //Définitions de template de couleurs pour l'affichage d'une carte :
-static constexpr string COEUR() {
+static string COEUR() {
 	return CSI() + FG() + RED();
 }
-static constexpr string CARREAU() {
+static string CARREAU() {
 	return CSI() + FG() + BLUE();
 }
-static constexpr string PIQUE() {
+static string PIQUE() {
 	return CSI() + FG() + MAGENTA();
 }
-static constexpr string TREFLE() {
+static string TREFLE() {
 	return CSI() + FG() + GREEN();
 }
 

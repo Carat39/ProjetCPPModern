@@ -71,6 +71,9 @@ void testJoueur() {
                     case 16:
                         Affichage::Afficher_jeu(list_joueurs);
                         break;
+                    case 24:
+                        list_joueurs[1].AfficherMain(cout);
+                        break;
                     case 25:
                         system("cls");
                 }
