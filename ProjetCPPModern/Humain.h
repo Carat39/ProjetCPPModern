@@ -9,10 +9,12 @@
 class Humain : public Joueur {
 
 public:
-	Humain(int num) {
+	// Humain.h — même chose
+	Humain(int num, JeuClem* leJeu) {
 		numero = num;
 		points = 0;
 		equipe = nullptr;
+		jeu = leJeu;
 	}
 
 	//On peut pas copier un joueur
@@ -28,8 +30,7 @@ public:
 	~Humain() = default;
 
 	
-	unique_ptr<Carte>& Jouer() override;
-
+	unique_ptr<Carte> Jouer() override;
 	//Donner la carte se fera dans pli
 
 

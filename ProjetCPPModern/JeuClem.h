@@ -46,7 +46,7 @@ class JeuClem{
 
         virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur) = 0;
 
-        virtual void JouerCarte(Joueur* joueur,string laCouleur, int laValeur) = 0;
+        virtual void JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) = 0;
 
         virtual void ConfirmerJoueurSuivant() = 0;
 

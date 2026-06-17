@@ -46,7 +46,7 @@ class JeuD2P :public JeuClem {
 
         virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur);
 
-        virtual void JouerCarte(Joueur* joueur, string laCouleur, int laValeur);
+        virtual void JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) override;
 
         virtual void ConfirmerJoueurSuivant();
 

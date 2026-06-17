@@ -14,7 +14,7 @@ int Affichage::DemanderValeurCarte() {
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		valeur = -1;
 	}
-	if (valeur < 0 || valeur > 13) {
+	if (valeur < 0 || valeur > 14) {
 		valeur = -1;
 	}
 	return valeur;

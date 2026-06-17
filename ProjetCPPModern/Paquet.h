@@ -20,8 +20,8 @@ class Paquet{
 		Paquet(string nomfichier);
 		~Paquet();
 
-		//Méthodes
-		void Ajouter_carte(string coul, int val);
+	//Méthodes
+	void Ajouter_carte(string coul, int val);
 
 		void Move_carte(std::unique_ptr<Carte>&& autre) noexcept {
 			lePaquet.push_back(move(autre));

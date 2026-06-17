@@ -19,10 +19,10 @@ void JeuD2P::DefinirNbJoueurMinMax() {
 void JeuD2P::PreparationJoueur(int nbJoueur, int nbIa) {
 	int indexJ, indexIA = 0;
 	for (indexJ = 0; indexJ < nbJoueur; indexJ++) {
-		lesJoueurs.push_back(move(new Humain(indexJ)));
+		lesJoueurs.push_back(new Humain(indexJ, this));        // ← this
 	}
 	for (indexIA = indexJ; indexIA < nbJoueur + nbIa; indexIA++) {
-		lesJoueurs.push_back(move(new IADame2Pique(indexIA)));
+		lesJoueurs.push_back(new IADame2Pique(indexIA, this)); // ← this
 	}
 }
 
@@ -141,7 +141,7 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 					cartejouable = false;
 				}
 				else {
-					cartejouable = false;
+					cartejouable = true;
 				}
 			}
 		}
@@ -157,10 +157,18 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	return cartejouable;
 }
 
-void JeuD2P::JouerCarte(Joueur* joueur, string laCouleur, int laValeur) {
-	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
+void JeuD2P::JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) {
+	if (!laCarte) return;
+
+	cout << "Joueur " << joueur->getNumero() << " joue : "
+		<< laCarte->get_valeur() << laCarte->get_couleur() << endl;
+
+	if (couleurPli == "") {
+		couleurPli = laCarte->get_couleur();
+	}
+
+	lePli->setCarte(joueur->getNumero(), std::move(laCarte));
 	joueur->EliminerCarte();
-	lePli->setCarte(joueur->getNumero(), move(Cajouer));
 }
 
 void JeuD2P::ConfirmerJoueurSuivant() {
@@ -168,6 +176,8 @@ void JeuD2P::ConfirmerJoueurSuivant() {
 	system("cls");
 	cout << "Appuyer sur une touche pour passer au joueur suivant";
 	getline(cin,attente);
+	lePli->Afficher_Pli(commencer);
+
 }
 
 void JeuD2P::VerifierPli() {

@@ -6,32 +6,32 @@
 #include "Affichage.h"
 using namespace std;
 
-class Carte{
-	private:
-		//Attributs
-		string couleur;
-		int valeur;
+class Carte {
+private:
+	//Attributs
+	string couleur;
+	int valeur;
 
-	public:
-		//Constructeurs et Destructeurs
-		Carte() {
-			couleur = " ";
-			valeur = -1;
-		}
-		Carte(string coul, int val) {
-			couleur = coul;
-			valeur = val;
-		}
+public:
+	//Constructeurs et Destructeurs
+	Carte() {
+		couleur = " ";
+		valeur = -1;
+	}
+	Carte(string coul, int val) {
+		couleur = coul;
+		valeur = val;
+	}
 
 		Carte(Carte& autre)  {
 			couleur = autre.couleur;
 			valeur = autre.valeur;
 		}
 
-		Carte(Carte&& autre) noexcept {
-			couleur = autre.couleur;
-			valeur = autre.valeur;
-		}
+	Carte(Carte&& autre) noexcept {
+		couleur = autre.couleur;
+		valeur = autre.valeur;
+	}
 
 
 		//Méthodes
@@ -40,11 +40,11 @@ class Carte{
 		string get_couleur() const{ return couleur; }
 		int get_valeur() const { return valeur; }
 
-		Carte& operator= (Carte&& autre) noexcept {
-			couleur = autre.couleur;
-			valeur = autre.valeur;
-			return *this;
-		}
+	Carte& operator= (Carte&& autre) noexcept {
+		couleur = autre.couleur;
+		valeur = autre.valeur;
+		return *this;
+	}
 
 		void AfficherCarte(ostream& os) const  {
 			if (get_couleur() == "♠")
@@ -83,4 +83,3 @@ class Carte{
 //using laCarte = unique_ptr<Carte>;
 
 #endif
-

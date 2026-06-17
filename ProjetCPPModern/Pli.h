@@ -7,6 +7,7 @@
 #include "Carte.h"
 #include "Paquet.h"
 #include <memory>
+#include <iostream>
 
 
 class Pli{
@@ -19,5 +20,15 @@ class Pli{
 
 		void setCarte(int joueur, std::unique_ptr<Carte> carte);
 		
+		void Afficher_Pli(int commence) {
+			std::vector<int> cles;
+			for (auto& [cle, carte] : pli) {
+				cles.push_back(cle);
+			}
+			for (int i = 0; i < (int)cles.size(); i++) {
+				int index = (commence + i) % cles.size();
+				pli.at(cles[index])->AfficherCarte(cout);
+			}
+		}
 };
 #endif

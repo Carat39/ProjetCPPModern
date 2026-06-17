@@ -9,17 +9,14 @@ void Joueur::addPoints(int nbPoints) {
 }
 
 void Joueur::addCarte(unique_ptr<Carte> laCarte) {
-	bool place = false;
-	unsigned int index = 0;
-	while (index <= mainJ.size() && !place) {
-		if (!mainJ[index]) {
-			mainJ[index] = move(laCarte);
-			place = true;
-		}
-		else {
-			index++;
-		}
+	if (!laCarte) return;
+
+	// On trouve le premier index numérique disponible (0, 1, 2...)
+	int index = 0;
+	while (mainJ.find(index) != mainJ.end()) {
+		index++;
 	}
+	mainJ[index] = move(laCarte);
 }
 
 void Joueur::addMain(std::map<int, unique_ptr<Carte>> lesCartes) {
@@ -55,15 +52,23 @@ bool Joueur::Trouver_carte(string coul, int val){
 	return false;
 }
 
-unique_ptr<Carte>& Joueur::Renvoyer_carte(string coul, int val) noexcept {
-	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
-		if ((*it).second) {
-			if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
-				return (*it).second;
+unique_ptr<Carte> Joueur::Renvoyer_carte(string coul, int val) noexcept {
+	for (auto it = mainJ.begin(); it != mainJ.end(); ++it) {
+		if (it->second) { // S'assurer que le pointeur n'est pas nul
+			if (it->second->get_couleur() == coul && it->second->get_valeur() == val) {
+				// 1. On extrait le unique_ptr (transfert de propriété)
+				unique_ptr<Carte> carteTrouvee = std::move(it->second);
+
+				// 2. On retire l'entrée de la map pour réduire la taille de la main
+				mainJ.erase(it);
+
+				// 3. On retourne la carte au demandeur
+				return carteTrouvee;
 			}
 		}
 	}
-	return (mainJ.begin())->second;
+	// Cas de secours (ne devrait pas arriver si validé en amont par Trouver_carte)
+	return nullptr;
 }
 
 void Joueur::EliminerCarte() {

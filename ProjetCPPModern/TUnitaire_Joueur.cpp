@@ -11,12 +11,14 @@ using namespace std;
 #include <memory>
 #include "Humain.h"
 #include <utility>
+#include "JeuD2P.h"
 
 
 void testJoueur() {
-    Humain Clement = Humain(1);
-    Humain Thibault = Humain(2);
-    Humain Nino = Humain(3);
+    JeuD2P jeu_test = JeuD2P();
+    Humain Clement = Humain(1,&jeu_test);
+    Humain Thibault = Humain(2, &jeu_test);
+    Humain Nino = Humain(3, &jeu_test);
     PaquetD2P MonPaquet = PaquetD2P();
     cout << "Mélange" << endl;
     MonPaquet.Melanger();

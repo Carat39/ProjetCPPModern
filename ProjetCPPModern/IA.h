@@ -1,6 +1,9 @@
 #ifndef JOUEUR_IA_H
 #define JOUEUR_IA_H
 
+#include <string>
+#include <vector>
+#include <list>
 #include <iostream>
 #include <vector>
 #include "Carte.h"
@@ -12,12 +15,8 @@
 
 
 class IA : public Joueur {
-
 public:
-
-	virtual unique_ptr<Carte>& Jouer()=0;
-
-
+	virtual std::unique_ptr<Carte> Jouer() = 0;
 };
 
 #endif

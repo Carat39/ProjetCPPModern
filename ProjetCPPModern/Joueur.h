@@ -45,7 +45,7 @@ class Joueur{
 
 		bool Trouver_carte(string coul, int val);
 
-		unique_ptr<Carte>& Renvoyer_carte(string coul, int val) noexcept;
+		unique_ptr<Carte> Renvoyer_carte(string coul, int val) noexcept;
 
 		string getCouleur(unsigned int indexCarte);
 
@@ -53,7 +53,7 @@ class Joueur{
 
 		size_t get_taille() const { return mainJ.size(); }
 
-		virtual unique_ptr<Carte>& Jouer()=0;
+		virtual std::unique_ptr<Carte> Jouer()=0;
 
 		void AfficherMain(ostream& os) noexcept; 
 

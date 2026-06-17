@@ -88,7 +88,7 @@ Paquet::~Paquet() {
 	//Détruire toute les cartes
 }
 
-void Paquet::Ajouter_carte(string coul, int val){
+void Paquet::Ajouter_carte(string coul, int val) {
 	//Création de la carte
 	lePaquet.push_back(move(make_unique<Carte>(coul, val)));
 	

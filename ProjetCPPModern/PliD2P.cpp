@@ -36,23 +36,31 @@ bool PliD2P::Coeur_existe()
 }
 
 int PliD2P::Vainqueur(int premier_j, string couleurAtout) {
-	int le_gagnant = premier_j;
-	string couleur_pli = (pli.find(premier_j))->second->get_couleur();
-	int meilleur_carte = (pli.find(premier_j))->second->get_valeur();
-	for (const auto& pair : pli)
-	{
-		if ((pair.second)->get_couleur() == couleur_pli && (pair.second)->get_valeur() > meilleur_carte)
-		{
-			le_gagnant = pair.first;
-			meilleur_carte = (pair.second)->get_valeur();
-		}
-	}
-	cout << le_gagnant << endl;
+    auto it_premier = pli.find(premier_j);
+    if (it_premier == pli.end()) {
+        cerr << "Erreur Vainqueur(): joueur " << premier_j
+            << " introuvable dans pli. Cles presentes: ";
+        for (const auto& p : pli) cerr << p.first << " ";
+        cerr << endl;
+        it_premier = pli.begin();
+    }
 
-	for (auto& pair : pli) {
-		lePaquet->Move_carte(move(pair.second));
-	}
-	pli.clear();
+    int le_gagnant = it_premier->first;
+    string couleur_pli = it_premier->second->get_couleur();
+    int meilleur_carte = it_premier->second->get_valeur();
 
-	return le_gagnant;
+    for (const auto& pair : pli) {
+        if (pair.second->get_couleur() == couleur_pli && pair.second->get_valeur() > meilleur_carte) {
+            le_gagnant = pair.first;
+            meilleur_carte = pair.second->get_valeur();
+        }
+    }
+    cout << le_gagnant << endl;
+
+    for (auto& pair : pli) {
+        lePaquet->Move_carte(move(pair.second));
+    }
+    pli.clear();
+
+    return le_gagnant;
 }

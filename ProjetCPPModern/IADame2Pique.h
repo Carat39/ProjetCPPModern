@@ -1,8 +1,11 @@
 #ifndef I_A_DAME2_PIQUE_H
 #define I_A_DAME2_PIQUE_H
 
-#include <iostream>
+#include <string>
 #include <vector>
+#include <list>
+#include <iostream>
+#include <assert.h>
 
 #include "IA.h"
 
@@ -14,10 +17,11 @@ class IADame2Pique : public IA{
 		bool d2p;
 
 	public:
-		IADame2Pique(int num) {
+		IADame2Pique(int num, JeuClem* leJeu) {
 			numero = num;
 			points = 0;
 			equipe = nullptr;
+			jeu = leJeu;  
 		}
 
 		//On peut pas copier un joueur
@@ -32,6 +36,6 @@ class IADame2Pique : public IA{
 
 		~IADame2Pique() = default;
 
-		unique_ptr<Carte>& Jouer() override;
+		unique_ptr<Carte> Jouer() override;
 };
 #endif
