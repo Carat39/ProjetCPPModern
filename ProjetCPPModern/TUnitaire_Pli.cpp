@@ -3,13 +3,16 @@
 #include "Joueur.h"
 #include "PliD2P.h"
 #include "Humain.h"
+#include "JeuD2P.h"
+
 void testPli() {
+	JeuD2P jeu_test;
 	Paquet MonPaquet = Paquet("Paquets/Paquet52Cartes.txt");
 	PliD2P MonPli(&MonPaquet);
-	Humain Marandin = Humain(0);
-	Humain Clement = Humain(1);
-	Humain Thibault = Humain(2);
-	Humain Nino = Humain(3);
+	Humain Marandin = Humain(0, &jeu_test);
+	Humain Clement = Humain(1, &jeu_test);
+	Humain Thibault = Humain(2, &jeu_test);
+	Humain Nino = Humain(3, &jeu_test);
 	MonPaquet.Melanger();
 
 	vector<Humain> list_joueurs;

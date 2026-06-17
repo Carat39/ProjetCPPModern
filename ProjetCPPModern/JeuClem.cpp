@@ -22,29 +22,30 @@ void JeuClem::Partie() {
     PreparationJoueur(nbJoueurs, nbIa); //Créer Joueurs et IA
     PreparationPaquet(); //Créer Paquet
     PreparationPli(); //Créer Pli
+
     while (condPartie) {
         condManche = true;
         Distribution(); // Distribuer carte
         Commencer(); // attribution joueur qui commence peut y avoir une annonce ici comme pour le tarot
+
         while (condManche) {
             for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
-                lesJoueurs[indexJ % (nbJoueurs + nbIa)]->AfficherMain(cout);
-                laCouleur = "-1";
-                ///Ok par thibault en théorie
-                while (!CarteJouable(lesJoueurs[indexJ % lesJoueurs.size()], laCouleur, laValeur)) {
-                    laValeur = Affichage::DemanderValeurCarte();
-                    laCouleur = Affichage::DemanderCouleurCarte();
+                Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
+                joueurActuel->AfficherMain(cout);
 
-                }
-                JouerCarte(lesJoueurs[indexJ % (nbJoueurs + nbIa)], laCouleur, laValeur); //Peut potentiellement y avoir des annonces
+                unique_ptr<Carte>& carteChoisie = joueurActuel->Jouer();
+                laCouleur = carteChoisie->get_couleur();
+                laValeur = carteChoisie->get_valeur();
+
+                JouerCarte(joueurActuel, laCouleur, laValeur); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                 //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
-                }
-                VerifierPli(); //Met a jour le vainqueur et les points temporaire
-                VerifierCondManche();
             }
-            AttribuerPoints(); //Attribuer les points
-            VerifierCondPartie(); //Change ou non condPartie
+            VerifierPli(); //Met a jour le vainqueur et les points temporaire
+            VerifierCondManche();
         }
-        FinDePartie(); //Lance la fin de la partie
+        AttribuerPoints(); //Attribuer les points
+        VerifierCondPartie(); //Change ou non condPartie
     }
+    FinDePartie(); //Lance la fin de la partie
+}

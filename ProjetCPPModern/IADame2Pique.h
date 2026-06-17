@@ -14,10 +14,11 @@ class IADame2Pique : public IA{
 		bool d2p;
 
 	public:
-		IADame2Pique(int num) {
+		IADame2Pique(int num, JeuClem* leJeu) {
 			numero = num;
 			points = 0;
 			equipe = nullptr;
+			jeu = leJeu;  
 		}
 
 		//On peut pas copier un joueur

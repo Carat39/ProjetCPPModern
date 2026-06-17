@@ -11,14 +11,14 @@
 
 
 unique_ptr<Carte>& Humain::Jouer() {
-	string laCouleur = Affichage::DemanderCouleurCarte();
-	int laValeur = Affichage::DemanderValeurCarte();
+    int laValeur = Affichage::DemanderValeurCarte();      
+    string laCouleur = Affichage::DemanderCouleurCarte(); 
 
-	while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
-		printf("Carte fausse");
-		AfficherMain(cout);
-		laCouleur = Affichage::DemanderCouleurCarte();
-		laValeur = Affichage::DemanderValeurCarte();
-	}
-	return Renvoyer_carte(laCouleur, laValeur);
+    while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
+        printf("Carte fausse");
+        AfficherMain(cout);
+        laValeur = Affichage::DemanderValeurCarte();
+        laCouleur = Affichage::DemanderCouleurCarte();
+    }
+    return Renvoyer_carte(laCouleur, laValeur);
 }
