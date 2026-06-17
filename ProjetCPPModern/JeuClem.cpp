@@ -16,7 +16,7 @@ void JeuClem::Partie() {
     DefinirNbJoueurMinMax(); //Attributs minjoueurs et maxjoueurs
     while (nbJoueurs + nbIa < nbJoueursMinMax[0] || nbJoueursMinMax[1] < nbJoueurs + nbIa) {
         cout << "Nombres Joueurs Min: " << nbJoueursMinMax[0] << " Nombres Joueurs Max: " << nbJoueursMinMax[1] << endl;
-        nbJoueurs = Affichage::Demander("Combien y'a t-il de Joueurs: ");
+        nbJoueurs = Affichage::Demander("Combien y'a t-il de Joueurs humains: ");
         nbIa = Affichage::Demander("Combien y'a t-il d'IA: ");
     }
     PreparationJoueur(nbJoueurs, nbIa); //Créer Joueurs et IA
@@ -36,7 +36,6 @@ void JeuClem::Partie() {
                 newIndexJ = indexJ % lesJoueurs.size();
                 
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
-                joueurActuel->AfficherMain(cout);
 
                 // 1. Le joueur choisit et extrait sa carte de sa main
                 unique_ptr<Carte> carteChoisie = move(joueurActuel->Jouer());

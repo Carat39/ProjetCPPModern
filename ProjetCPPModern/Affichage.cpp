@@ -41,7 +41,7 @@ int Affichage::Demander(string Precision) {
 	return valeur; 
 }
 
-int Affichage::DemanderIndex() {
+int Affichage::DemanderIndex(Humain* leJoueur, string couleurPli) {
     HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
     DWORD dwMode;
     GetConsoleMode(hConsoleHandle, &dwMode);
@@ -78,12 +78,26 @@ int Affichage::DemanderIndex() {
                 switch (valkey) {
                 //Flèche du bas :
                 case 80:
-                    indexcarte += 1;
+                    if (indexcarte < 24)
+                    {
+                        indexcarte++;
+                        system("cls");
+                        cout << "Couleur Pli ";
+                        cout << couleurPli << END_CSI() << endl;
+                        leJoueur->AfficherMain(cout, indexcarte);
+                    }
                     cout << "index carte : " << indexcarte <<endl;
                     break;
                 //Flèche du haut :
                 case 72:
-                    indexcarte -= 1;
+                    if (indexcarte > 0)
+                    {
+                        indexcarte--;
+                        system("cls");
+                        cout << "Couleur Pli ";
+                        cout << couleurPli << END_CSI() << endl;
+                        leJoueur->AfficherMain(cout, indexcarte);
+                    }
                     cout << "index carte : " << indexcarte << endl;
                     break;
                 //Touche Entrée :
@@ -94,8 +108,8 @@ int Affichage::DemanderIndex() {
             }
         }
     }
-    return indexcarte;
     SetConsoleMode(hConsoleHandle, dwMode);
+    return indexcarte;
 }
 
 

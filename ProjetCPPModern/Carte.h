@@ -49,22 +49,22 @@ public:
 	void AfficherCarte(ostream& os) const  {
 		if (get_couleur() == "♠")
 		{
-			os << PIQUE();
+			os << PIQUE() + M();
 			//cout << "1" <<endl;
 		}
 		else if (get_couleur() == "♣")
 		{
-			os << TREFLE();
+			os << TREFLE() + M();
 			//cout << "2" << endl;
 		}
 		else if (get_couleur() == "♦")
 		{
-			os << CARREAU();
+			os << CARREAU() + M();
 			//cout << "3" << endl;
 		}
 		else if (get_couleur() == "♥")
 		{
-			os << COEUR();
+			os << COEUR() + M();
 			//cout << "4" << endl;
 		}
 

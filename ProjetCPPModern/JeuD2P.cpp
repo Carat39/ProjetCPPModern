@@ -117,7 +117,24 @@ void JeuD2P::ReglesSupplementaires() {
 }
 
 void JeuD2P::AfficherInformations(ostream& os) {
-	cout << "Couleur Pli " << couleurPli << endl;
+	cout << "Couleur Pli ";
+	if (couleurPli == "♠")
+	{
+		os << PIQUE() + M();
+	}
+	else if (couleurPli == "♣")
+	{
+		os << TREFLE() + M();
+	}
+	else if (couleurPli == "♦")
+	{
+		os << CARREAU() + M();
+	}
+	else if (couleurPli == "♥")
+	{
+		os << COEUR() + M();
+	}
+	cout << couleurPli << END_CSI() <<endl;
 }
 
 
