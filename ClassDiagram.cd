@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Affichage" Collapsed="true">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAEAAAAAAAAAEAAAAAgAIAAAAAAAAAA=</HashCode>
+      <FileName>Affichage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carte" Collapsed="true">
+    <Position X="12" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgGAAAAAAAAAAAAAEAAAAAAGABAAAAgAAAABAA=</HashCode>
+      <FileName>Carte.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Duo" Collapsed="true">
+    <Position X="5.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Duo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Equipe" Collapsed="true">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equipe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Humain" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAACAEA=</HashCode>
+      <FileName>Humain.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IA" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>IA.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IADame2Pique" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAIAAEAAAAABgAAAAAEA=</HashCode>
+      <FileName>IADame2Pique.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuClem" Collapsed="true">
+    <Position X="6.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIACAEAAgAIAARQIAAACAlAEBEIAIEGAEAABCAAABA=</HashCode>
+      <FileName>JeuClem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuD2P" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAEAAgEIAAQQIAgQCAFAABEIAIAAAAAABCAAABA=</HashCode>
+      <FileName>JeuD2P.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeuWizard" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAEAAgAJAAQQIAAICAFAABEIAIAAAgAABCAAABI=</HashCode>
+      <FileName>JeuWizard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Joueur" Collapsed="true">
+    <Position X="1.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABDgAAYACAAABAACAAAAEAAAAAEAAIGxIAAQEGA=</HashCode>
+      <FileName>Joueur.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paquet" Collapsed="true">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAQCAABAAACgABQIAAAAAgAIAAAAAAAAIAAAUAQAAA=</HashCode>
+      <FileName>Paquet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PaquetD2P" Collapsed="true">
+    <Position X="5.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAEEAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PaquetD2P.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pli" Collapsed="true">
+    <Position X="1.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAABAAAACAAAAAAQQAAAAA=</HashCode>
+      <FileName>Pli.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PliWizard" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>PliWizard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PliD2P" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAIAAAAAAAAAACAAQAAAAA=</HashCode>
+      <FileName>PliD2P.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
