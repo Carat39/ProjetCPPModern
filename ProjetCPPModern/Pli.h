@@ -28,6 +28,7 @@ class Pli{
 			for (int i = 0; i < (int)cles.size(); i++) {
 				int index = (commence + i) % cles.size();
 				pli.at(cles[index])->AfficherCarte(cout);
+				cout << "joueur " << i <<endl;
 			}
 		}
 };

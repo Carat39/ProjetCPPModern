@@ -5,17 +5,29 @@
 #include <cstdio>
 
 unique_ptr<Carte> Humain::Jouer() {
-    int laValeur = Affichage::DemanderValeurCarte();
-    string laCouleur = Affichage::DemanderCouleurCarte();
-    cout << laCouleur;
-
-    // On boucle TANT QUE la carte n'est pas dans la main OU n'est pas jouable
-    while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
-        printf("\n[Erreur] Carte invalide ou absente de votre main !\n");
-        AfficherMain(cout);
-        laValeur = Affichage::DemanderValeurCarte();
-        laCouleur = Affichage::DemanderCouleurCarte();
+    int indexcarte = 0;
+    jeu->AfficherInformations(cout);
+    AfficherMain(cout);
+    indexcarte = Affichage::DemanderIndex();
+    int laValeur = getValeur(indexcarte);
+    string laCouleur = getCouleur(indexcarte);
+    while (laCouleur == " " && indexcarte != 25) {
+        laValeur = getValeur(indexcarte);
+        laCouleur = getCouleur(indexcarte);
+        indexcarte++;
     }
+    ///Ok par thibault en théorie
+    while (!jeu->CarteJouable(this, laCouleur, laValeur)) {
+        indexcarte = Affichage::DemanderIndex();
+        laValeur = getValeur(indexcarte);
+        laCouleur = getCouleur(indexcarte);
+        while (laCouleur == " " && indexcarte != 25) {
+            laValeur = getValeur(indexcarte);
+            laCouleur = getCouleur(indexcarte);
+            indexcarte++;
+        }
+    }
+
 
     // La carte est validée, on appelle Renvoyer_carte qui la retire de la main et la retourne
     return Renvoyer_carte(laCouleur, laValeur);

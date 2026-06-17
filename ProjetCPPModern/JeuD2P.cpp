@@ -189,7 +189,7 @@ void JeuD2P::VerifierCondManche() {
 	if (lePaquet->taille() == 50 || lePaquet->taille() == 51 || lePaquet->taille() == 52) {
 		condManche = false;
 		dongauche = !dongauche;
-		couleurPli = " ";
+		couleurPli = "";
 	}
 }
 

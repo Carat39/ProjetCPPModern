@@ -26,6 +26,7 @@ void JeuClem::Partie() {
     while (condPartie) {
         condManche = true;
         Distribution(); // Distribuer carte
+        ReglesSupplementaires();
         Commencer(); // attribution joueur qui commence peut y avoir une annonce ici comme pour le tarot
 
         while (condManche) {
@@ -33,37 +34,7 @@ void JeuClem::Partie() {
             int newIndexJ = -1;
             for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
                 newIndexJ = indexJ % lesJoueurs.size();
-                indexcarte = -1;
-                if (typeid(*lesJoueurs[newIndexJ]) == typeid(Humain)) {
-                    AfficherInformations(cout);
-                    lesJoueurs[newIndexJ]->AfficherMain(cout);
-                    indexcarte = Affichage::DemanderIndex();
-                    laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
-                    laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
-                    while (laCouleur == " " && indexcarte != 25) {
-                        laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
-                        laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
-                        indexcarte++;
-                    }
-                    ///Ok par thibault en théorie
-                    while (!CarteJouable(lesJoueurs[newIndexJ], laCouleur, laValeur)) {
-                        indexcarte = Affichage::DemanderIndex();
-                        laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
-                        laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
-                        while (laCouleur == " " && indexcarte != 25) {
-                            laValeur = lesJoueurs[newIndexJ]->getValeur(indexcarte);
-                            laCouleur = lesJoueurs[newIndexJ]->getCouleur(indexcarte);
-                            indexcarte++;
-                        }
-                    }
-                }
-                else {
-                    //Fonction Thibault...
-                    //Truc arbitraire en attendant :
-                    laValeur = lesJoueurs[newIndexJ]->getValeur(0);
-                    laCouleur = lesJoueurs[newIndexJ]->getCouleur(0);
-                }
-                JouerCarte(lesJoueurs[newIndexJ], laCouleur, laValeur); //Peut potentiellement y avoir des annonces
+                
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
                 joueurActuel->AfficherMain(cout);
 
@@ -72,7 +43,6 @@ void JeuClem::Partie() {
 
                 // 2. On transmet directement cette carte récupérée à la méthode JouerCarte
                 JouerCarte(joueurActuel, std::move(carteChoisie));
-                ConfirmerJoueurSuivant(); //Peut potentiellement y avoir des annonces
                 ConfirmerJoueurSuivant(); //On clear la console et demande au joueur suivant s'il est prêt
                 //On affichera les cartes du joueur suivant ainsi que le pli actuel à ce moment là
             }
