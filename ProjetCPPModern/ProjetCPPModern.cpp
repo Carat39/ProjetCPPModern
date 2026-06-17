@@ -24,20 +24,19 @@ int main(){
 
     
     cout << "♠♣♦♥" << endl;
-    /*cout << "\033[31;4mRouge souligné\033[0m" << endl;
-    cout << "\033[31;42mRouge + fond vert\033[0m" << endl;
-    cout << "\033[35;1;5mMagenta clignotant\033[0m" << endl;*/
-    //testPli();
-    //testWizard();
-    testD2P();
+
+	int jeu = -1;
+    while (jeu != 0) {
+        system("cls");
+		jeu = Affichage::Demander("Vous voulez-jouer à quel jeu?\n0 Pour quitter \n1 Pour dame de Pique\n2 pour Wizard \n");
+        if (jeu == 1) {
+            system("cls");
+            testD2P();
+        }
+        else if (jeu == 2){
+            system("cls");
+            testWizard();
+        }
+	}
     return 0;
 }
-
-/*
-    Les events que l'on peut capter:
-    KEY_EVENT_RECORD          KeyEvent;
-    MOUSE_EVENT_RECORD        MouseEvent;
-    WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
-    MENU_EVENT_RECORD         MenuEvent;
-    FOCUS_EVENT_RECORD        FocusEvent;
-    */

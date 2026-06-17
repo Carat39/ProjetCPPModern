@@ -1,6 +1,6 @@
 #include "JeuWizard.h"
 
 void testWizard() {
-	//JeuWizard MonJeu;
-	//MonJeu.Partie();
+	JeuWizard MonJeu;
+	MonJeu.Partie();
 }

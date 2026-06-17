@@ -49,6 +49,10 @@ static constexpr string CLIGNOTE() {
 	return ";5";
 }
 
+static string M() {
+	return "m";
+}
+
 
 //Définitions de template de couleurs pour l'affichage d'une carte :
 static string COEUR() {

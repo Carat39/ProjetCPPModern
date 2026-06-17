@@ -14,6 +14,7 @@ void JeuWizard::DefinirNbJoueurMinMax() {
 }
 
 void JeuWizard::PreparationJoueur(int nbJoueur, int nbIa) {
+	cout << "Nous n'avons pas pû implémenter des IA, donc il n'y aura que des joueurs (selon le nombre fourni)" << endl;
 	int indexJ, indexIA = 0;
 	for (indexJ = 0; indexJ < nbJoueur; indexJ++) {
 		lesJoueurs.push_back(move(new Humain(indexJ,this)));
@@ -108,10 +109,45 @@ void JeuWizard::AfficherInformations(ostream& os){
 	system("cls");
 	cout << "Manche n°" << manche << endl;
 	if (couleurPli != "FOU" && couleurPli != " ") {
-		os  << "Couleur Pli " << couleurPli << endl;
+		os << "Couleur Pli ";
+		if (couleurPli == "VIOLET")
+		{
+			os << PIQUE() + M();
+		}
+		else if (couleurPli == "VERT")
+		{
+			os << TREFLE();
+		}
+		else if (couleurPli == "BLEU")
+		{
+			os << CARREAU();
+		}
+		else if (couleurPli == "ROUGE")
+		{
+			os << COEUR();
+		}
+		cout << couleurPli << END_CSI() << endl;
 
 	}
-	os << "Couleur Atout " << couleurAtout << endl;
+
+	cout << "Couleur Atout ";
+	if (couleurAtout == "VIOLET")
+	{
+		os << PIQUE();
+	}
+	else if (couleurAtout == "VERT")
+	{
+		os << TREFLE();
+	}
+	else if (couleurAtout == "BLEU")
+	{
+		os << CARREAU();
+	}
+	else if (couleurAtout == "ROUGE")
+	{
+		os << COEUR();
+	}
+	cout  << couleurAtout << END_CSI() << endl;
 
 }
 
@@ -143,10 +179,18 @@ bool JeuWizard::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	return carteJouable;
 }
 
-void JeuWizard::JouerCarte(Joueur* joueur, string laCouleur, int laValeur){
-	unique_ptr<Carte> Cajouer = move(joueur->Renvoyer_carte(laCouleur, laValeur));
+void JeuWizard::JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte){
+	if (!laCarte) return;
+
+	cout << "Joueur " << joueur->getNumero() << " joue : "
+		<< laCarte->get_valeur() << " " << laCarte->get_couleur() << endl;
+
+	if (joueur->getNumero() == commencer) {
+		couleurPli = laCarte->get_couleur();
+	}
+
+	lePli->setCarte(joueur->getNumero(), std::move(laCarte));
 	joueur->EliminerCarte();
-	lePli->setCarte(joueur->getNumero(), move(Cajouer));
 }
 
 

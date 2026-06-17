@@ -38,7 +38,7 @@ class JeuWizard:public JeuClem{
 
         virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur);
 
-        virtual void JouerCarte(Joueur* joueur,string laCouleur, int laValeur);
+        virtual void JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte);
 
         virtual void ConfirmerJoueurSuivant();
 

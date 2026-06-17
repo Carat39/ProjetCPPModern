@@ -47,22 +47,22 @@ public:
 	}
 
 	void AfficherCarte(ostream& os) const  {
-		if (get_couleur() == "♠")
+		if (get_couleur() == "♠" || get_couleur() == "VIOLET")
 		{
 			os << PIQUE();
 			//cout << "1" <<endl;
 		}
-		else if (get_couleur() == "♣")
+		else if (get_couleur() == "♣" || get_couleur() == "VERT")
 		{
 			os << TREFLE();
 			//cout << "2" << endl;
 		}
-		else if (get_couleur() == "♦")
+		else if (get_couleur() == "♦" || get_couleur() == "BLEU")
 		{
 			os << CARREAU();
 			//cout << "3" << endl;
 		}
-		else if (get_couleur() == "♥")
+		else if (get_couleur() == "♥" || get_couleur() == "ROUGE")
 		{
 			os << COEUR();
 			//cout << "4" << endl;
