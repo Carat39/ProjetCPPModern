@@ -72,6 +72,5 @@ unique_ptr<Carte> IADame2Pique::Jouer() {
 			}
 		}
 	}
-
 	return Renvoyer_carte(choixCouleur, choixValeur);
 }

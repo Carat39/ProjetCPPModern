@@ -8,7 +8,7 @@ JeuD2P::JeuD2P() :JeuClem() {
 	dongauche = true;
 	condManche = true;
 	condPartie = true;
-	couleurPli = "";
+	couleurPli = " ";
 }
 
 void JeuD2P::DefinirNbJoueurMinMax() {
@@ -74,7 +74,7 @@ void JeuD2P::Commencer() {
 			index3++;
 		}
 	}
-	couleurPli = "";
+	couleurPli = " ";
 }
 
 void JeuD2P::ReglesSupplementaires() {
@@ -130,8 +130,7 @@ bool JeuD2P::CarteJouable(Joueur* joueur, string laCouleur, int laValeur) {
 	else{
 		//si c'est le premier joueur qui est en train de jouer
 		if (joueur->getNumero() == commencer) {
-			//On définit la couleur du pli
-			couleurPli = laCouleur;
+
 			//Joue t-il du coeur en premier?
 			if (laCouleur == "♥" && coeur_bloque) {
 				//Il possede encore du coeur
@@ -163,7 +162,7 @@ void JeuD2P::JouerCarte(Joueur* joueur, unique_ptr<Carte> laCarte) {
 	cout << "Joueur " << joueur->getNumero() << " joue : "
 		<< laCarte->get_valeur() << laCarte->get_couleur() << endl;
 
-	if (couleurPli == "") {
+	if (joueur->getNumero() == commencer) {
 		couleurPli = laCarte->get_couleur();
 	}
 

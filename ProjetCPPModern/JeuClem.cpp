@@ -32,12 +32,9 @@ void JeuClem::Partie() {
             int indexcarte = -1;
             int newIndexJ = -1;
             for (int indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
-                cout << commencer;
-                cout << couleurPli;
                 newIndexJ = indexJ % lesJoueurs.size();
                 
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];
-                joueurActuel->AfficherMain(cout);
 
                 // 1. Le joueur choisit et extrait sa carte de sa main
                 unique_ptr<Carte> carteChoisie = move(joueurActuel->Jouer());

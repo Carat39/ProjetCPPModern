@@ -20,16 +20,24 @@ class Pli{
 
 		void setCarte(int joueur, std::unique_ptr<Carte> carte);
 		
-		void Afficher_Pli(int commence) {
-			std::vector<int> cles;
-			for (auto& [cle, carte] : pli) {
-				cles.push_back(cle);
-			}
-			for (int i = 0; i < (int)cles.size(); i++) {
-				int index = (commence + i) % cles.size();
-				pli.at(cles[index])->AfficherCarte(cout);
-				cout << "joueur " << i <<endl;
-			}
-		}
+        void Afficher_Pli(int commence) {
+            // On récupère les clés (numéros de joueurs ayant joué), triées
+            std::vector<int> cles;
+            for (auto& [cle, carte] : pli) {
+                cles.push_back(cle);
+            }
+
+            // On trouve la position de "commence" dans cles, ou le premier joueur >= commence
+            auto it = std::lower_bound(cles.begin(), cles.end(), commence);
+            int start = std::distance(cles.begin(), it);
+
+            int n = cles.size();
+            for (int i = 0; i < n; i++) {
+                int index = (start + i) % n;
+                int joueur = cles[index];
+                pli.at(joueur)->AfficherCarte(cout);
+                cout << "joueur " << joueur << endl;
+            }
+        }
 };
 #endif
