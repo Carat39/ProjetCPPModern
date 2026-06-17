@@ -2,6 +2,7 @@
 #define CARTE_H 50
 
 #include <iostream>
+#include <memory>
 using namespace std;
 
 class Carte {
@@ -21,10 +22,10 @@ public:
 		valeur = val;
 	}
 
-	Carte(Carte& autre) noexcept {
-		couleur = autre.couleur;
-		valeur = autre.valeur;
-	}
+		Carte(Carte& autre)  {
+			couleur = autre.couleur;
+			valeur = autre.valeur;
+		}
 
 	Carte(Carte&& autre) noexcept {
 		couleur = autre.couleur;
@@ -32,11 +33,11 @@ public:
 	}
 
 
-	//Méthodes
-	void set_couleur(string coul) { couleur = coul; }
-	void set_valeur(int val) { valeur = val; }
-	string get_couleur() const { return couleur; }
-	int get_valeur() const { return valeur; }
+		//Méthodes
+		void set_couleur(string coul) {couleur = coul;}
+		void set_valeur(int val) {valeur = val;}
+		string get_couleur() const{ return couleur; }
+		int get_valeur() const { return valeur; }
 
 	Carte& operator= (Carte&& autre) noexcept {
 		couleur = autre.couleur;
@@ -44,9 +45,16 @@ public:
 		return *this;
 	}
 
-	void AfficherCarte(ostream& os) const noexcept {
-		os << get_valeur() << " " << get_couleur() << endl;
-	}
+		void AfficherCarte(ostream& os) const {
+			os << get_valeur() << " " << get_couleur() << endl;
+		}
+
+		bool operator<(Carte& other) {
+			if (this->get_couleur() == other.get_couleur()) {
+				return this->get_valeur() > other.get_valeur();
+			}
+			return this->get_couleur() < other.get_couleur();
+		}
 };
 
 //using laCarte = unique_ptr<Carte>;

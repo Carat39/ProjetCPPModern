@@ -1,15 +1,26 @@
-#ifndef I_A_H
-#define I_A_H
+#ifndef JOUEUR_IA_H
+#define JOUEUR_IA_H
 
 #include <string>
 #include <vector>
 #include <list>
 #include <iostream>
-#include <assert.h>
-
+#include <vector>
+#include "Carte.h"
+#include <algorithm>
+#include <memory>
 #include "Joueur.h"
+#include <exception>
+#include <stdexcept>
 
-class IA : public Joueur{
+
+class IA : public Joueur {
+
+public:
+
+	virtual unique_ptr<Carte>& Jouer()=0;
+
 
 };
+
 #endif

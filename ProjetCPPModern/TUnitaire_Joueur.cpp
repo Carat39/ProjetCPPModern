@@ -9,23 +9,29 @@ using namespace std;
 #include <stdlib.h>
 #include "Affichage.h"
 #include <windows.h>
+#include <memory>
+#include "Humain.h"
+#include <utility>
 
 
 void testJoueur() {
-	Joueur Clement = Joueur(1);
-	Joueur Thibault = Joueur(2);
-	Joueur Nino = Joueur(3);
-	PaquetD2P MonPaquet = PaquetD2P();
-	cout << "Mélange" << endl;
-	MonPaquet.Melanger();
-	MonPaquet.AfficherPaquet(cout);
-	MonPaquet.retirer_carte("♦", 2);
+    Humain Clement = Humain(1);
+    Humain Thibault = Humain(2);
+    Humain Nino = Humain(3);
+    PaquetD2P MonPaquet = PaquetD2P();
+    cout << "Mélange" << endl;
+    MonPaquet.Melanger();
+    MonPaquet.AfficherPaquet(cout);
+    MonPaquet.retirer_carte("♦", 2);
 
-
-	vector<Joueur> list_joueurs = {Clement,Thibault,Nino};
+    
+    vector<Humain*> list_joueurs;
+    list_joueurs.push_back(move(&Clement));
+    list_joueurs.push_back(move(&Thibault));
+    list_joueurs.push_back(move(&Nino));
 	unsigned int index = 0;
 	while(index < MonPaquet.taille()) {
-		MonPaquet.Distribuer(list_joueurs[index%3]);
+		MonPaquet.Distribuer(*list_joueurs[index%3]);
 		index++;
 	}
     HANDLE hConsoleHandle = GetStdHandle(STD_INPUT_HANDLE);
@@ -65,7 +71,7 @@ void testJoueur() {
                         fin = false;
                         break;
                     case 16:
-                        Affichage::Afficher_jeu(list_joueurs);
+                        Affichage::Afficher_jeu_Humain(list_joueurs);
                         break;
                     case 25:
                         system("cls");
@@ -75,5 +81,5 @@ void testJoueur() {
     }
     SetConsoleMode(hConsoleHandle, dwMode);
     
-
+    
 }

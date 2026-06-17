@@ -3,16 +3,20 @@
 #include "Paquet.h"
 #include "Pli.h"
 #include "Affichage.h"
+#include <memory>
+#include "Joueur.h"
 
 class JeuClem{
 	protected:
 		//Attributs
         int nbJoueursMinMax[2];
         vector<Joueur*> lesJoueurs;
-        Paquet lePaquet;
-        Pli lePli;
+        Paquet* lePaquet;
+        Pli* lePli;
+        bool condManche;
         bool condPartie;
         int commencer;
+        string couleurPli;
 
 	public:
         //Pas de constructeurs
@@ -33,9 +37,15 @@ class JeuClem{
 
         virtual void Commencer() = 0;
 
-        virtual void CarteJouable() = 0;
+        virtual void ReglesSupplementaires() = 0;
 
-        virtual void JouerCarte(Joueur* joueur,string couleur, int valeur) = 0;
+        virtual void AfficherInformations(ostream& os) = 0;
+
+        virtual void VerifierCondManche() = 0;
+
+        virtual bool CarteJouable(Joueur* joueur,string laCouleur, int laValeur) = 0;
+
+        virtual void JouerCarte(Joueur* joueur,string laCouleur, int laValeur) = 0;
 
         virtual void ConfirmerJoueurSuivant() = 0;
 

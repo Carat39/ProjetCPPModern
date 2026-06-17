@@ -3,8 +3,11 @@
 
 #include "Pli.h"
 
-class PliWizard:Pli{
+class PliWizard:public Pli{
+	public:
+		PliWizard(Paquet* paquet);
 
+		virtual int Vainqueur(int premier_j, string couleurAtout);
 };
 
 #endif

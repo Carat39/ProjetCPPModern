@@ -1,4 +1,4 @@
-NbCartes=32
+NbCartes=52
 Cartes=[
 Couleur=♠, Valeur=1
 Couleur=♠, Valeur=2

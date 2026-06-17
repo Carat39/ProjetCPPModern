@@ -1,31 +1,35 @@
 #include "Carte.h"
 #include "Paquet.h"
 #include "Joueur.h"
-#include "Pli_D2P.h"
-
+#include "PliD2P.h"
+#include "Humain.h"
 void testPli() {
-	Paquet MonPaquet = Paquet();
-	Pli_D2P MonPli;
-	Joueur MonJoueur(0);
-	Joueur Clement = Joueur(1);
-	Joueur Thibault = Joueur(2);
-	Joueur Nino = Joueur(3);
+	Paquet MonPaquet = Paquet("Paquets/Paquet52Cartes.txt");
+	PliD2P MonPli(&MonPaquet);
+	Humain Marandin = Humain(0);
+	Humain Clement = Humain(1);
+	Humain Thibault = Humain(2);
+	Humain Nino = Humain(3);
 	MonPaquet.Melanger();
 
-	Joueur list_joueurs[] = { Clement,Thibault,Nino };
+	vector<Humain> list_joueurs;
+	list_joueurs.push_back(move(Marandin));
+	list_joueurs.push_back(move(Clement));
+	list_joueurs.push_back(move(Thibault));
+	list_joueurs.push_back(move(Nino));
 	unsigned int index = 0;
-	while (index < MonPaquet.taille()) {
-		MonPaquet.Distribuer(list_joueurs[index % 3]);
+	size_t taille = MonPaquet.taille();
+	while (index < taille) {
+		MonPaquet.Distribuer(list_joueurs[index % 4]);
 		index++;
 	}
-	index= 0;
-	vector<Carte> laMano;
-	for (Joueur& joueur : list_joueurs) {
-		laMano= joueur.getMain();
-		MonPli.setCarte(index, laMano[index]);
-		index++;
+	map<int,unique_ptr<Carte>> laMano;
+	for (Humain& joueur : list_joueurs) {
+		laMano = joueur.getMain();
+		MonPli.setCarte(joueur.getNumero(), move(laMano[0]));
+		laMano.erase(laMano.begin());
+		joueur.addMain(move(laMano));
 	}
-
-	MonPli.Vainqueur<Paquet>(0, MonPaquet);
-	cout << endl << MonPli.Calcul_points();
+	cout  << MonPli.Calcul_points() <<endl ;
+	MonPli.Vainqueur(0);
 }

@@ -3,7 +3,13 @@
 
 #include <iostream>
 #include <string>
-#include "Joueur.h"
+#include <memory>
+#include <vector>
+
+
+class Humain;   
+class IA;
+
 using namespace std;
 class Affichage{
 	public:
@@ -11,9 +17,11 @@ class Affichage{
 
 		static string DemanderCouleurCarte();
 
-		static int DemanderNbJoueurs(string Precision);
+		static int Demander(string Precision);
 
-		static void Afficher_jeu(vector<Joueur> vectJ);
+		static void Afficher_jeu_Humain(vector<Humain*>& vectJ);
+
+		static void Afficher_jeu_IA(vector<IA*>& vectJ);
 
 };
 

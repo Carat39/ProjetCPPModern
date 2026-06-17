@@ -2,58 +2,119 @@
 #include <vector>
 
 #include "Joueur.h"
+using namespace std;
 
-
-void Joueur::addPoints(int nbPoints){
+void Joueur::addPoints(int nbPoints) {
 	points += nbPoints;
 }
 
-void Joueur::addCarte(Carte laCarte) {
-	mainJ.push_back(move(laCarte));
-}
-
-void Joueur::addMain(std::vector<Carte> lesCartes){
-	for (Carte& laCarte : lesCartes) {
-		addCarte(move(laCarte));
+void Joueur::addCarte(unique_ptr<Carte> laCarte) {
+	bool place = false;
+	unsigned int index = 0;
+	while (index <= mainJ.size() && !place) {
+		if (!mainJ[index]) {
+			mainJ[index] = move(laCarte);
+			place = true;
+		}
+		else {
+			index++;
+		}
 	}
 }
 
-void Joueur::supprMain(Carte laCarte){
-	laCarte.~Carte();
+void Joueur::addMain(std::map<int, unique_ptr<Carte>> lesCartes) {
+	for (int index = 0; index < lesCartes.size(); index++) {
+		addCarte(move(lesCartes[index]));
+	}
 }
 
-void Joueur::Jouer(){
+void Joueur::supprMain(unique_ptr<Carte> laCarte) {
+	laCarte.~unique_ptr<Carte>();
 }
+
 
 bool Joueur::CouleurPresente(string coul) {
-	for (Carte& laCarte : mainJ) {
-		if (laCarte.get_couleur() == coul) {
-			return true;
+	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul) {
+				return true;
+			}
 		}
 	}
 	return false;
 }
 
 bool Joueur::Trouver_carte(string coul, int val){
-	for (Carte& laCarte : mainJ) {
-		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {
-			return true;
+	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
+				return true;
+			}
 		}
 	}
 	return false;
 }
 
-Carte& Joueur::Renvoyer_carte(string coul, int val) noexcept {
-	for (Carte& laCarte : mainJ) {
-		if (laCarte.get_couleur() == coul && laCarte.get_valeur() == val) {
-			return laCarte;
+unique_ptr<Carte>& Joueur::Renvoyer_carte(string coul, int val) noexcept {
+	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
+		if ((*it).second) {
+			if ((*it).second->get_couleur() == coul && (*it).second->get_valeur() == val) {
+				return (*it).second;
+			}
+		}
+	}
+	return (mainJ.begin())->second;
+}
+
+void Joueur::EliminerCarte() {
+	auto it = mainJ.begin();
+	while (it != mainJ.end()) {
+		if (!((*it).second)) {
+			it = mainJ.erase(it);
+		}
+		else { 
+			it++; 
 		}
 	}
 }
 
-void Joueur::AfficherMain(ostream& os) const noexcept {
+string Joueur::getCouleur(unsigned int indexCarte) {
+	if (mainJ[indexCarte]) {
+		return mainJ[indexCarte]->get_couleur();
+	}
+	return " ";
+}
+
+int Joueur::getValeur(unsigned int indexCarte) {
+	if (mainJ[indexCarte]){
+		return mainJ[indexCarte]->get_valeur();
+	}
+	return -1;
+}
+
+
+void Joueur::AfficherMain(ostream& os) noexcept {
 	os << "Joueur " << getNumero() << ":" << endl;
-	for (const Carte& carte : mainJ) {
-		carte.AfficherCarte(os);
+	for (auto it = mainJ.begin(); it != mainJ.end(); it++) {
+		if ((*it).second) {
+			os << "index: " << (*it).first << " Carte: ";
+			((*it).second)->AfficherCarte(os);
+		}
+	}
+}
+
+void Joueur::Trier() {
+	int indexCarte = 0;
+	size_t size = mainJ.size();
+	vector<unique_ptr<Carte>> vectorATrier;
+	for (auto itCarte = mainJ.begin(); itCarte != mainJ.end(); itCarte++) {
+		vectorATrier.push_back(move((*itCarte).second));
+	}
+	mainJ.clear();
+	sort(vectorATrier.begin(), vectorATrier.end(), [](const auto& carte1, const auto& carte2) {
+		return *carte1 < *carte2;
+	});
+	for (indexCarte = 0; indexCarte < size; indexCarte++) {
+		addCarte(move(vectorATrier[indexCarte]));
 	}
 }
