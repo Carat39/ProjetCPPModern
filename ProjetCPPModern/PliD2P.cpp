@@ -36,31 +36,52 @@ bool PliD2P::Coeur_existe()
 }
 
 int PliD2P::Vainqueur(int premier_j, string couleurAtout) {
-    auto it_premier = pli.find(premier_j);
-    if (it_premier == pli.end()) {
-        cerr << "Erreur Vainqueur(): joueur " << premier_j
-            << " introuvable dans pli. Cles presentes: ";
-        for (const auto& p : pli) cerr << p.first << " ";
-        cerr << endl;
-        it_premier = pli.begin();
+
+    if (pli.empty()) {
+        throw std::runtime_error("Pli vide !");
     }
 
-    int le_gagnant = it_premier->first;
-    string couleur_pli = it_premier->second->get_couleur();
-    int meilleur_carte = it_premier->second->get_valeur();
+    std::vector<int> ordre;
+    int nbJoueurs = pli.size();
 
-    for (const auto& pair : pli) {
-        if (pair.second->get_couleur() == couleur_pli && pair.second->get_valeur() > meilleur_carte) {
-            le_gagnant = pair.first;
-            meilleur_carte = pair.second->get_valeur();
+    for (int i = 0; i < nbJoueurs; i++) {
+        int j = (premier_j + i) % nbJoueurs;
+        if (pli.find(j) != pli.end()) {
+            ordre.push_back(j);
         }
     }
-    cout << le_gagnant << endl;
+
+    int gagnant = ordre[0];
+    string couleur_pli = pli[gagnant]->get_couleur();
+    int meilleure_valeur = pli[gagnant]->get_valeur();
+
+    for (int i = 1; i < ordre.size(); i++) {
+        int j = ordre[i];
+        auto& carte = pli[j];
+
+        if (!couleurAtout.empty()) {
+            if (carte->get_couleur() == couleurAtout &&
+                couleur_pli != couleurAtout) {
+                gagnant = j;
+                meilleure_valeur = carte->get_valeur();
+                couleur_pli = couleurAtout;
+                continue;
+            }
+        }
+
+        if (carte->get_couleur() == couleur_pli &&
+            carte->get_valeur() > meilleure_valeur) {
+            gagnant = j;
+            meilleure_valeur = carte->get_valeur();
+        }
+    }
+
+    cout << "Gagnant du pli : Joueur " << gagnant << endl;
 
     for (auto& pair : pli) {
-        lePaquet->Move_carte(move(pair.second));
+        lePaquet->Move_carte(std::move(pair.second));
     }
     pli.clear();
 
-    return le_gagnant;
+    return gagnant;
 }

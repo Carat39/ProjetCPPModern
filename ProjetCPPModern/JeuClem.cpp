@@ -11,7 +11,6 @@ void JeuClem::Partie() {
     int nbIa = -1;
     string laCouleur = "";
     int laValeur = 0;
-    int indexJ;
 
     DefinirNbJoueurMinMax(); //Attributs minjoueurs et maxjoueurs
     while (nbJoueurs + nbIa < nbJoueursMinMax[0] || nbJoueursMinMax[1] < nbJoueurs + nbIa) {
@@ -32,7 +31,9 @@ void JeuClem::Partie() {
         while (condManche) {
             int indexcarte = -1;
             int newIndexJ = -1;
-            for (indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
+            for (int indexJ = commencer; indexJ < commencer + nbJoueurs + nbIa; indexJ++) {
+                cout << commencer;
+                cout << couleurPli;
                 newIndexJ = indexJ % lesJoueurs.size();
                 
                 Joueur* joueurActuel = lesJoueurs[indexJ % lesJoueurs.size()];

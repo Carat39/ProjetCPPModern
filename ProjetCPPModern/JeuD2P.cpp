@@ -74,7 +74,7 @@ void JeuD2P::Commencer() {
 			index3++;
 		}
 	}
-	couleurPli = " ";
+	couleurPli = "";
 }
 
 void JeuD2P::ReglesSupplementaires() {
@@ -181,8 +181,9 @@ void JeuD2P::ConfirmerJoueurSuivant() {
 }
 
 void JeuD2P::VerifierPli() {
-	points_temp[commencer] += ((PliD2P*)lePli)->Calcul_points();
-	commencer = ((PliD2P*)lePli)->Vainqueur(commencer);
+	int gagnant = ((PliD2P*)lePli)->Vainqueur(commencer);
+	points_temp[gagnant] += ((PliD2P*)lePli)->Calcul_points();
+	commencer = gagnant;
 }
 
 void JeuD2P::VerifierCondManche() {
